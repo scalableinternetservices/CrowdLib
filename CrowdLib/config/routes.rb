@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
-  resources :users
   namespace :api do
     namespace :v1 do
-      resources :users, only: [:index, :create, :show, :update, :destroy]
+      get 'users/count' => 'users#count'
+      get 'users/by/id/:id' => 'users#show_by_id'
+      get 'users/by/username/:name' => 'users#show_by_username'
+
+      resources :users, only: [:index] # :create, :show, :update, :destroy
     end
   end
 
@@ -10,7 +13,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  root 'welcome#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151012145204) do
+ActiveRecord::Schema.define(version: 20151013090232) do
+
+  create_table "locations", force: :cascade do |t|
+    t.float    "lat"
+    t.float    "lng"
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "posts", force: :cascade do |t|
     t.integer  "community_id"

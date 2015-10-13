@@ -1,11 +1,17 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
-      get 'users/count' => 'users#count'
-      get 'users/by/id/:id' => 'users#show_by_id'
-      get 'users/by/username/:name' => 'users#show_by_username'
+      get 'users/count', to: 'users#count'
+      get 'users/by/id/:id', to: 'users#show_by_id'
+      get 'users/by/username/:name', to: 'users#show_by_username'
 
       resources :users, only: [:index] # :create, :show, :update, :destroy
+
+      get 'locations/by/id/:id', to: 'locations#show_by_id'
+      get 'locations/around/:lat/:lng', to: 'locations#show_by_distance', defaults: { limit: 1000 }, :constraints => {:lat => /\-*\d+.\d+/ , :lng => /\-*\d+.\d+/ }
+      get 'locations/around/:lat/:lng/within/:limit', to: 'locations#show_by_distance', :constraints => {:lat => /\-*\d+.\d+/ , :lng => /\-*\d+.\d+/ , :limit => /\d+/}
+
+      resources :locations, only: []
     end
   end
 

@@ -8,11 +8,13 @@ Rails.application.routes.draw do
       resources :users, only: []
 
       get 'locations/by/id/:id', to: 'locations#show_by_id'
-      get 'locations/around/:lat/:lng', to: 'locations#show_by_distance', defaults: { limit: 1000 }, 
-        :constraints => {:lat => /\-*\d+.\d+/ , :lng => /\-*\d+.\d+/ }
-      get 'locations/around/:lat/:lng/within/:limit', to: 'locations#show_by_distance', 
-        :constraints => { :lat => /\-*\d+.\d+/ , :lng => /\-*\d+.\d+/ , :limit => /\d+/}
-
+      get 'locations/around/:lat,:lng', to: 'locations#show_by_distance', 
+        defaults: { limit: 1000 }, 
+        constraints: {:lat => /\-*\d+.\d+/ , :lng => /\-*\d+.\d+/ }
+      get 'locations/around/:lat,:lng/within/:limit', to: 'locations#show_by_distance', 
+        constraints: { :lat => /\-*\d+.\d+/ , :lng => /\-*\d+.\d+/ , :limit => /\d+/}
+      delete 'locations/by/id/:id', to: 'locations#delete_by_id'
+      
       resources :locations, only: []
     end
   end

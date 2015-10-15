@@ -35,9 +35,6 @@ The actual API documentation is growing and changing with each new commit. All A
 ### Gavrilov Miroslav
 ![Gavrilov Miroslav](https://www.cs.ucsb.edu/sites/cs.ucsb.edu/files/styles/portrait-full/public/images/graduate/gavrilov_miroslav.jpg?itok=gIgg0o2d&c=9754cc46a1cc5ead818fe643ab52da58)
 
-## API Documentation
-
-**Soon to come**
 
 ## Trackers
 

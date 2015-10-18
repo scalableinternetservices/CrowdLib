@@ -17,7 +17,7 @@ class Api::V1::LocationsController < Api::V1::BaseController
 			locs = Location.within(
 				params[:limit], 
 				:origin => [ params[:lat], params[:lng] ]
-			).pluck(:id)
+			).pluck()
 			
 			$redis.sadd addr, locs.to_a # add locations to a set with key "at:lat:loc:limit"
 			$redis.expire addr, 300		# the set will expire in 5mins (explore value)

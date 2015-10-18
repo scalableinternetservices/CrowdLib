@@ -5,9 +5,10 @@ class CreateBooks < ActiveRecord::Migration
       t.string :author
       t.string :edition
       t.string :genre
-      t.decimal :rating, precision:2, scale: 1
-      t.string :publisher
+      t.decimal :ratings
       t.string :image_url
+      t.string :publisher
+      t.string :ISBN
 
       t.timestamps null: false
     end

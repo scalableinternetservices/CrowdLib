@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :books
+  resources :books
   namespace :api do
     namespace :v1 do
       get 'users/count', to: 'users#count'

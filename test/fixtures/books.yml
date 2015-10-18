@@ -5,15 +5,17 @@ one:
   author: MyString
   edition: MyString
   genre: MyString
-  rating: 9.99
-  publisher: MyString
+  ratings: 9.99
   image_url: MyString
+  publisher: MyString
+  ISBN: MyString
 
 two:
   title: MyString
   author: MyString
   edition: MyString
   genre: MyString
-  rating: 9.99
-  publisher: MyString
+  ratings: 9.99
   image_url: MyString
+  publisher: MyString
+  ISBN: MyString

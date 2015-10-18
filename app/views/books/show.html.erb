@@ -21,8 +21,13 @@
 </p>
 
 <p>
-  <strong>Rating:</strong>
-  <%= @book.rating %>
+  <strong>Ratings:</strong>
+  <%= @book.ratings %>
+</p>
+
+<p>
+  <strong>Image url:</strong>
+  <%= @book.image_url %>
 </p>
 
 <p>
@@ -31,8 +36,8 @@
 </p>
 
 <p>
-  <strong>Image url:</strong>
-  <%= @book.image_url %>
+  <strong>Isbn:</strong>
+  <%= @book.ISBN %>
 </p>
 
 <%= link_to 'Edit', edit_book_path(@book) %> |

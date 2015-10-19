@@ -18,6 +18,8 @@ Rails.application.routes.draw do
       resources :locations, only: []
     end
   end
+#/locatebooks take user to a map showing books in his closest vicinity
+get 'locatebooks', to:      'locatebooks'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

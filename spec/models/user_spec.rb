@@ -19,4 +19,14 @@ describe User do
 		expect(user).not_to be_valid
 	end	
 
+	it "is invalid without a password" do
+
+	it "has a unique UID" do
+		user1 = build(:user, username: "username")
+		user2 = build(:user, username: "username")
+		expect(user2).not_to_be_valid
+	end
+
+
+
 end

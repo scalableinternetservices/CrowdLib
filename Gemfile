@@ -50,4 +50,5 @@ group :development do
 end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 gem 'bootstrap-sass', '~> 3.3.5'
+gem 'carrierwave'
 gem 'font-awesome-sass'

@@ -27,4 +27,8 @@ $(document).ready(function(){
 	        zIndex: 2147483647 // Z-Index for the overlay
 		});
 	});
+	$("#book_list").load("/books");
 });
+
+/*load the list ok books in the index.html*/
+

@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+
+          <div class="features_items"><!--features_items-->
+            <h2 class="title text-center">Listed Books</h2>
+            <% @books.each do |book| %>
+              <div class="col-sm-4">
+                <div class="product-image-wrapper">
+                  <div class="single-products">
+                    <div class="productinfo text-center">
+                      <%= image_tag book.image_url, {height: 200} %>
+                      <h2><%= book.title %></h2>
+                      <p><%= book.author %></p>
+                      <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Borrow</a>
+                    </div>
+                    <div class="product-overlay">
+                      <div class="overlay-content">
+                        <h2><%= book.title %></h2>
+                        <p><%= book.author %></p>
+                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Borrow</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="choose">
+                    <ul class="nav nav-pills nav-justified">
+                      <li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
+                    </ul>
+                  </div>
+                </div>
+            </div>
+            <% end %>
+          </div><!--books-->  
+
+<table>

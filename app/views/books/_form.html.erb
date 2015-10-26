@@ -1,0 +1,30 @@
+
+    <div class="container">
+        <div class="col-sm-4 col-sm-offset-1">
+          <div class="login-form"><!--login form-->
+            <h2>Lend a Book</h2>
+            <%= form_for(@book) do |f| %>
+              <% if @book.errors.any? %>
+                <div id="error_explanation">
+                  <h2><%= pluralize(@book.errors.count, "error") %> prohibited this book from being saved:</h2>
+                  <ul>
+                  <% @book.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                  </ul>
+                </div>
+              <% end %>
+            
+               <%= f.text_field :title, :placeholder => "Book Title" %>
+              <%= f.text_field :author, :placeholder => "Author" %>
+              <%= f.text_field :edition, :placeholder => "Edition" %>
+               <%= f.text_field :genre, :placeholder => "Genre" %>
+               <%= f.text_field :ratings, :placeholder => "Rating" %>
+               <%= f.text_field :publisher, :placeholder => "Publisher" %>
+               <%= f.text_field :ISBN, :placeholder => "ISBN" %>
+               <%= f.file_field :image_url, :placeholder => "Photo", :class => "btn-file" %>
+               <button type="submit" class="btn btn-default">Lend</button>
+            <% end %>
+          </div>
+        </div>
+    </div>  

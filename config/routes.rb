@@ -1,9 +1,4 @@
 Rails.application.routes.draw do
-<<<<<<< HEAD
-  resources :users
-  resources :books
-=======
->>>>>>> master
   resources :books
   namespace :api do
     namespace :v1 do

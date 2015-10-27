@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 tmp/*
 =======
 ee http://help.github.com/ignore-files/ for more about ignoring files.
@@ -81,4 +80,3 @@ config/application.yml
 Icon?
 ehthumbs.db
 Thumbs.db
->>>>>>> master

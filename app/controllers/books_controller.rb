@@ -1,22 +1,14 @@
 class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
 
-<<<<<<< HEAD
-=======
-#  scope :genre, -> (genre) { where genre: genre }
-
->>>>>>> master
   # GET /books
   # GET /books.json
   def index
     @books = Book.all
-<<<<<<< HEAD
-=======
     @books = @books.genre(params[:genre]) if params[:genre].present?
     @books = @books.author(params[:author]) if params[:author].present?
     @books = @books.title(params[:title]) if params[:title].present?  
     @unique_authors = Book.uniq.pluck(:author)
->>>>>>> master
   end
 
   # GET /books/1
@@ -73,11 +65,8 @@ class BooksController < ApplicationController
     end
   end
 
-<<<<<<< HEAD
   private
-=======
   
->>>>>>> master
     # Use callbacks to share common setup or constraints between actions.
     def set_book
       @book = Book.find(params[:id])
@@ -88,3 +77,4 @@ class BooksController < ApplicationController
       params.require(:book).permit(:title, :author, :edition, :genre, :ratings, :image_url, :publisher, :ISBN)
     end
 end
+

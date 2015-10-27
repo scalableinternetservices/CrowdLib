@@ -1,6 +1,4 @@
 class Book < ActiveRecord::Base
-<<<<<<< HEAD
-=======
 	include ActiveModel::Serializers::JSON
 
 	mount_uploader :image_url, ImageUrlUploader # Tells rails to use this uploader for this model.
@@ -14,5 +12,4 @@ class Book < ActiveRecord::Base
 	scope :genre, -> (genre) { where genre: genre }
 	scope :author, -> (author) { where("author like ?", "#{author}%")}
 	scope :title, -> (title) { where("title like ?", "#{title}%")}
->>>>>>> master
 end

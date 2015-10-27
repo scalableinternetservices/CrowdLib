@@ -1,0 +1,2 @@
+module LocatebooksHelper
+end

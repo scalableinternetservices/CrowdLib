@@ -11,6 +11,7 @@
 User.create([{ 
 	username: 'mvg', 
 	email: 'mvg@cs.ucsb.edu', 
+<<<<<<< HEAD
 	firstname: 'Miroslav', 
 	lastname: 'Gavrilov', 
 	password: '744ae48f38d3d899641bdd8de4bdf3234599eb0',
@@ -18,6 +19,21 @@ User.create([{
 	lender_rating: 0,
 	borrower_rating: 0
 }])
+=======
+	first_name: 'Miroslav', 
+	last_name: 'Gavrilov', 
+	password: '0744ae48f38d3d899641bdd8de4bdf3234599eb0'
+},
+{
+        username: 'prithan',
+        email: 'prithan@cs.ucsb.edu',
+        first_name: 'Pritha',
+        last_name: 'DN',
+        password: 'dummy'
+}
+])
+
+>>>>>>> master
 
 # SPAWN LOCATIONS
 
@@ -34,3 +50,4 @@ rng = Random.new
 	point = create_new_point rng
 	Location.create("lat" => point[:lat], "lng" => point[:lng], "name" => "Point num. #{i}")
 end
+

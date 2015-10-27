@@ -1,10 +1,16 @@
 class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
 
+#  scope :genre, -> (genre) { where genre: genre }
+
   # GET /books
   # GET /books.json
   def index
     @books = Book.all
+    @books = @books.genre(params[:genre]) if params[:genre].present?
+    @books = @books.author(params[:author]) if params[:author].present?
+    @books = @books.title(params[:title]) if params[:title].present?  
+    @unique_authors = Book.uniq.pluck(:author)
   end
 
   # GET /books/1

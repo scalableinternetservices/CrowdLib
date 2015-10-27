@@ -9,5 +9,7 @@ class Book < ActiveRecord::Base
 	
 	validates  :title, presence: true, length: { maximum: 100 }
 	validates  :author, presence: true, length: { maximum: 30}
-
+	scope :genre, -> (genre) { where genre: genre }
+	scope :author, -> (author) { where("author like ?", "#{author}%")}
+	scope :title, -> (title) { where("title like ?", "#{title}%")}
 end

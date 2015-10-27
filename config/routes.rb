@@ -8,6 +8,13 @@ Rails.application.routes.draw do
       get 'users/by/id/:id', to: 'users#show_by_id'
       get 'users/by/username/:name', to: 'users#show_by_username'
 
+      # FOR DEBUG PURPOSES, THESE ARE GETs
+        get 'auth/register/:username,:password,:first_name,:last_name,:address,:email', to: 'users#register'
+        get 'auth/claim/:token', to: 'users#claim'
+        get 'auth/login/:username,:password', to: 'users#login'
+        get 'auth/logout/:token', to: 'users#logout'
+      # END OF DEBUG PURPOSES
+
       resources :users, only: []
 
       get 'locations/by/id/:id', to: 'locations#show_by_id'

@@ -24,6 +24,10 @@ Rails.application.routes.draw do
       delete 'locations/by/id/:id', to: 'locations#delete_by_id'
       
       resources :locations, only: []
+
+      #add methods for api/v1/books if need arises
+
+      resources :books, only: []
     end
   end
 #/locatebooks take user to a map showing books in his closest vicinity

@@ -1,3 +1,4 @@
+#controller for handling all the views for books
 class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
 

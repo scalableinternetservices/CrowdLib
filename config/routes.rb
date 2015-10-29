@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :book_requests
   devise_for :users, path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'register' }
   resources :books
   namespace :api do

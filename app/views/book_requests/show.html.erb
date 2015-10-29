@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Book:</strong>
+  <%= @book_request.book_id %>
+</p>
+
+<p>
+  <strong>Lender:</strong>
+  <%= @book_request.lender_id %>
+</p>
+
+<p>
+  <strong>Borrower:</strong>
+  <%= @book_request.borrower_id %>
+</p>
+
+<p>
+  <strong>Loan period:</strong>
+  <%= @book_request.loan_period %>
+</p>
+
+<p>
+  <strong>Approved:</strong>
+  <%= @book_request.approved %>
+</p>
+
+<%= link_to 'Edit', edit_book_request_path(@book_request) %> |
+<%= link_to 'Back', book_requests_path %>

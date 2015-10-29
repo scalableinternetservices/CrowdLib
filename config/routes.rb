@@ -2,19 +2,6 @@ Rails.application.routes.draw do
   resources :books
   namespace :api do
     namespace :v1 do
-      get 'users/count', to: 'users#count'
-      get 'users/by/id/:id', to: 'users#show_by_id'
-      get 'users/by/username/:name', to: 'users#show_by_username'
-
-      # FOR DEBUG PURPOSES, THESE ARE GETs
-        get 'auth/register/:username,:password,:first_name,:last_name,:address,:email', to: 'users#register'
-        get 'auth/claim/:token', to: 'users#claim'
-        get 'auth/login/:username,:password', to: 'users#login'
-        get 'auth/logout/:token', to: 'users#logout'
-      # END OF DEBUG PURPOSES
-
-      resources :users, only: []
-
       get 'locations/by/id/:id', to: 'locations#show_by_id'
       get 'locations/around/:lat,:lng', to: 'locations#show_by_distance', 
         defaults: { limit: 1000 }, 
@@ -30,15 +17,22 @@ Rails.application.routes.draw do
       resources :books, only: []
     end
   end
-#/locatebooks take user to a map showing books in his closest vicinity
-get 'locatebooks', to:      'locatebooks'
+
+  #/locatebooks take user to a map showing books in his closest vicinity
+  get 'locatebooks', to:      'locatebooks'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   root 'welcome#index'
+  
+  
+  get 'login', to: 'users#show_login'
+  get 'register', to: 'users#show_register'
 
+  post 'login', to: 'users#login'
+  
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

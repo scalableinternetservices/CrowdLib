@@ -31,9 +31,9 @@ class BooksController < ApplicationController
   # POST /books.json
   def create
     if current_user
-     
+     @user=current_user
      @book = Book.new(book_params)
-     @book.owner_id=current_user.id
+     @book.owner_id=@user.id
    else
      redirect_to new_user_session_path, notice: 'You are not logged in.'
     end

@@ -2,7 +2,7 @@ class Book < ActiveRecord::Base
 	include ActiveModel::Serializers::JSON
 
 	mount_uploader :image_url, ImageUrlUploader # Tells rails to use this uploader for this model.
-	belongs_to :user
+	belongs_to :owner, :class_name => 'User'
 
 	# There are long book names so using a max of 100 chars 
 	# Eg: Proceedings of the Second International Workshop on Nude Mice 

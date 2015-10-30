@@ -6,8 +6,6 @@ class CreateBookRequests < ActiveRecord::Migration
       t.integer :borrower_id
       t.integer :loan_period
       t.boolean :approved
-      t.references :lender
-      t.references :borrower
 
       t.timestamps null: false
     end

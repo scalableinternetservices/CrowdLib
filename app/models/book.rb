@@ -12,4 +12,6 @@ class Book < ActiveRecord::Base
 	scope :genre, -> (genre) { where genre: genre }
 	scope :author, -> (author) { where("author like ?", "#{author}%")}
 	scope :title, -> (title) { where("title like ?", "#{title}%")}
+
+	has_one :book_request, :class_name => 'BookRequest', :foreign_key => 'book_id'
 end

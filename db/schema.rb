@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151029180532) do
+ActiveRecord::Schema.define(version: 20151029200736) do
+
+  create_table "book_requests", force: :cascade do |t|
+    t.integer  "book_id"
+    t.integer  "lender_id"
+    t.integer  "borrower_id"
+    t.integer  "loan_period"
+    t.boolean  "approved"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "books", force: :cascade do |t|
     t.string   "title"
@@ -22,6 +32,7 @@ ActiveRecord::Schema.define(version: 20151029180532) do
     t.string   "image_url"
     t.string   "publisher"
     t.string   "ISBN"
+    t.integer  "owner_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -34,17 +45,6 @@ ActiveRecord::Schema.define(version: 20151029180532) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "posts", force: :cascade do |t|
-    t.integer  "community_id"
-    t.integer  "user_id"
-    t.string   "title"
-    t.text     "body"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
-
-  add_index "posts", ["community_id"], name: "index_posts_on_community_id"
-  add_index "posts", ["user_id"], name: "index_posts_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

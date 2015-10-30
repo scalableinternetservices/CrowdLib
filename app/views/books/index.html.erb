@@ -11,12 +11,12 @@
                       <%= image_tag book.image_url, {height: 200} %>
                       <h2><%= link_to book.title, book %></h2>
                       <p><%= book.author %></p>
-                      <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Borrow</a>
                     </div>
                     <div class="product-overlay">
                       <div class="overlay-content">
                         <h2><%= book.title %></h2>
                         <p><%= book.author %></p>
+                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-message"></i>Message</a><br>
                         <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Borrow</a>
                       </div>
                     </div>

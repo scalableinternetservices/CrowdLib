@@ -34,8 +34,18 @@ a {
     transition: 300ms;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1 {
+  font-size: 100px !important;
+  font-weight: 400 !important;
+}
+
+h3, h4, h5, h6 {
   font-family: 'Roboto', sans-serif;
+}
+
+h2 {
+  font-family: 'Roboto';
+  font-weight: 400 !important;
 }
 
 .btn:hover, 
@@ -137,7 +147,7 @@ a#scrollUp i{
 }
 
 .header-middle .container .row {
-  border-bottom: 1px solid #f5f5f5;
+  border-bottom: 2px solid #f5f5f5;
   margin-left: 0;
   margin-right: 0;
   padding-bottom: 20px;
@@ -274,6 +284,7 @@ a#scrollUp i{
 .navbar-header 
 .navbar-toggle .icon-bar {
     background-color: #fff;
+
 }
 
 

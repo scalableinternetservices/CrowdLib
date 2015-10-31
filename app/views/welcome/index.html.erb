@@ -12,14 +12,14 @@
       <div class="col-sm-8">
         <div class="shop-menu pull-right">
           <ul class="nav navbar-nav">
-            <li><a href=""><i class="fa fa-map"></i>Locate Book</a></li>
-            <li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Cart</a></li>
-            <li>
+            <li style ="padding: 1em"><a href=""><i class="fa fa-map"></i>Locate Book</a></li>
+            <li style ="padding: 1em"><a href="cart.html"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+            <li style ="padding: 1em">
             <%if signed_in?%>
-              <li><%=link_to current_user.email, edit_user_registration_path%></li>
-              <li><span></span><%=link_to '<i class="fa fa-sign-out"></i>Logout'.html_safe, destroy_user_session_path, method: :delete%></li>
+              <li style ="padding: 1em"><%=link_to '<i class="fa fa-user"></i>'.html_safe + current_user.email, edit_user_registration_path%></li>
+              <li style ="padding: 1em"><span></span><%=link_to '<i class="fa fa-sign-out"></i>Logout'.html_safe, destroy_user_session_path, method: :delete%></li>
             <%else%>
-              <li><%=link_to '<i class="fa fa-lock"></i>Login'.html_safe, new_user_session_path%></li>
+              <li style ="padding: 1em"><%=link_to '<i class="fa fa-lock"></i>Login'.html_safe, new_user_session_path%></li>
             <%end%>
             </li>
           </ul>
@@ -44,7 +44,7 @@
         </div>
         <div class="mainmenu pull-left">
           <ul class="nav navbar-nav collapse navbar-collapse">
-            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="#" class="active">Home</a></li>
             <li class="dropdown"><a href="/books/new">Lend books</i></a></li>
             <li><a href="users">Users</a></li>
           </ul>
@@ -75,7 +75,6 @@
                 <h1><span>Crowd</span>-Lib</h1>
                 <h2>Online Community Library</h2>
                 <p>A crowd sourced library that allows us to share books, discover interests, discuss opinions and make friends. </p>
-                <button type="button" class="btn btn-default get">Get it now</button>
               </div>
               <div class="col-sm-6">
                 <img src="/assets/home/carousel1.png" class="book img-responsive" alt="" />

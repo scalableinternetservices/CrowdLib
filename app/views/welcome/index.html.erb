@@ -16,7 +16,7 @@
             <li style ="padding: 1em"><a href="cart.html"><i class="fa fa-shopping-cart"></i> Cart</a></li>
             <li style ="padding: 1em">
             <%if signed_in?%>
-              <li style ="padding: 1em"><%=link_to '<i class="fa fa-user"></i>'.html_safe + current_user.email, 'users/edit.html'%></li>
+              <li style ="padding: 1em"><%=link_to '<i class="fa fa-user"></i>'.html_safe + current_user.first_name, 'users/edit.html'%></li>
               <li style ="padding: 1em"><span></span><%=link_to '<i class="fa fa-sign-out"></i>Logout'.html_safe, destroy_user_session_path, method: :delete%></li>
             <%else%>
               <li style ="padding: 1em"><%=link_to '<i class="fa fa-lock"></i>Login'.html_safe, new_user_session_path%></li>
@@ -144,8 +144,7 @@
   <div class="footer-bottom">
     <div class="container">
       <div class="row">
-        <p class="pull-left">Copyright © 2013 E-SHOPPER Inc. All rights reserved.</p>
-        <p class="pull-right">Designed by <span><a target="_blank" href="http://www.themeum.com">Themeum</a></span></p>
+        <p class="pull-left">Copyright © 2015 CROWD-LIB Inc. All rights reserved.</p>
       </div>
     </div>
   </div>

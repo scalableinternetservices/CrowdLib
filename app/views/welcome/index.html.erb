@@ -16,7 +16,7 @@
             <li style ="padding: 1em"><a href="cart.html"><i class="fa fa-shopping-cart"></i> Cart</a></li>
             <li style ="padding: 1em">
             <%if signed_in?%>
-              <li style ="padding: 1em"><%=link_to '<i class="fa fa-user"></i>'.html_safe + current_user.email, edit_user_registration_path%></li>
+              <li style ="padding: 1em"><%=link_to '<i class="fa fa-user"></i>'.html_safe + current_user.email, 'users/edit.html'%></li>
               <li style ="padding: 1em"><span></span><%=link_to '<i class="fa fa-sign-out"></i>Logout'.html_safe, destroy_user_session_path, method: :delete%></li>
             <%else%>
               <li style ="padding: 1em"><%=link_to '<i class="fa fa-lock"></i>Login'.html_safe, new_user_session_path%></li>

@@ -4,16 +4,17 @@ class UsersController < ApplicationController
 		@users = User.all
 	end
 
-	def new
-		@user = User.new
-	end
-
-	def create
-		
-	end
+	def edit
+		if current_user
+		  @user=current_user
+		else
+     	  redirect_to new_user_session_path, notice: 'You are not logged in.'
+    	end
+    end
 
 	private
 	def user_params
+      params.require(:user).permit(:username, :email, :first_name, :last_name)
 	end
 
 end

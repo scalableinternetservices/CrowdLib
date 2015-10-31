@@ -1,0 +1,61 @@
+ <header id="header"><!--header-->
+    <div class="header-middle"><!--header-middle-->
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="logo pull-left">
+                  <ul class="nav navbar-nav">
+                    <li><%= image_tag "home/logo.png" %></li>
+                    <li><h4 style ="padding: 1em" >Crowd-Lib</h4></li>
+                </ul>
+            </div>
+          </div>
+          <div class="col-sm-8">
+            <div class="shop-menu pull-right">
+               <ul class="nav navbar-nav">
+                <li style= "padding: 1em"><%= link_to '<i class="fa fa-home"></i>Home'.html_safe, controller: '/welcome', action: 'index' %></li>
+
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!--/header-middle-->
+  
+  </header><!--/header-->
+
+
+  <section id="form"><!--form-->
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-4 col-sm-offset-1">
+          <div class="login-form"><!--login form-->
+            <h2>Edit your infomation</h2>
+
+              <%= form_for(@user) do |f| %>
+
+                <div class="field">
+                  <%= f.text_field :username, autofocus: true %>
+                </div>
+                
+                <div class="field">
+                  <%= f.text_field :first_name, placeholder: "First Name" %>
+                </div>
+
+                <div class="field">
+                  <%= f.text_field :last_name, placeholder: "Last Name" %>
+                </div>
+
+
+                <button class="btn_default">
+                  <% f.submit%> Update
+                </button>
+              <% end %>
+
+          </div><!--/login form-->
+        </div>
+        <div class ="col-sm-4 col-sm-offset-2">
+          <img src="/assets/home/carousel1.png" class="book img-responsive" alt="" />
+        </div>
+      </div>
+    </div>

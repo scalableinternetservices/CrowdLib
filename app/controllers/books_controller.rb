@@ -6,7 +6,7 @@ class BooksController < ApplicationController
   # GET /books
   # GET /books.json
   def index
-    @books = Book.all
+    @books = Book.where.not(owner_id: current_user.id )
     @books = @books.genre(params[:genre]) if params[:genre].present?
     @books = @books.author(params[:author]) if params[:author].present?
     @books = @books.title(params[:title]) if params[:title].present?  

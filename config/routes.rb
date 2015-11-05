@@ -3,39 +3,10 @@ Rails.application.routes.draw do
   resources :book_requests
   devise_for :users, :controllers => { registrations: 'registrations' }
   resources :books
-  namespace :api do
-    namespace :v1 do
-      get 'users/count', to: 'users#count'
-      get 'users/by/id/:id', to: 'users#show_by_id'
-      get 'users/by/username/:name', to: 'users#show_by_username'
-
-      # FOR DEBUG PURPOSES, THESE ARE GETs
-        get 'auth/register/:username,:password,:first_name,:last_name,:address,:email', to: 'users#register'
-        get 'auth/claim/:token', to: 'users#claim'
-        get 'auth/login/:username,:password', to: 'users#login'
-        get 'auth/logout/:token', to: 'users#logout'
-      # END OF DEBUG PURPOSES
-
-      resources :users, only: []
-
-      get 'locations/by/id/:id', to: 'locations#show_by_id'
-      get 'locations/around/:lat,:lng', to: 'locations#show_by_distance', 
-        defaults: { limit: 1000 }, 
-        constraints: {:lat => /\-*\d+.\d+/ , :lng => /\-*\d+.\d+/ }
-      get 'locations/around/:lat,:lng/within/:limit', to: 'locations#show_by_distance', 
-        constraints: { :lat => /\-*\d+.\d+/ , :lng => /\-*\d+.\d+/ , :limit => /\d+/}
-      delete 'locations/by/id/:id', to: 'locations#delete_by_id'
-      
-      resources :locations, only: []
-
-      #add methods for api/v1/books if need arises
-
-      resources :books, only: []
-    end
-  end
-#/locatebooks take user to a map showing books in his closest vicinity
-get 'locatebooks', to:      'locatebooks'
-get '/users', to: 'users#index'
+  
+  #/locatebooks take user to a map showing books in his closest vicinity
+  get 'locatebooks', to:      'locatebooks'
+  get '/users', to: 'users#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

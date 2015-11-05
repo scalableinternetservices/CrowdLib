@@ -16,6 +16,7 @@
 	fn = Faker::Name.first_name
 	ln = Faker::Name.last_name
 	pw = Faker::Internet.password
+	pp = Faker::Avatar.image
 
 	User.create!([{ 
 
@@ -24,7 +25,8 @@
 	first_name: fn, 
 	last_name: ln,
 	encrypted_password: pw,
-	password: "test1234"
+	password: "test1234",
+	profile_picture: pp
 }
 ])
 

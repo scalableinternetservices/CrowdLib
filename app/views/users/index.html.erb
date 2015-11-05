@@ -23,21 +23,28 @@
       </div>
     </div><!--/header-middle-->
   </header><!--/header-->
-    <div class="container">
-        <div class="col-sm-4 col-sm-offset-1">
-          <div class="login-form"><!--login form-->
-            <h2>User List</h2>
-            <% @users.each do |x| %>
-              <div class = "container">
-	              <div class "col-sm-4 col-sm-offset-1">
-	               <ul class="nav navbar-nav">
-				    <li style ="padding: 1em"><i class="fa fa-user"></i></li>
-				    <li style ="padding: 1em"><p><%= "Firstname: ".html_safe + x.first_name %></li>
-				    <li style ="padding: 1em"><%= "email:" + x.email %></li>
-				  </ul>
-	              </div>
-              </div>
+
+ <div class = "container">
+          <div class="features_items" style = "padding: 15px"><!--features_items-->
+            <h2 class="title text-center">All Users</h2>
+            <% @users.each do |user| %>
+              <div class="col-sm-3">
+                <div class="product-image-wrapper">
+                  <div class="single-products">
+                    <div class="productinfo text-center">
+                      <%= image_tag user.profile_picture, {height: 200} %>
+                      <h2><%= user.first_name %></h2>
+                      <p><%= user.username %></p>
+                    </div>
+                  </div>
+                  <div class="choose">
+                    <ul class="nav nav-pills nav-justified">
+                      <li><a href="#"><i class="fa fa-comments"></i>Message</a></li>
+                    </ul>
+                  </div>
+                </div>
+            </div>
             <% end %>
-          </div>
-        </div>
-    </div>  
+          </div><!--books-->  
+  </div>
+

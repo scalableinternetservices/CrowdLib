@@ -1,4 +1,6 @@
-<p id="notice"><%= notice %></p>
+
+
+>>>>>>> trial2
           <div class="features_items"><!--features_items-->
             <h2 class="title text-center">Listed Books</h2>
             <% @books.each do |book| %>
@@ -7,14 +9,14 @@
                   <div class="single-products">
                     <div class="productinfo text-center">
                       <%= image_tag book.image_url, {height: 200} %>
-                      <h2><%= book.title %></h2>
+                      <h2><%= link_to book.title, book %></h2>
                       <p><%= book.author %></p>
-                      <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Borrow</a>
                     </div>
                     <div class="product-overlay">
                       <div class="overlay-content">
                         <h2><%= book.title %></h2>
                         <p><%= book.author %></p>
+                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-comments"></i>Message</a><br>
                         <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Borrow</a>
                       </div>
                     </div>
@@ -28,4 +30,4 @@
             </div>
             <% end %>
           </div><!--books-->  
-<table>
+

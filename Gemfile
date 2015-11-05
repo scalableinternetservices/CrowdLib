@@ -8,11 +8,8 @@ gem 'rails', '4.2.4'
 gem 'sqlite3'
 gem 'redis', '2.1.1'
 gem 'geokit-rails'
-gem 'rspec'
-gem 'rspec-rails'
-gem 'factory_girl_rails'
+gem 'devise'
 gem 'faker'
-gem 'capybara'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'

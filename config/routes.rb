@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+
+  resources :book_requests
+  devise_for :users, :controllers => { registrations: 'registrations' }
   resources :books
   namespace :api do
     namespace :v1 do
@@ -32,6 +35,7 @@ Rails.application.routes.draw do
   end
 #/locatebooks take user to a map showing books in his closest vicinity
 get 'locatebooks', to:      'locatebooks'
+get '/users', to: 'users#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

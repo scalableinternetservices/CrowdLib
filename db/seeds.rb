@@ -8,24 +8,42 @@
 
 # SPAWN USERS
 
+
+100.times do |x|
+
+	un = Faker::Internet.user_name
+	em = Faker::Internet.email
+	fn = Faker::Name.first_name
+	ln = Faker::Name.last_name
+	pw = Faker::Internet.password
+
+	User.create!([{ 
+
+	username: un, 
+	email: em, 
+	first_name: fn, 
+	last_name: ln,
+	encrypted_password: pw,
+	password: "test1234"
+}
+])
+
+
+end
 User.create([{ 
 	username: 'mvg', 
 	email: 'mvg@cs.ucsb.edu', 
-	firstname: 'Miroslav', 
-	lastname: 'Gavrilov', 
-	password: '744ae48f38d3d899641bdd8de4bdf3234599eb0',
-	address: '405 Via Rosa, Santa Barbara, CA 93110',
-	lender_rating: 0,
-	borrower_rating: 0
+	first_name: 'Miroslav', 
+	last_name: 'Gavrilov', 
 },
 {
-        username: 'prithan',
-        email: 'prithan@cs.ucsb.edu',
-        first_name: 'Pritha',
-        last_name: 'DN',
-        password: 'dummy'
+    username: 'prithan',
+    email: 'prithan@cs.ucsb.edu',
+    first_name: 'Pritha',
+    last_name: 'DN',
 }
 ])
+
 
 # SPAWN LOCATIONS
 

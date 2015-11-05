@@ -23,6 +23,7 @@ $(document).ready(function(){
 		});
 	});
 	$("#book_list").load("/books");
+	 $('#sl2').slider();
 });
 
 /*load the list ok books in the index.html*/

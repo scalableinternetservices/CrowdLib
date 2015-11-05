@@ -5,7 +5,7 @@ class BooksController < ApplicationController
   # GET /books
   # GET /books.json
   def index
-    @books = Book.all
+    @books = Book.where.not(owner_id: current_user.id )
     @books = @books.genre(params[:genre]) if params[:genre].present?
     @books = @books.author(params[:author]) if params[:author].present?
     @books = @books.title(params[:title]) if params[:title].present?  
@@ -29,7 +29,14 @@ class BooksController < ApplicationController
   # POST /books
   # POST /books.json
   def create
-    @book = Book.new(book_params)
+    if current_user
+     @user=current_user
+     @book = Book.new(book_params)
+     @book.owner_id=@user.id
+   else
+     redirect_to new_user_session_path, notice: 'You are not logged in.'
+    end
+    
 
     respond_to do |format|
       if @book.save

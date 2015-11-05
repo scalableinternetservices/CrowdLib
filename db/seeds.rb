@@ -21,8 +21,8 @@ User.create([{
 {
         username: 'prithan',
         email: 'prithan@cs.ucsb.edu',
-        first_name: 'Pritha',
-        last_name: 'DN',
+        firstname: 'Pritha',
+        lastname: 'DN',
         password: 'dummy'
 }
 ])
@@ -38,7 +38,7 @@ end
 
 rng = Random.new
 
-3000.times do |i|
+300.times do |i|
 	point = create_new_point rng
 	Location.create("lat" => point[:lat], "lng" => point[:lng], "name" => "Point num. #{i}")
 end

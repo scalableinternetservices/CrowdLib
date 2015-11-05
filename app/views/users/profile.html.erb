@@ -34,6 +34,7 @@
                   <div class="single-products">
                     <div class="profileinfo text-center">
                      
+                     <%= image_tag @user.profile_picture %>
                       <h1><%= @user.first_name%>
                       	   <%= @user.last_name%></h1>
                       <p><%= @user.email %></p>
@@ -41,6 +42,15 @@
                     </div>
                   </div>
                 </div>
+            </div>
+
+            <div class = "col-sm-8">
+            <div class = "text-center">
+              <h3><%=  'About ' + @user.first_name %></h3>
+              <p style = "font-size:15px" align="justify"> 
+                  <%= @user.blurb %>
+              </p>
+              </div>
             </div>
           </div>
         </div>

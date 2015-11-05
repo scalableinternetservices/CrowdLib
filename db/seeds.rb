@@ -17,8 +17,9 @@
 	ln = Faker::Name.last_name
 	pw = Faker::Internet.password
 	pp = Faker::Avatar.image
+	ab = Faker::Lorem.paragraph
 
-	User.create!([{ 
+	u = User.create!([{ 
 
 	username: un, 
 	email: em, 
@@ -26,26 +27,40 @@
 	last_name: ln,
 	encrypted_password: pw,
 	password: "test1234",
-	profile_picture: pp
+	profile_picture: pp,
+	blurb: ab
 }
 ])
-
 
 end
-User.create([{ 
-	username: 'mvg', 
-	email: 'mvg@cs.ucsb.edu', 
-	first_name: 'Miroslav', 
-	last_name: 'Gavrilov', 
-},
-{
-    username: 'prithan',
-    email: 'prithan@cs.ucsb.edu',
-    first_name: 'Pritha',
-    last_name: 'DN',
-}
-])
 
+@users = User.all
+@users.each do |x|
+
+	# SPAWN BOOKS
+
+	10.times do |book|
+
+		ti = Faker::Book.title
+		au = Faker::Name.name
+		pb = Faker::Book.publisher
+		#gn = Faker::Book.genre
+		is = Faker::Code.isbn
+
+		Book.create!([{ 
+
+		title: ti, 
+		author: au, 
+		edition: 1, 
+		#genre: gn,
+		publisher: pb,
+		owner_id: x.id,
+		ISBN: is
+	}
+	])
+	end
+
+end
 
 # SPAWN LOCATIONS
 

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :books
   namespace :api do
     namespace :v1 do
@@ -26,14 +27,6 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'welcome#index'
-  
-  
-  get 'login', to: 'users#show_login'
-  get 'register', to: 'users#show_register'
-
-  post 'login', to: 'users#login'
-  
-  # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)

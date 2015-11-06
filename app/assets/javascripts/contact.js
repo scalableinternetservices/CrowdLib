@@ -3,8 +3,10 @@
 // Google Map Customization
 (function(){
 
-	var map;
+	return;
 
+	var map;
+	if(!GMaps) return;
 	map = new GMaps({
 		el: '#gmap',
 		lat: 43.1580159,

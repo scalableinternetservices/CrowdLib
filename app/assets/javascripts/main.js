@@ -1,10 +1,9 @@
 /*price range*/
 
- 
 /*scroll to top*/
 
-$(document).ready(function(){
-	$(function () {
+$(function(){
+	(function () {
 		$.scrollUp({
 	        scrollName: 'scrollUp', // Element ID
 	        scrollDistance: 300, // Distance from top/bottom before showing element (px)
@@ -22,8 +21,18 @@ $(document).ready(function(){
 	        zIndex: 2147483647 // Z-Index for the overlay
 		});
 	});
-	$("#book_list").load("/books");
-	 $('#sl2').slider();
+
+	$(".genre-link").click(function(e) {
+		//$("#book_list").load("/books?genre=" + $(this).val().toLowerCase());
+		$.get("/books?genre=" + $(this).text(), function(doc) {
+			$("#book_list").html(doc);
+		});
+
+		e.preventDefault();
+		return false;		
+	});
+
+	$('#sl2').slider();
 });
 
 /*load the list ok books in the index.html*/

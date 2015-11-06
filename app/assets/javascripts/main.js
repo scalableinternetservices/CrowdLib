@@ -23,7 +23,6 @@ $(function(){
 	});
 
 	$(".genre-link").click(function(e) {
-		//$("#book_list").load("/books?genre=" + $(this).val().toLowerCase());
 		$.get("/books?genre=" + $(this).text(), function(doc) {
 			$("#book_list").html(doc);
 		});

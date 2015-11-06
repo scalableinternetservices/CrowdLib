@@ -9,7 +9,7 @@ class BooksController < ApplicationController
   def index
     @books = Book.all #if user_signed_in? Book.where.not(owner_id: current_user.id) else Book.all 
     @genres = Set.new(@books.pluck :genre)
-
+    @genres = Set.new([]) if @genres.nil?
     @books = @books.where(genre: params[:genre]) if params[:genre].present?
     @books = @books.where(author: params[:author]) if params[:author].present?
     @books = @books.where(title: params[:title]) if params[:title].present?  

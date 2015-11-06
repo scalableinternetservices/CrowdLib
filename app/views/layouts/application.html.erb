@@ -8,9 +8,18 @@
 
     <title>Home | Crowd-Lib</title>
 
+    <%= stylesheet_link_tag    'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css' %>
+    <%= stylesheet_link_tag    'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css' %>
+    <%= javascript_include_tag 'https://code.jquery.com/jquery-2.1.4.min.js' %>
+    <%= javascript_include_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js' %>
+    <%= javascript_include_tag 'https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css' %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= stylesheet_link_tag    'main', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'main', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
+
+
    
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
@@ -25,10 +34,5 @@
   <body>
     <%= yield %>
     
-    <%= javascript_include_tag 'jquery', 'data-turbolinks-track' => true %>
-    <%= javascript_include_tag 'bootstrap.min', 'data-turbolinks-track' => true %>
-    <%= javascript_include_tag 'price-range', 'data-turbolinks-track' => true %>
-    <%= javascript_include_tag 'jquery.prettyPhoto', 'data-turbolinks-track' => true %>
-    <%= javascript_include_tag 'main', 'data-turbolinks-track' => true %>
   </body>
 </html>

@@ -1,15 +1,20 @@
 #controller for handling all the views for books
+require 'set'
+
 class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
 
   # GET /books
   # GET /books.json
   def index
-    @books = Book.where.not(owner_id: current_user.id )
-    @books = @books.genre(params[:genre]) if params[:genre].present?
-    @books = @books.author(params[:author]) if params[:author].present?
-    @books = @books.title(params[:title]) if params[:title].present?  
+    @books = Book.all #if user_signed_in? Book.where.not(owner_id: current_user.id) else Book.all 
+    @genres = Set.new(@books.pluck :genre)
+
+    @books = @books.where(genre: params[:genre]) if params[:genre].present?
+    @books = @books.where(author: params[:author]) if params[:author].present?
+    @books = @books.where(title: params[:title]) if params[:title].present?  
     @unique_authors = Book.uniq.pluck(:author)
+    render :layout => false
   end
 
   # GET /books/1

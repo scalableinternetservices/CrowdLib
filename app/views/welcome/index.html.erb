@@ -92,26 +92,13 @@
 <div class="left-sidebar"><!--sidebar-->
 <h2>Category</h2>
 <div class="panel-group category-products" id="accordian"><!--category-productsr-->
-<div class="panel panel-default">
-<div class="panel-heading">
-<h4 class="panel-title"><a href="/books?genre=Fiction">Fiction</a></h4>
-</div>
-</div>
-<div class="panel panel-default">
-<div class="panel-heading">
-<h4 class="panel-title"><a href="/books?genre=Romance">Romance</a></h4>
-</div>
-</div>
-<div class="panel panel-default">
-<div class="panel-heading">
-<h4 class="panel-title"><a href="/books?genre=Kids">Kids</a></h4>
-</div>
-</div>
-<div class="panel panel-default">
-<div class="panel-heading">
-<h4 class="panel-title"><a href="/books?genre=Biography">Biography</a></h4>
-</div>
-</div>
+<% (@genres + [ "Fiction", "Romance", "Kids", "Adventure" ]).each do |genre| %>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title"><a href="/books?genre=<%= genre %>"><%= genre.capitalize %></a></h4>
+    </div>
+  </div>
+<% end %>
 </div><!--/category-products-->
 <div class="brands_products"><!--brands_products-->
 <h2>Authors</h2>

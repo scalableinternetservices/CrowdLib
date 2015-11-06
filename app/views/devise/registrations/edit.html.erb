@@ -64,6 +64,18 @@
                   <%= f.password_field :current_password, autocomplete: "off", placeholder: "Current password" %>
                 </div>
 
+                <div class = "field">
+                <%= f.text_area :blurb,
+                    placeholder: "A li'l somthing about you",
+                    :rows => 10%>
+                </div>
+
+                <div class="field">
+                  <%= f.file_field :profile_picture, :placeholder => "Photo", :class => "btn-file"%>
+                </div>
+
+                
+
                 <button class="btn_default">
                   <% f.submit%> Update
                 </button>

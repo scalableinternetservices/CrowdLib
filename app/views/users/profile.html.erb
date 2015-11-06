@@ -1,0 +1,58 @@
+
+  <header id="header"><!--header-->
+    
+    <div class="header-middle"><!--header-middle-->
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="logo pull-left">
+              <ul class="nav navbar-nav">
+                <li><%= image_tag "home/logo.png" %></li>
+                <li><h4 style ="padding: 1em" >Crowd-Lib</h4></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-sm-8">
+            <div class="shop-menu pull-right">
+              <ul class="nav navbar-nav">
+                <li style= "padding: 1em"><%= link_to '<i class="fa fa-home"></i>Home'.html_safe, controller: 'welcome', action: 'index' %></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!--/header-middle-->
+  </header><!--/header-->
+
+
+  	<div class = "row">
+  		<div class = "container">
+          <div class="features_items" style = "padding:20px"><!--features_items-->
+            <h2 class="title text-center" >Profile</h2>
+              <div class="col-sm-4">
+                <div class="profile-image-wrapper">
+                  <div class="single-products">
+                    <div class="profileinfo text-center">
+                     
+                     <%= image_tag @user.profile_picture %>
+                      <h1><%= @user.first_name%>
+                      	   <%= @user.last_name%></h1>
+                      <p><%= @user.email %></p>
+                      
+                    </div>
+                  </div>
+                </div>
+            </div>
+
+            <div class = "col-sm-8">
+            <div class = "text-center">
+              <h3><%=  'About ' + @user.first_name %></h3>
+              <p style = "font-size:15px" align="justify"> 
+                  <%= @user.blurb %>
+              </p>
+              </div>
+            </div>
+          </div>
+        </div>
+  </div><!-- @end #w -->
+</div>

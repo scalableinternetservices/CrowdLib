@@ -866,6 +866,12 @@ h2.title {
   margin-bottom:30px;
 }
 
+.profile-image-wrapper {
+
+  border:1px solid #F7F7F5;
+  margin-bottom:30px;
+}
+
 .single-products {
   position: relative;
 }
@@ -874,6 +880,14 @@ h2.title {
   position: absolute;
   top: 0;
   right: 0;
+}
+
+.profileinfo h1{
+  color: #FE980F;
+  font-family: 'Roboto', sans-serif;
+  font-size: 36px !important;
+  font-weight: 400 !important;
+  z-index: 2;
 }
 
 .productinfo h2{

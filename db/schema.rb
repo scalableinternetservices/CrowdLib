@@ -11,6 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 ActiveRecord::Schema.define(version: 20151030223640) do
 =======
@@ -19,6 +20,9 @@ ActiveRecord::Schema.define(version: 20151019080619) do
 =======
 ActiveRecord::Schema.define(version: 20151029200736) do
 >>>>>>> Stashed changes
+=======
+ActiveRecord::Schema.define(version: 20151105175226) do
+>>>>>>> trial2
 
   create_table "book_requests", force: :cascade do |t|
     t.integer  "book_id"
@@ -73,6 +77,7 @@ ActiveRecord::Schema.define(version: 20151029200736) do
     t.string   "username"
     t.string   "first_name"
     t.string   "last_name"
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
     t.string   "username"
@@ -100,6 +105,10 @@ ActiveRecord::Schema.define(version: 20151029200736) do
     t.datetime "updated_at",                          null: false
 >>>>>>> trial2
 >>>>>>> Stashed changes
+=======
+    t.string   "profile_picture"
+    t.string   "blurb"
+>>>>>>> trial2
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

@@ -11,14 +11,13 @@ gem 'rails', '4.2.4'
 gem 'sqlite3'
 gem 'redis', '2.1.1'
 gem 'geokit-rails'
-<<<<<<< Updated upstream
+
 gem 'devise'
-=======
+
 
 gem 'rspec'
 gem 'rspec-rails'
 gem 'factory_girl_rails'
->>>>>>> Stashed changes
 gem 'faker'
 
 gem 'devise'

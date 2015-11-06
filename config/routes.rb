@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   resources :book_requests
   devise_for :users, :controllers => { registrations: 'registrations' }
   resources :books
@@ -7,23 +6,6 @@ Rails.application.routes.draw do
   #/locatebooks take user to a map showing books in his closest vicinity
   get 'locatebooks', to:      'locatebooks'
   get '/users', to: 'users#index'
-
-      get 'locations/by/id/:id', to: 'locations#show_by_id'
-      get 'locations/around/:lat,:lng', to: 'locations#show_by_distance', 
-        defaults: { limit: 1000 }, 
-        constraints: {:lat => /\-*\d+.\d+/ , :lng => /\-*\d+.\d+/ }
-      get 'locations/around/:lat,:lng/within/:limit', to: 'locations#show_by_distance', 
-        constraints: { :lat => /\-*\d+.\d+/ , :lng => /\-*\d+.\d+/ , :limit => /\d+/}
-      delete 'locations/by/id/:id', to: 'locations#delete_by_id'
-      
-      resources :locations, only: []
-    end
-  end
-#/locatebooks take user to a map showing books in his closest vicinity
-get 'locatebooks', to:      'locatebooks'
-get '/users', to: 'users#index'
-get '/profile', to: 'users#profile'
-
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

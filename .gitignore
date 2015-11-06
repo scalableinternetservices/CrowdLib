@@ -81,3 +81,7 @@ Icon?
 ehthumbs.db
 Thumbs.db
 
+log/development.log
+db/schema.rb
+db/development.sqlite3
+

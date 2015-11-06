@@ -1,3 +1,4 @@
+
   <header id="header"><!--header-->
     
     <div class="header-middle"><!--header-middle-->
@@ -23,27 +24,35 @@
     </div><!--/header-middle-->
   </header><!--/header-->
 
- <div class = "container">
-          <div class="features_items" style = "padding: 15px"><!--features_items-->
-            <h2 class="title text-center">All Users</h2>
-            <% @users.each do |user| %>
+
+  	<div class = "row">
+  		<div class = "container">
+          <div class="features_items" style = "padding:20px"><!--features_items-->
+            <h2 class="title text-center" >Profile</h2>
               <div class="col-sm-4">
-                <div class="product-image-wrapper">
+                <div class="profile-image-wrapper">
                   <div class="single-products">
-                    <div class="productinfo text-center">
-                      <%= image_tag user.profile_picture, {height:200} %>
-                      <h2><%= user.first_name %></h2>
-                      <p><%= user.email %></p>
+                    <div class="profileinfo text-center">
+                     
+                     <%= image_tag @user.profile_picture %>
+                      <h1><%= @user.first_name%>
+                      	   <%= @user.last_name%></h1>
+                      <p><%= @user.email %></p>
+                      
                     </div>
-                  </div>
-                  <div class="choose">
-                    <ul class="nav nav-pills nav-justified">
-                      <li><a href="#"><i class="fa fa-comments"></i>Message</a></li>
-                    </ul>
                   </div>
                 </div>
             </div>
-            <% end %>
-          </div><!--books-->  
-  </div>
 
+            <div class = "col-sm-8">
+            <div class = "text-center">
+              <h3><%=  'About ' + @user.first_name %></h3>
+              <p style = "font-size:15px" align="justify"> 
+                  <%= @user.blurb %>
+              </p>
+              </div>
+            </div>
+          </div>
+        </div>
+  </div><!-- @end #w -->
+</div>

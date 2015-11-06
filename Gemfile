@@ -1,6 +1,9 @@
 source 'https://rubygems.org'
 
 gem 'execjs'
+
+
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
 # Use sqlite3 as the database for Active Record
@@ -8,8 +11,17 @@ gem 'rails', '4.2.4'
 gem 'sqlite3'
 gem 'redis', '2.1.1'
 gem 'geokit-rails'
+
 gem 'devise'
+
+
+gem 'rspec'
+gem 'rspec-rails'
+gem 'factory_girl_rails'
 gem 'faker'
+
+gem 'devise'
+
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
@@ -50,6 +62,8 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
+
+
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'carrierwave'

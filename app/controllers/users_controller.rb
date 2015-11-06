@@ -4,6 +4,14 @@ class UsersController < ApplicationController
 		@users = User.all
 	end
 
+	def profile
+		if current_user
+			@user = current_user
+		else
+			redirect_to new_user_session_path, notice: 'Please login to view your profile.'
+		end
+	end
+
 	def edit
 		if current_user
 		  @user=current_user

@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< Updated upstream
 ActiveRecord::Schema.define(version: 20151030223640) do
+=======
+<<<<<<< HEAD
+ActiveRecord::Schema.define(version: 20151019080619) do
+=======
+ActiveRecord::Schema.define(version: 20151029200736) do
+>>>>>>> Stashed changes
 
   create_table "book_requests", force: :cascade do |t|
     t.integer  "book_id"
@@ -22,6 +29,10 @@ ActiveRecord::Schema.define(version: 20151030223640) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
+<<<<<<< Updated upstream
+=======
+>>>>>>> trial2
+>>>>>>> Stashed changes
 
   create_table "books", force: :cascade do |t|
     t.string   "title"
@@ -46,6 +57,7 @@ ActiveRecord::Schema.define(version: 20151030223640) do
   end
 
   create_table "users", force: :cascade do |t|
+<<<<<<< Updated upstream
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -61,6 +73,33 @@ ActiveRecord::Schema.define(version: 20151030223640) do
     t.string   "username"
     t.string   "first_name"
     t.string   "last_name"
+=======
+<<<<<<< HEAD
+    t.string   "username"
+    t.string   "firstname"
+    t.string   "lastname"
+    t.string   "email"
+    t.string   "password"
+    t.text     "address"
+    t.decimal  "lender_rating"
+    t.decimal  "borrower_rating"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+=======
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+>>>>>>> trial2
+>>>>>>> Stashed changes
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

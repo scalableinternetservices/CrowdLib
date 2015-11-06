@@ -1,4 +1,24 @@
 Rails.application.routes.draw do
+<<<<<<< Updated upstream
+=======
+  resources :book_requests
+  devise_for :users, path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'register' }
+  resources :books
+  namespace :api do
+    namespace :v1 do
+      get 'users/count', to: 'users#count'
+      get 'users/by/id/:id', to: 'users#show_by_id'
+      get 'users/by/username/:name', to: 'users#show_by_username'
+
+      # FOR DEBUG PURPOSES, THESE ARE GETs
+        get 'auth/register/:username,:password,:first_name,:last_name,:address,:email', to: 'users#register'
+        get 'auth/claim/:token', to: 'users#claim'
+        get 'auth/login/:username,:password', to: 'users#login'
+        get 'auth/logout/:token', to: 'users#logout'
+      # END OF DEBUG PURPOSES
+
+      resources :users, only: []
+>>>>>>> Stashed changes
 
   resources :book_requests
   devise_for :users, :controllers => { registrations: 'registrations' }

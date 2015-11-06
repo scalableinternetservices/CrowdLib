@@ -24,16 +24,12 @@ class BookRequestsController < ApplicationController
   # POST /book_requests
   # POST /book_requests.json
   def create
-<<<<<<< Updated upstream
     @user = current_user
     @book_request = BookRequest.new(book_request_params)
     @book_request.borrower_id=@user.id
     book_id  = @book_request.book_id
     @book = Book.find_by_id(book_id)
     @book_request.lender_id = @book.owner_id
-=======
-    @book_request = BookRequest.new(book_request_params)
->>>>>>> Stashed changes
 
     respond_to do |format|
       if @book_request.save

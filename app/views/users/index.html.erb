@@ -1,6 +1,6 @@
 
   <header id="header"><!--header-->
-    
+    <% will_paginate @users %>
     <div class="header-middle"><!--header-middle-->
       <div class="container">
         <div class="row">
@@ -35,11 +35,13 @@
                       <%= image_tag user.profile_picture, {height:200} %>
                       <h2><%= user.first_name %></h2>
                       <p><%= user.email %></p>
+
                     </div>
                   </div>
                   <div class="choose">
                     <ul class="nav nav-pills nav-justified">
                       <li><a href="#"><i class="fa fa-comments"></i>Message</a></li>
+
                     </ul>
                   </div>
                 </div>
@@ -47,4 +49,4 @@
             <% end %>
           </div><!--books-->  
   </div>
-
+<%= will_paginate @users %>

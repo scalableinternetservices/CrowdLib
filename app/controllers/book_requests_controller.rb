@@ -12,9 +12,10 @@ class BookRequestsController < ApplicationController
   def show
   end
 
-  # GET /book_requests/new
+  # GET /book_requests/new/1
   def new
     @book_request = BookRequest.new
+
   end
 
   # GET /book_requests/1/edit
@@ -27,8 +28,9 @@ class BookRequestsController < ApplicationController
     @user = current_user
     @book_request = BookRequest.new(book_request_params)
     @book_request.borrower_id=@user.id
-    book_id  = @book_request.book_id
-    @book = Book.find_by_id(book_id)
+    book_id  = params[:book_id]
+    @book = Book.find_by_id(book_id.to_i)
+    @book_request.book_id=book_id
     @book_request.lender_id = @book.owner_id
 
     respond_to do |format|

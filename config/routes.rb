@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-  resources :book_requests
+  
   devise_for :users, :controllers => { registrations: 'registrations' }
   resources :books
+  resources :book_requests
   
   #/locatebooks take user to a map showing books in his closest vicinity
   get 'locatebooks', to:      'locatebooks'

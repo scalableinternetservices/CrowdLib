@@ -20,7 +20,7 @@
                       <h2 style = "padding_bottom:40px"><%= book.owner.first_name %></h2><br>
                        <p><%= 'Book-Owner'%></p><br>
                         <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-comments"></i>Message</a><br>
-                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Borrow</a>
+                        <%= link_to "Borrow", new_book_request_path(:book_id => book.id), :class => "btn btn-default add-to-cart" %>
                       </div>
                     </div>
                   </div>

@@ -1,29 +1,22 @@
-<p id="notice"><%= notice %></p>
+<div id="show_book_request">
+<h2>This book was successfully requested for <%= @book_request.loan_period %> days!!</h2>
+<br/>
+<br/>
 
-<p>
-  <strong>Book:</strong>
-  <%= @book_request.book_id %>
-</p>
-
-<p>
-  <strong>Lender:</strong>
-  <%= @book_request.lender_id %>
-</p>
-
-<p>
-  <strong>Borrower:</strong>
-  <%= @book_request.borrower_id %>
-</p>
-
-<p>
-  <strong>Loan period:</strong>
-  <%= @book_request.loan_period %>
-</p>
-
-<p>
-  <strong>Approved:</strong>
-  <%= @book_request.approved %>
-</p>
-
-<%= link_to 'Edit', edit_book_request_path(@book_request) %> |
-<%= link_to 'Back', book_requests_path %>
+<div class="col-sm-4"></div>
+<div class="col-sm-4">
+<div class="product-image-wrapper">
+  <div class="single-products">
+    <div class="productinfo text-center">
+      <% if (@book.image_url == nil) %> 
+      <img scr = "assets/images/placeholder_cover.jpg" >
+      <% else %>
+      <%= image_tag @book.image_url, {height: 300}%>
+      <% end %>
+      <h2><%= @book.title %></h2>
+      <p><%= @book.author %></p>
+    </div>
+  </div>
+</div>
+<div class="col-sm-4"></div>
+</div>

@@ -10,6 +10,7 @@ class BookRequestsController < ApplicationController
   # GET /book_requests/1
   # GET /book_requests/1.json
   def show
+    @book = Book.find_by_id(@book_request.book_id)
   end
 
   # GET /book_requests/new/1

@@ -95,7 +95,7 @@
 <% (@genres + [ "Fiction", "Romance", "Kids", "Adventure" ]).each do |genre| %>
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h4 class="panel-title"><a class="genre-link" href="/books?genre=<%= genre %>"><%= genre.capitalize %></a></h4>
+      <h4 class="panel-title"><a class="genre-link" href="/books?genre=<%= genre %>"><%= genre %></a></h4>
     </div>
   </div>
 <% end %>

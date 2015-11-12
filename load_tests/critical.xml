@@ -58,7 +58,7 @@
   </options>
 
   <sessions>
-    <session name="http-example" probability="100" type="ts_http">
+    <session name="user-signup" probability="100" type="ts_http">
 
       <!-- start out at the dashboard. -->
       <request>
@@ -97,7 +97,7 @@
         </http>
       </request>
 
-            <request subst="true">
+      <request subst="true">
         <http
           url='/users/sign_up'
           version='1.1'
@@ -105,9 +105,50 @@
           contents='username=%%_random_username%%&amp;password=%%random_password%%;&amp;firstname=%%random_firstname%%&amp;lastname=%%random_lastname%%&amp;email=%%random_email%%&amp;password_confirmation=%%random_passwordconfirm'>
         </http>
       </request>
+    </session>
+
+    <session name="lend-books-happy_path" probability="40" type="ts_http">
+      <!-- start out at the dashboard. -->
+      <request>
+        <http url='/' version='1.1' method='GET'></http>
+      </request>
+
+      <!-- wait for up to 2 seconds, user is looking at posts -->
+      <thinktime value="2" random="true"></thinktime>
+
+      <!-- wait for up to 2 seconds, user is filling out new community form -->
+      <thinktime value="2" random="true"></thinktime>
 
       
+      <setdynvars sourcetype="random_string" length="12">
+        <var name="random_username" />
+        <var name="random_password" />
+        <var name="random_firstname" />
+        <var name="random_lastname" />
+        <var name="random_email" />
+        <var name="random_passwordconfirm" />
+        <var name="random_bookname" />
+        <var name="random_authorname" />
+      </setdynvars>
+      <request subst="true">
+        <http
+          url='/users/sign_up'
+          version='1.1'
+          method='GET'
+          contents='username=%%_random_username%%&amp;password=%%_random_password%%;&amp;firstname=%%_random_firstname%%&amp;lastname=%%_random_lastname%%&amp;email=%%_random_email%%&amp;password_confirmation=%%_random_passwordconfirm%%'>
+        </http>
+      </request>
 
+      <thinktime value="2" random="true"></thinktime>
+
+      <request subst="true">
+        <http
+          url='/books/new'
+          version='1.1'
+          method='GET'
+          contents='title=%%_random_bookname%%&amp;author=%%_random_authorname%%'>
+        </http>
+      </request>
     </session>
   </sessions>
 </tsung>

@@ -1,28 +1,16 @@
 source 'https://rubygems.org'
 
-gem 'execjs'
+gem 'bootstrap-sass', '~> 3.2.0'
+gem 'autoprefixer-rails'
 
-
+gem 'devise'
+gem 'geokit-rails'
+gem 'paperclip'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
 # Use sqlite3 as the database for Active Record
-# Use redis for other things
 gem 'sqlite3'
-gem 'redis', '2.1.1'
-gem 'geokit-rails'
-
-gem 'devise'
-
-gem 'will_paginate'
-gem 'rspec'
-gem 'rspec-rails'
-gem 'factory_girl_rails'
-gem 'faker'
-
-gem 'devise'
-
-
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -30,9 +18,9 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
-gem 'active_model_serializers', github: 'rails-api/active_model_serializers'
+# gem 'therubyracer', platforms: :ruby
 
-#gem 'therubyracer', platforms: :rub Use jquery as the JavaScript library
+# Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
@@ -63,6 +51,3 @@ group :development do
   gem 'spring'
 end
 
-
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
-gem 'carrierwave'

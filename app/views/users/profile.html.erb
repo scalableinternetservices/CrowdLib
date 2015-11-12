@@ -1,33 +1,25 @@
 
-
-  	<div class = "row">
-  		<div class = "container">
-          <div class="features_items" style = "padding:20px"><!--features_items-->
-            <h2 class="title text-center" >Profile</h2>
-              <div class="col-sm-4">
-                <div class="profile-image-wrapper">
-                  <div class="single-products">
-                    <div class="profileinfo text-center">
-                     
-                     <%= image_tag @user.profile_picture %>
-                      <h1><%= @user.first_name%>
-                      	   <%= @user.last_name%></h1>
-                      <p><%= @user.email %></p>
-                      
-                    </div>
-                  </div>
-                </div>
-            </div>
-
-            <div class = "col-sm-8">
-            <div class = "text-center">
-              <h3><%=  'About ' + @user.first_name %></h3>
-              <p style = "font-size:15px" align="justify"> 
-                  <%= @user.blurb %>
-              </p>
-              </div>
-            </div>
-          </div>
-        </div>
-  </div><!-- @end #w -->
+<div class='col-md-6 pad-down'>
+  <div class='form-group'>
+    <label>Username: </label>
+    <input class="form-control" type="text" id="username" name="username" value="<%= current_user.username %>">
+  </div>
+  <div class='form-group'>
+    <label>First name: </label>
+    <input class="form-control" type="text" id="first_name" name="first_name" value="<%= current_user.first_name %>">
+  </div>
+  <div class='form-group'>
+    <label>Last name: </label>
+    <input class="form-control" type="text" id="last_name" name="last_name" value="<%= current_user.last_name %>">
+  </div>
+  <div class='form-group'>
+    <label>Address: </label>
+    <input class="form-control" type="text" id="address" name="address" value="<%= current_user.address %>">
+  </div>
+  <div class="btn btn-success" id="save-user-profile">Save</div>
 </div>
+<div class='col-md-6 pad-down'>
+  <div class="map minimap"></div>
+</div>
+<script>var current_user_lat_lng = { lat: <%= current_user.lat || 34.4258 %>, lng: <%= current_user.lng || -119.7142 %> };</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzRbMgDPqFAWa9zINSz9lrEm5IfNrhzdw&callback=profile_initmap"></script>

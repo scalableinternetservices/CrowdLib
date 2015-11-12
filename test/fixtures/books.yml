@@ -1,21 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  title: MyString
-  author: MyString
-  edition: MyString
-  genre: MyString
-  ratings: 9.99
-  image_url: MyString
-  publisher: MyString
-  ISBN: MyString
+  id: 1
+  name: MyString
+  author_id: 1
+  isbn: MyString
+  blurb: MyText
 
 two:
-  title: MyString
-  author: MyString
-  edition: MyString
-  genre: MyString
-  ratings: 9.99
-  image_url: MyString
-  publisher: MyString
-  ISBN: MyString
+  id: 1
+  name: MyString
+  author_id: 1
+  isbn: MyString
+  blurb: MyText

@@ -1,0 +1,94 @@
+
+* {
+	font-family: 'Roboto Condensed', sans-serif;
+	font-size: 18px;
+}
+
+#logo {
+  	cursor: pointer;
+}
+
+html, body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	overflow-x: hidden;
+}
+
+.wrapper {
+	min-height: 100%;
+}
+
+.content {
+	padding-bottom: 28px;
+	overflow-x: hidden;
+}
+
+.bottom {
+	background: #cc7a00;
+	width: 101%;
+	height: 28px;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	
+	.footer {
+		background: #fe980f;
+		height: 28px;
+	}
+}
+
+.header .col-md-12 {
+	overflow: hidden;
+	margin-bottom: 25px;
+}
+
+.logo {
+	font-size: 24px;
+
+	img {
+		margin-left: 16px;
+	}
+}
+
+.first-row {
+	margin-top: 20px;
+	margin-bottom: 10px;
+
+	padding-bottom: 10px;
+
+	-webkit-box-shadow: 0px 10px 18px -11px rgba(191,191,191,1);
+	-moz-box-shadow: 0px 10px 18px -11px rgba(191,191,191,1);
+	box-shadow: 0px 10px 18px -11px rgba(191,191,191,1);
+}
+
+.nav-item {
+	margin: 20px;
+	font-size: 20px;
+}
+
+#genres {
+	padding-left: 0;
+}
+
+.pad-down {
+	margin-bottom: 200px;
+}
+
+.small-pad-down {
+	margin-bottom: 40px;
+}
+
+.pad-up {
+	margin-top: 30px;
+}
+
+.footer {
+	width: 100% !important;
+}
+
+.nav-right {	
+    height: 68px;
+    margin-top: -16px;
+}

@@ -1,37 +1,30 @@
-
-
-          <div class="features_items"><!--features_items-->
-            <h2 class="title text-center">Listed Books</h2>
-            <% @books.each do |book| %>
-              <div class="col-sm-4">
-                <div class="product-image-wrapper">
-                  <div class="single-products">
-                    <div class="productinfo text-center">
-                    <% if (book.image_url == nil) %> 
-                      <img scr = "assets/images/placeholder_cover.jpg" >
-                      <% else %>
-                      <%= image_tag book.image_url, {height: 200}%>
-                      <% end %>
-                      <h2><%= link_to book.title, book %></h2>
-                      <p><%= book.author %></p>
-                    </div>
-                    <div class="product-overlay">
-                      <div class="overlay-content">
-                      <h2 style = "padding_bottom:40px"><%= book.owner.first_name %></h2><br>
-                       <p><%= 'Book-Owner'%></p><br>
-                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-comments"></i>Message</a><br>
-                        <%= link_to "Borrow", new_book_request_path(:book_id => book.id), :class => "btn btn-default add-to-cart" %>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="choose">
-                    <ul class="nav nav-pills nav-justified">
-                      <li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-                    </ul>
-                  </div>
-                </div>
-            </div>
+<div class="col-xs-12 col-sm-12 col-md-12">
+  <h4>Near <a href="/around/<%= @book.user.lat %>,<%= @book.user.lng %>"><%= @book.user.address %></a> by <a href="/user/<%= @book.user.id %>"><%= @book.user.username %></a></h4>
+  <h1 class="inlined"><%= @book.title %></h1>
+  <a href="/author/<%= Base64.encode64(@book.author) %>"><h2 class="inlined"><%= @book.author %></h2></a>
+  <div class="container pad-up pad-down">
+    <div class="row">
+      <div class="col-xs-4 col-sm-4 col-md-4">
+	<img class="book-image" src="<% unless @book.image_file_name.nil? %><%= @book.image.url(:original) %><% else %>/book_not_found.png<% end %>" />
+        <% if @book.user == current_user %><form action="/book/update/<%= @book.id %>"><input type="submit" class="btn btn-info" value="Update" /></form><% end %>
+        <div id="borrow-parent"><% unless @book.user == current_user %>
+          <% if @book.borrower.nil? %><button class="btn btn-success" id="borrow">Borrow!</button>
+          <% else %>
+            <% if @book.borrower == current_user %>
+              <div class="alert alert-success">Reading this now!</div>
+            <% else %>
+              <div class="alert alert-warning">This book is already borrowed. :(</div>
             <% end %>
-          </div><!--books-->  
-         
+          <% end %><% end %></div>
+      </div>
+      <div class="col-xs-8 col-sm-8 col-md-8">
+        <div class="map book-map small-pad-down"></div>
+        <div class="blurb"><%= simple_format(@book.blurb) %></div>
+        <h5>ISBN: <%= @book.isbn %></h5>
+        <script>var bookOptions = { "title": "<%= @book.title %>", "author": "<%= @book.author %>", "id": "<%= @book.id %>", "lat": "<%= @book.user.lat %>", "lng": "<%= @book.user.lng %>" };</script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzRbMgDPqFAWa9zINSz9lrEm5IfNrhzdw&callback=book_initmap"></script>
+      </div>
+    </div>
+  </div>
+</div>
 

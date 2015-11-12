@@ -1,29 +1,19 @@
 class UsersController < ApplicationController
+  before_filter :authenticate_user!
 
-	def index
-		@users = User.paginate(:page => params[:page], :per_page => 15)
+  def show
+    @user = current_user.to_json
+    render 'profile'
+  end
 
-	end
-
-	def profile
-		if current_user
-			@user = current_user
-		else
-			redirect_to new_user_session_path, notice: 'Please login to view your profile.'
-		end
-	end
-
-	def edit
-		if current_user
-		  @user=current_user
-		else
-     	  redirect_to new_user_session_path, notice: 'You are not logged in.'
-    	end
-    end
-
-	private
-	def user_params
-      params.require(:user).permit(:username, :email, :first_name, :last_name)
-	end
-
+  def save
+    current_user.username = params[:username]
+    current_user.first_name = params[:first_name]
+    current_user.last_name = params[:last_name]
+    current_user.lat = params[:lat]
+    current_user.lng = params[:lng]
+    current_user.address = params[:address]
+    current_user.save
+    render json: { user: current_user, params: params }
+  end
 end

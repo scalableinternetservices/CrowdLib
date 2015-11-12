@@ -1,0 +1,11 @@
+<div class="gallery">
+  <% unless @comment.nil? %>
+    <div class="small-pad-down">
+      <h4><%= @comment %></h4>
+    </div>
+  <% end %>
+  <!-- <%= @comment %> -->
+  <% @booklets.each do |booklet| %>
+    <%= render partial: "booklets", locals: { booklet: booklet } %>
+  <% end %>
+</div>

@@ -1,17 +1,6 @@
 class Book < ActiveRecord::Base
-	include ActiveModel::Serializers::JSON
-
-	mount_uploader :image_url, ImageUrlUploader # Tells rails to use this uploader for this model.
-	belongs_to :owner, :class_name => 'User'
-
-	# There are long book names so using a max of 100 chars 
-	# Eg: Proceedings of the Second International Workshop on Nude Mice 
-	
-	validates  :title, presence: true, length: { maximum: 100 }
-	validates  :author, presence: true, length: { maximum: 30}
-	scope :genre, -> (genre) { where genre: genre }
-	scope :author, -> (author) { where("author like ?", "#{author}%")}
-	scope :title, -> (title) { where("title like ?", "#{title}%")}
-
-	has_one :book_request, :class_name => 'BookRequest', :foreign_key => 'book_id'
+	belongs_to :user, class_name: User
+        belongs_to :borrower, class_name: User
+	has_attached_file :image, style: { medium: "300x400>", thumb: "200x300>" }, default_url: "/images/book_not_found.png"
+	validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 end

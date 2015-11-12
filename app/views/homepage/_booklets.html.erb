@@ -1,0 +1,15 @@
+<div class="booklet">
+  <div class="mapface">
+    <img src="//maps.googleapis.com/maps/api/staticmap?center=<%= booklet.user.lat %>,<%= booklet.user.lng %>&key=AIzaSyBTyQ4N1ma3ZsYq6DhXlK86WxQNvDq3Z18&size=200x300&zoom=15&style=feature%3Aadministrative%7Celement%3Aall%7Cvisibility%3Aoff%7C&style=feature%3Alandscape%7Celement%3Aall%7Cvisibility%3Asimplified%7Chue%3A0x0066ff%7Csaturation%3A74%7Clightness%3A100%7C&style=feature%3Apoi%7Celement%3Aall%7Cvisibility%3Asimplified%7C&style=feature%3Aroad%7Celement%3Aall%7Cvisibility%3Asimplified%7C&style=feature%3Aroad.highway%7Celement%3Aall%7Cvisibility%3Aoff%7Cweight%3A0.6%7Csaturation%3A-85%7Clightness%3A61%7C&style=feature%3Aroad.highway%7Celement%3Ageometry%7Cvisibility%3Aon%7C&style=feature%3Aroad.arterial%7Celement%3Aall%7Cvisibility%3Aoff%7C&style=feature%3Aroad.local%7Celement%3Aall%7Cvisibility%3Aon%7C&style=feature%3Atransit%7Celement%3Aall%7Cvisibility%3Asimplified%7C&style=feature%3Awater%7Celement%3Aall%7Cvisibility%3Asimplified%7Ccolor%3A0x5f94ff%7Clightness%3A26%7Cgamma%3A5.86%7C&markers=color:blue%7C<%= booklet.user.lat %>,<%= booklet.user.lng %>" />
+    <div class="bookface">
+      <img src="<% unless booklet.image_file_name.nil? %><%= booklet.image.url(:original) %><% else %>/book_not_found.png<% end %>" />
+        <button class="btn <% if booklet.borrower == current_user %>btn-success<% elsif booklet.user != current_user %>btn-info<% else %><% end %> borrow-button" data-id="<%= booklet.id %>">
+          <% if booklet.user == current_user %>
+            Update entry
+          <% else %>
+            <% if booklet.borrower.nil? %>Interested?<% else %><% if booklet.borrower == current_user %>You've got this.<% else %>Book taken.<% end %><% end %>
+          <% end %>
+        </button>      
+    </div>
+  </div> 
+</div>

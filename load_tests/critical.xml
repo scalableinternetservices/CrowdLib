@@ -149,6 +149,24 @@
           contents='title=%%_random_bookname%%&amp;author=%%_random_authorname%%'>
         </http>
       </request>
+
+
+      
+
+       
+        <transaction name = "borrow_books">
+
+        <request subst="true">
+          <http url='/book_requests/new?book_id=%%_random_bookid' 
+                version='1.1'
+                method='GET'
+                contents='loan_period=%%_random_loanperiod%%'>
+
+          </http>
+        </request>
+        
+        </transaction>
+
     </session>
   </sessions>
 </tsung>

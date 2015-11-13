@@ -50,7 +50,7 @@
             <li style ="padding: 1em"><a href=""><i class="fa fa-map"></i>Locate Book</a></li>
             <li style ="padding: 1em">
             <%if signed_in?%>
-              <li style ="padding: 1em"><%=link_to '<i class="fa fa-user"></i>'.html_safe + current_user.first_name, 'users/edit'%></li>
+              <li style ="padding: 1em"><%=link_to '<i class="fa fa-user"></i>'.html_safe + current_user.first_name, '/users/edit'%></li>
               <li style ="padding: 1em"><span></span><%=link_to '<i class="fa fa-sign-out"></i>Logout'.html_safe, destroy_user_session_path%></li>
             <%else%>
               <!--<li style ="padding: 1em"><%=link_to '<i class="fa fa-lock"></i>Login'.html_safe, new_user_session_path%></li> -->

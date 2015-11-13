@@ -155,6 +155,7 @@ a#scrollUp i{
 
 .header-middle .container .row .col-sm-4{
   padding-left: 0;
+
 }
 
 .header-middle .container .row .col-sm-8 {
@@ -861,6 +862,7 @@ h2.title {
 
 .single-products {
   position: relative;
+  min-height: 310px;
 }
 
 .new, .sale {

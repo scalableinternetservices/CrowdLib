@@ -1,28 +1,4 @@
 
-  <header id="header"><!--header-->
-    
-    <div class="header-middle"><!--header-middle-->
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-4">
-            <div class="logo pull-left">
-              <ul class="nav navbar-nav">
-                <li><%= image_tag "home/logo.png" %></li>
-                <li><h4 style ="padding: 1em" >Crowd-Lib</h4></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-sm-8">
-            <div class="shop-menu pull-right">
-              <ul class="nav navbar-nav">
-                <li style= "padding: 1em"><%= link_to '<i class="fa fa-home"></i>Home'.html_safe, controller: 'welcome', action: 'index' %></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div><!--/header-middle-->
-  </header><!--/header-->
 
  <div class = "container">
           <div class="features_items" style = "padding: 15px"><!--features_items-->
@@ -35,11 +11,13 @@
                       <%= image_tag user.profile_picture, {height:200} %>
                       <h2><%= user.first_name %></h2>
                       <p><%= user.email %></p>
+
                     </div>
                   </div>
                   <div class="choose">
                     <ul class="nav nav-pills nav-justified">
                       <li><a href="#"><i class="fa fa-comments"></i>Message</a></li>
+
                     </ul>
                   </div>
                 </div>
@@ -47,4 +25,4 @@
             <% end %>
           </div><!--books-->  
   </div>
-
+<%= will_paginate @users %>

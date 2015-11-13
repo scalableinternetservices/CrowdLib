@@ -14,7 +14,7 @@ gem 'geokit-rails'
 
 gem 'devise'
 
-
+gem 'will_paginate'
 gem 'rspec'
 gem 'rspec-rails'
 gem 'factory_girl_rails'
@@ -65,7 +65,4 @@ end
 
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
-gem 'bootstrap-sass', '~> 3.3.5'
 gem 'carrierwave'
-gem 'font-awesome-sass'
-gem 'font-awesome-rails'

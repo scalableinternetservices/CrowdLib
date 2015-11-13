@@ -8,9 +8,18 @@
 
     <title>Home | Crowd-Lib</title>
 
+    <%= stylesheet_link_tag    'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css' %>
+    <%= stylesheet_link_tag    'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css' %>
+    <%= javascript_include_tag 'https://code.jquery.com/jquery-2.1.4.min.js' %>
+    <%= javascript_include_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js' %>
+    <%= javascript_include_tag 'https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css' %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= stylesheet_link_tag    'main', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'main', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
+
+
    
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
@@ -22,13 +31,39 @@
     <link rel="apple-touch-icon-precomposed" href="/assets/ico/apple-touch-icon-57-precomposed.png">
   </head>
   <!--/head-->
+
   <body>
+  <div id="container">
+<div class="header-middle">
+  <!--header-middle-->
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-4">
+      <ul class="nav navbar-nav">
+        <li><a href="/"><%= image_tag "home/logo.png" %></li></a>
+        <li><h4 style ="padding: 1em" >Crowd-Lib</h4></li>
+        </ul>
+      </div>
+      <div class="col-sm-8">
+        <div class="shop-menu pull-right">
+          <ul class="nav navbar-nav">
+            <li style ="padding: 1em"><a href=""><i class="fa fa-map"></i>Locate Book</a></li>
+            <li style ="padding: 1em">
+            <%if signed_in?%>
+              <li style ="padding: 1em"><%=link_to '<i class="fa fa-user"></i>'.html_safe + current_user.first_name, 'users/edit'%></li>
+              <li style ="padding: 1em"><span></span><%=link_to '<i class="fa fa-sign-out"></i>Logout'.html_safe, destroy_user_session_path%></li>
+            <%else%>
+              <!--<li style ="padding: 1em"><%=link_to '<i class="fa fa-lock"></i>Login'.html_safe, new_user_session_path%></li> -->
+              <li style= "padding: 1em"><a href="/users/sign_up" class="active"><i class="fa fa-sign-in"></i>Signup</a></li>
+            <%end%>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
     <%= yield %>
     
-    <%= javascript_include_tag 'jquery', 'data-turbolinks-track' => true %>
-    <%= javascript_include_tag 'bootstrap.min', 'data-turbolinks-track' => true %>
-    <%= javascript_include_tag 'price-range', 'data-turbolinks-track' => true %>
-    <%= javascript_include_tag 'jquery.prettyPhoto', 'data-turbolinks-track' => true %>
-    <%= javascript_include_tag 'main', 'data-turbolinks-track' => true %>
   </body>
 </html>

@@ -7,11 +7,8 @@ Rails.application.routes.draw do
   #/locatebooks take user to a map showing books in his closest vicinity
   get 'locatebooks', to:      'locatebooks'
   get '/users', to: 'users#index'
-<<<<<<< HEAD
   get '/profile', to: 'user#profile'
-=======
-  get '/users/profile', to: 'users#profile'
->>>>>>> origin/master
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

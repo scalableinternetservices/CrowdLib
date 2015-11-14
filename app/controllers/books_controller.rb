@@ -14,6 +14,7 @@ class BooksController < ApplicationController
     @books = @books.where(author: params[:author]) if params[:author].present?
     @books = @books.where(title: params[:title]) if params[:title].present?  
     @unique_authors = Book.uniq.pluck(:author)
+    @unique_genre = Book.uniq.pluck(:genre)
     render :layout => false
   end
 

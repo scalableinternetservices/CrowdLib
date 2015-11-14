@@ -837,6 +837,7 @@ h2.title:before{
 }
 
 
+
 h2.title {
   color: #FE980F;
   font-family: 'Roboto', sans-serif;
@@ -902,11 +903,14 @@ h2.title {
 
 .productinfo img{
   width: 50%;
+  background-image:url('placeholder-cover.jpg');
 }
 
 .productinfo{
  position:relative;
 }
+
+
 
 .product-overlay {
   background:#FE980F;

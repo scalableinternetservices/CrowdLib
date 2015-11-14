@@ -8,7 +8,7 @@
                   <div class="single-products">
                     <div class="productinfo text-center">
                     <% if (book.image_url == nil) %> 
-                      <img scr = "assets/images/placeholder_cover.jpg" >
+                      <%= image_tag "placeholder_cover.jpg", {height: 200}%>
                       <% else %>
                       <%= image_tag book.image_url, {height: 200}%>
                       <% end %>

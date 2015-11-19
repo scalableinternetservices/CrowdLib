@@ -9,7 +9,7 @@
 
   <!-- Server side setup -->
   <servers>
-    <server host="54.152.122.1" port="80" type="tcp"></server>
+    <server host="52.91.186.77" port="80" type="tcp"></server>
   </servers>
 
 
@@ -23,13 +23,14 @@
     <arrivalphase phase="3" duration="30" unit="second">
       <users arrivalrate="4" unit="second"></users>
     </arrivalphase>
-<!--
+
    <arrivalphase phase="4" duration="30" unit="second">
      <users arrivalrate="8" unit="second"></users>
    </arrivalphase>
    <arrivalphase phase="5" duration="30" unit="second">
      <users arrivalrate="16" unit="second"></users>
    </arrivalphase>
+   <!--
    <arrivalphase phase="6" duration="30" unit="second">
      <users arrivalrate="32" unit="second"></users>
    </arrivalphase>
@@ -58,7 +59,7 @@
   </options>
 
   <sessions>
-    <session name="user-signup" probability="100" type="ts_http">
+    <session name="user-signup" probability="40" type="ts_http">
 
       <!-- start out at the dashboard. -->
       <request>
@@ -86,28 +87,18 @@
         <var name="random_passwordconfirm" />
       </setdynvars>
 
-      <!-- post to /communities to create a community.
-           remember the url of the created community so we can delete it later -->
-      <request subst="true">
-        <http
-          url='/users/sign_up'
-          version='1.1'
-          method='POST'
-          contents='username=%%_random_username%%&amp;password=%%random_password%%;&amp;firstname=%%random_firstname%%&amp;lastname=%%random_lastname%%&amp;email=%%random_email%%&amp;password_confirmation=%%random_passwordconfirm'>
-        </http>
-      </request>
 
       <request subst="true">
         <http
           url='/users/sign_up'
           version='1.1'
-          method='POST'
+          method='GET'
           contents='username=%%_random_username%%&amp;password=%%random_password%%;&amp;firstname=%%random_firstname%%&amp;lastname=%%random_lastname%%&amp;email=%%random_email%%&amp;password_confirmation=%%random_passwordconfirm'>
         </http>
       </request>
     </session>
 
-    <session name="lend-books-happy_path" probability="40" type="ts_http">
+    <session name="lend-books-happy_path" probability="30" type="ts_http">
       <!-- start out at the dashboard. -->
       <request>
         <http url='/' version='1.1' method='GET'></http>
@@ -116,10 +107,6 @@
       <!-- wait for up to 2 seconds, user is looking at posts -->
       <thinktime value="2" random="true"></thinktime>
 
-      <!-- wait for up to 2 seconds, user is filling out new community form -->
-      <thinktime value="2" random="true"></thinktime>
-
-      
       <setdynvars sourcetype="random_string" length="12">
         <var name="random_username" />
         <var name="random_password" />
@@ -149,7 +136,44 @@
           contents='title=%%_random_bookname%%&amp;author=%%_random_authorname%%'>
         </http>
       </request>
+      </session>
 
+
+      
+      <session name="borrow-books-happy_path" probability="30" type="ts_http">
+      <!-- start out at the dashboard. -->
+      <request>
+        <http url='/' version='1.1' method='GET'></http>
+      </request>
+
+      <!-- wait for up to 2 seconds, user is looking at posts -->
+      <thinktime value="2" random="true"></thinktime>
+
+      <!-- wait for up to 2 seconds, user is filling out new community form -->
+      <thinktime value="2" random="true"></thinktime>
+
+      
+      <setdynvars sourcetype="random_string" length="12">
+        <var name="random_username" />
+        <var name="random_password" />
+        <var name="random_firstname" />
+        <var name="random_lastname" />
+        <var name="random_email" />
+        <var name="random_passwordconfirm" />
+        <var name="random_bookname" />
+        <var name="random_authorname" />
+         <var name="random_loanperiod" />
+      </setdynvars>
+      <request subst="true">
+        <http
+          url='/users/sign_up'
+          version='1.1'
+          method='GET'
+          contents='username=%%_random_username%%&amp;password=%%_random_password%%;&amp;firstname=%%_random_firstname%%&amp;lastname=%%_random_lastname%%&amp;email=%%_random_email%%&amp;password_confirmation=%%_random_passwordconfirm%%'>
+        </http>
+      </request>
+
+      <thinktime value="2" random="true"></thinktime>
 
       
 

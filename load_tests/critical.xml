@@ -161,8 +161,12 @@
         <var name="random_email" />
         <var name="random_passwordconfirm" />
         <var name="random_bookname" />
-        <var name="random_authorname" />
-         <var name="random_loanperiod" />
+      </setdynvars>
+      <setdynvars sourcetype="random_number" start="1" end="100">
+        <var name="random_loanperiod" />
+      </setdynvars>
+      <setdynvars sourcetype="random_number" start="1" end="100">
+        <var name="random_bookid" />
       </setdynvars>
       <request subst="true">
         <http

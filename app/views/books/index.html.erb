@@ -5,7 +5,8 @@
             <% @books.each do |book| %>
               <div class="col-sm-4">
                 <div class="product-image-wrapper">
-                  <div class="single-products">
+                  <div class="single-products placeholder-image">
+
                     <div class="productinfo text-center">
                     <% if (book.image_url == nil) %> 
                       <%= image_tag "placeholder_cover.jpg", {height: 200}%>
@@ -17,9 +18,9 @@
                     </div>
                     <div class="product-overlay">
                       <div class="overlay-content">
-                      <h2 style = "padding_bottom:40px"><%= book.owner.first_name %></h2><br>
-                       <p><%= 'Book-Owner'%></p><br>
-                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-comments"></i>Message</a><br>
+                      <h2 style="padding_bottom:80px;"><%= link_to book.title, book %></h2>
+                      
+                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-comments"></i>Message the Lender</a><br>
                         <%= link_to "Borrow", new_book_request_path(:book_id => book.id), :class => "btn btn-default add-to-cart" %>
                       </div>
                     </div>
@@ -33,5 +34,6 @@
             </div>
             <% end %>
           </div><!--books-->  
+        
          
 

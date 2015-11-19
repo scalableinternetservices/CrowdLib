@@ -902,7 +902,11 @@ h2.title {
 }
 
 .productinfo img{
-  width: 50%;
+  width: 100%;
+  
+}
+
+.placeholder-image img{
   background-image:url('placeholder-cover.jpg');
 }
 
@@ -921,6 +925,10 @@ h2.title {
   transition: height 500ms ease 0s;
   width: 100%;
   display: block;
+}
+
+.product-overlay a{
+  padding_bottom:40px;
 }
 
 .single-products:hover .product-overlay {
@@ -1200,6 +1208,10 @@ h2.title {
   margin-bottom: 40px;
   overflow: hidden;
   margin-top: 10px;
+}
+
+.product-detailse img{
+  background-image:url('placeholder-cover.jpg');
 }
 
 

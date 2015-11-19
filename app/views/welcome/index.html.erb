@@ -79,7 +79,7 @@
 <h2>Authors</h2>
 <div class="brands-name">
 <ul class="nav nav-pills nav-stacked">
-<% @unique_authors.each do |t| %>
+<% @unique_authors.first(10).each do |t| %>
 <li><a href="#"> <span class="pull-right"></span><%= t %></a></li>
 <% end %>
 </ul>

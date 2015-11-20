@@ -93,7 +93,7 @@
           url='/users/sign_up'
           version='1.1'
           method='GET'
-          contents='username=%%_random_username%%&amp;password=%%random_password%%;&amp;firstname=%%random_firstname%%&amp;lastname=%%random_lastname%%&amp;email=%%random_email%%&amp;password_confirmation=%%random_passwordconfirm'>
+          contents='username=%%_random_username%%&amp;password=%%random_password%%;&amp;firstname=%%random_firstname%%&amp;lastname=%%random_lastname%%&amp;email=%%_random_email%%&amp;password_confirmation=%%random_passwordconfirm'>
         </http>
       </request>
     </session>
@@ -155,11 +155,9 @@
       
       <setdynvars sourcetype="random_string" length="12">
         <var name="random_username" />
-        <var name="random_password" />
         <var name="random_firstname" />
         <var name="random_lastname" />
         <var name="random_email" />
-        <var name="random_passwordconfirm" />
         <var name="random_bookname" />
       </setdynvars>
       <setdynvars sourcetype="random_number" start="1" end="100">
@@ -173,7 +171,7 @@
           url='/users/sign_up'
           version='1.1'
           method='GET'
-          contents='username=%%_random_username%%&amp;password=%%_random_password%%;&amp;firstname=%%_random_firstname%%&amp;lastname=%%_random_lastname%%&amp;email=%%_random_email%%&amp;password_confirmation=%%_random_passwordconfirm%%'>
+          contents='utf8=%E2%9C%93&amp;user%5Busername%5D=%%_random_username%%&amp;user%5Bfirst_name%5D=%%_random_firstname%%&amp;user%5Blast_name%5D=%%_random_lastname%%&amp;user%5Bemail%5D=%%_random_email%%%40gmail.com&amp;user%5Bpassword%5D=password&amp;user%5Bpassword_confirmation%5D=password'>
         </http>
       </request>
 

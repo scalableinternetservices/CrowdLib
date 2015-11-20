@@ -31,7 +31,7 @@ $(function(){
 		return false;		
 	});
 
-	$('#sl2').slider();
+//	$('#sl2').slider();
 });
 
 /*load the list ok books in the index.html*/

@@ -59,6 +59,13 @@
                 <p><b>Edition:</b> <%= @book.edition %></p>
                 <p><b>ISBN:</b> <%= @book.ISBN%></p>
                 <p><b>Genre:</b> <%= @book.genre%></p>
+		<p id= "address" hidden="true"><%= @user.address%></p>
+
+                <div class="col-md-6 pad-down" style= 'width:300px; height:400px'>
+                  <div class="map minimap" style= 'width:800px; height:400px'></div>
+                </div>
+                <script>var current_user_lat_lng = {lat: <%= @user.lat %>, lng: <%= @user.lng %>};</script>
+                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzRbMgDPqFAWa9zINSz9lrEm5IfNrhzdw&callback=book_initmap"></script>
                 <span>
                   <%= link_to "<i class=\"fa fa-shopping-cart\"></i>Borrow".html_safe, new_book_request_path(:book_id => @book.id), :class => "btn btn-fefault cart" %>
                 </span>

@@ -9,7 +9,8 @@
 
   <!-- Server side setup -->
   <servers>
-    <server host="54.208.24.57" port="80" type="tcp"></server>
+
+    <server host="54.175.8.145" port="80" type="tcp"></server>
   </servers>
 
 
@@ -29,10 +30,9 @@
    <arrivalphase phase="4" duration="30" unit="second">
      <users arrivalrate="8" unit="second"></users>
    </arrivalphase>
-   <arrivalphase phase="5" duration="30" unit="second">
+   <!--<arrivalphase phase="5" duration="30" unit="second">
      <users arrivalrate="16" unit="second"></users>
    </arrivalphase>
-  
    <arrivalphase phase="6" duration="30" unit="second">
      <users arrivalrate="32" unit="second"></users>
    </arrivalphase>
@@ -61,25 +61,33 @@
   </options>
 
   <sessions>
-    <session name="user-signup" probability="100" type="ts_http">
 
-      <!-- start out at the dashboard. -->
-     <!--  <request>
+    <session name="lend-books" probability="40" type="ts_http">
+
+      
+     <request>
         <http url='/' version='1.1' method='GET'></http>
-      </request> -->
+      </request> 
 
-      <!-- wait for up to 2 seconds, user is filling out new community form -->
+      <!-- wait for up to 2 seconds, user is looking at books -->
       <thinktime value="2" random="true"></thinktime>
 
-      <!-- create a random number to make a unique community name -->
+      <request>
+        <http url='/users/sign_up' version='1.1' method='GET'></http>
+      </request> 
+
+      <thinktime value="2" random="true"></thinktime>
+
+
       <setdynvars sourcetype="random_string" length="12">
         <var name="random_username" />
         <var name="random_password" />
         <var name="random_firstname" />
         <var name="random_lastname" />
-        <var name="random_email" />
-        <var name="random_passwordconfirm" />
+        <var name="random_bookname" />
+        <var name="random_authorname" />
       </setdynvars>
+
 
 
       <request subst="true">
@@ -91,97 +99,86 @@
         </http>
       </request>
 
-    </session>
+      <thinktime value="2" random="true"></thinktime>
 
-   <!--  <session name="lend-books-happy_path" probability="30" type="ts_http">
+       <request>
+        <http url='/books/new' version='1.1' method='GET'></http>
+      </request>
 
-
-      <setdynvars sourcetype="random_string" length="12">
-        <var name="random_username" />
-        <var name="random_password" />
-        <var name="random_firstname" />
-        <var name="random_lastname" />
-        <var name="random_email" />
-        <var name="random_passwordconfirm" />
-        <var name="random_bookname" />
-        <var name="random_authorname" />
-      </setdynvars>
-      <request subst="true">
+       <request subst="true">
         <http
-          url='/users/sign_up'
+          url='/books'
           version='1.1'
-          method='GET'
-          contents='username=%%_random_username%%&amp;password=%%_random_password%%;&amp;firstname=%%_random_firstname%%&amp;lastname=%%_random_lastname%%&amp;email=%%_random_email%%&amp;password_confirmation=%%_random_passwordconfirm%%'>
+          method='POST'
+          contents='utf8=%E2%9C%93&amp;book%5Btitle%5D=%%_random_bookname%%&amp;book%5Bauthor%5D=%%_random_authorname%%&amp;'>
         </http>
       </request>
 
       <thinktime value="2" random="true"></thinktime>
 
-      <request subst="true">
-        <http
-          url='/books/new'
-          version='1.1'
-          method='GET'
-          contents='title=%%_random_bookname%%&amp;author=%%_random_authorname%%'>
-        </http>
-      </request>
-      </session>
+    </session>
 
 
+    
       
-      <session name="borrow-books-happy_path" probability="30" type="ts_http">
+      <session name="borrow-books-happy_path" probability="60" type="ts_http">
   
+
       <request>
         <http url='/' version='1.1' method='GET'></http>
       </request>
 
-
       <thinktime value="2" random="true"></thinktime>
 
-      
+      <!-- create a random number to make a unique community name -->
       <setdynvars sourcetype="random_string" length="12">
         <var name="random_username" />
-        <var name="random_password" />
         <var name="random_firstname" />
         <var name="random_lastname" />
         <var name="random_email" />
-        <var name="random_passwordconfirm" />
         <var name="random_bookname" />
+        <var name="random_authorname" />
       </setdynvars>
+
       <setdynvars sourcetype="random_number" start="1" end="100">
         <var name="random_loanperiod" />
       </setdynvars>
       <setdynvars sourcetype="random_number" start="1" end="100">
         <var name="random_bookid" />
       </setdynvars>
-      <request subst="true">
-        <http
-          url='/users/sign_up'
-          version='1.1'
-          method='GET'
-          contents='utf8=%E2%9C%93&amp;authenticity_token=UaAdArIkr8e7F7S7Vs4qSb8304pjtDl9O%2BGz%2BR17F0CCXjEbiZ33BGVLDidXQyxk0m523dCbXtAhIrH9qp36Ew%3D%3D&amp;authenticity_token=kt%2FV1h8Tb5okmB0TSUoGBT5O1Lk%2FQ7uwJBrAjb9G0%2FbDQDxN7JLwremDXi5x%2FWGh%2BbTNoOAfqqJt%2BVNF3VjkcA%3D%3D&amp;user%5Busername%5D=%%_random_username%%&amp;user%5Bfirst_name%5D=%%_random_firstname%%&amp;user%5Blast_name%5D=%%_random_lastname%%&amp;user%5Bemail%5D=%%_random_email%%%40gmail.com&amp;user%5Bpassword%5D=password&amp;user%5Bpassword_confirmation%5D=password'>
 
-        </http>
+      <request>
+        <http url='/users/sign_up' version='1.1' method='GET'></http>
       </request>
 
       <thinktime value="2" random="true"></thinktime>
 
-      
 
-       
-        <transaction name = "borrow_books">
+      <request subst="true">
+        <http
+          url='/users'
+          version='1.1'
+          method='POST'
+          contents='utf8=%E2%9C%93&amp;user%5Bemail%5D=%%_random_email%%%40g.com&amp;user%5Bfirst_name%5D=%%_random_firstname%%&amp;user%5Blast_name%5D=%%_random_lastname%%&amp;user%5Bpassword%5D=12345678&amp;user%5Busername%5D=%%_random_username%%&amp;user%5Bpassword_confirmation%5D=12345678&amp;'>
+        </http>
+      </request>
 
-        <request subst="true">
-          <http url='/book_requests/new?book_id=%%_random_bookid' 
-                version='1.1'
-                method='GET'
-                contents='loan_period=%%_random_loanperiod%%'>
+       <thinktime value="2" random="true"></thinktime>
 
-          </http>
-        </request>
-        
-        </transaction>
+       <request>
+        <http url='/book_requests/new' version='1.1' method='GET'></http>
+      </request>
 
-    </session> -->
+       <request subst="true">
+        <http
+          url='/book_requests'
+          version='1.1'
+          method='POST'
+          contents='utf8=%E2%9C%93&amp;book_id=%%_random_bookid%%&amp;book_request%5Bloan_period%5D=%%_random_loanperiod%%&amp;commit=Create+Book+request'>
+        </http>
+      </request>
+
+      <thinktime value="2" random="true"></thinktime>
+    </session>
   </sessions>
 </tsung>

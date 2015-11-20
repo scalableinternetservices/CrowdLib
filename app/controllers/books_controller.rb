@@ -22,6 +22,7 @@ class BooksController < ApplicationController
   # GET /books/1.json
   def show
     @unique_authors = Book.uniq.pluck(:author)
+    @user = current_user
   end
 
   # GET /books/new

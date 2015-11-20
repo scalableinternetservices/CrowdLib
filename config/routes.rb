@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   get '/users', to: 'users#index'
   get '/profile', to: 'users#profile'
 
+  get 'around/:lat,:lng', to: 'homepage#by_location', :constraints => {:lat => /\-?\d+(.\d+)?/, :lng => /\-?\d+(.\d+)?/ }  
+  get 'get_around/:lat,:lng', to: 'homepage#books_around', :constraints => {:lat => /\-?\d+(.\d+)?/, :lng => /\-?\d+(.\d+)?/ , :range => /\d+/ }
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

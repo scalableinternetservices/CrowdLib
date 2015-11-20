@@ -15,11 +15,24 @@
     <% end %><br />
     <%= f.password_field :password, autocomplete: "off" %>
   </div>
-
+<div>random</div>
   <div class="field">
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
+
+ <div class='field'>
+	<%= f.label :address %><br />
+	<%= f.text_field :address, autocomplete: "off" ,placeholder: "First Name"%>
+  </div>
+</div>
+
+                <div class="col-md-6 pad-down" style= 'width:300px; height:400px'>
+                  <div class="map minimap" style= 'width:800px; height:400px'></div>
+                </div>
+                <script>var current_user_lat_lng = { lat: 34.4258 , lng: -119.7142 };</script>
+                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzRbMgDPqFAWa9zINSz9lrEm5IfNrhzdw&callback=profile_initmap"></script>
+
 
   <div class="actions">
     <%= f.submit "Sign up" %>
@@ -86,6 +99,20 @@
               <div class="field">
                 <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: :password_confirmation  %>
               </div>
+		
+		<div class='field'>
+              <%= f.text_field :address, autocomplete: "off" ,placeholder: "Address", :id=>"address" %>
+	      <%= f.hidden_field :lat, id: "lat" %>
+	      <%= f.hidden_field :lng, id: "lng" %>
+                </div>
+	     </div>
+
+                <div class="col-md-6 pad-down" style= 'width:300px; height:400px'>
+                  <div class="map minimap" style= 'width:800px; height:400px'></div>
+                </div>
+                <script>var current_user_lat_lng = { lat: 34.4258 , lng: -119.7142 };</script>
+                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzRbMgDPqFAWa9zINSz9lrEm5IfNrhzdw&callback=profile_initmap"></script>
+
 
               <button class="btn btn-default">
                 <% f.submit %>Signup

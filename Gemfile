@@ -20,8 +20,6 @@ gem 'rspec-rails'
 gem 'factory_girl_rails'
 gem 'faker'
 
-gem 'devise'
-
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
@@ -66,3 +64,4 @@ end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 gem 'carrierwave'
+gem 'htmlbeautifier'

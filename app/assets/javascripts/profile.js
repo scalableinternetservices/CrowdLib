@@ -56,4 +56,5 @@ var profile_initmap = function() {
     
     runGeocoding($(this).val());
   });
+}
 

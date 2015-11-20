@@ -57,19 +57,3 @@ var profile_initmap = function() {
     runGeocoding($(this).val());
   });
 
-  $("#save-user-profile").click(function() {
-    $.ajax({
-      url: "/profile/save",
-      method: "patch",
-      data: { 
-        lat: marker.getPosition().lat(), lng: marker.getPosition().lng(),
-        username: $("#username").val(), first_name: $("#first_name").val(),
-        last_name: $("#last_name").val(), address: $("#address").val()
-      }
-    }).done(function(msg) {
-      console.log(msg);
-      document.location = '/';
-    });
-  });
-}
-

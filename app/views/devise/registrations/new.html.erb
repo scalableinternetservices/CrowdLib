@@ -69,12 +69,17 @@
   
   <section id="form"><!--form-->
     <div class="container">
+    <div class="login-form"><!--login form-->
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <div class="row">
         <div class="col-sm-4 col-sm-offset-1">
-          <div class="login-form"><!--login form-->
-            <h2>Signup!</h2>
-            <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-              <%= devise_error_messages! %>
+          <h2>New User Signup!</h2>
+          <%= devise_error_messages! %>
+        </div>
+      </div>
+          <div class="row">
+          <div class="col-sm-4 col-sm-offset-1">
+            
 
               <div class="field">
                 <%= f.text_field :username, autofocus: true, placeholder: "Username" %>
@@ -99,30 +104,31 @@
               <div class="field">
                 <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: :password_confirmation  %>
               </div>
-		
-          		<div class='field'>
-                        <%= f.text_field :address, autocomplete: "off" ,placeholder: "Address", :id=>"address" %>
-          	      <%= f.hidden_field :lat, id: "lat" %>
-          	      <%= f.hidden_field :lng, id: "lng" %>
+
+              <div class='field'>
+                <%= f.text_field :address, autocomplete: "off" ,placeholder: "Address", :id=>"address" %>
+                <%= f.hidden_field :lat, id: "lat" %>
+                <%= f.hidden_field :lng, id: "lng" %>
               </div>
-
-              <button class="btn btn-default">
-                  <% f.submit %>Signup
-              </button>
-
-               <% end %>
-          </div>
-
-        <div class="col-md-3 pad-down" style= 'width:300px; height:400px'>
-           <div class="map minimap" style= 'width:800px; height:400px'></div>
-        </div>
+          </div><!--col-->
+          
+		        
+            <div class="col-sm-6 col-sm-offset-1 pad-down" >
+                <div class="map minimap" style= 'width:600px; height:350px'></div>
+            </div>
                 <script>var current_user_lat_lng = { lat: 34.4258 , lng: -119.7142 };</script>
-                <script src="https:'//maps.googleapis.com/maps/api/js?key=AIzaSyDzRbMgDPqFAWa9zINSz9lrEm5IfNrhzdw&callback=profile_initmap"></script>
-              
-          </div><!--/login form-->
-        </div>
-        <div class ="col-sm-4 col-sm-offset-2">
-          <%= image_tag 'home/carousel1.png', :class => "book img-responsive" %> 
-        </div>
-      </div>
-    </div>
+                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzRbMgDPqFAWa9zINSz9lrEm5IfNrhzdw&callback=profile_initmap"></script>
+         </div><!--row-->
+         <div class="row">
+            <div class="col-sm-4 col-sm-offset-1">
+              <button class="login-form btn btn-default">
+                <% f.submit %>Signup
+              </button>
+              <% end %>
+            </div>
+          </div><!--row-->
+         
+        </div><!--/login form-->
+         </div><!--container-->
+  </section>
+

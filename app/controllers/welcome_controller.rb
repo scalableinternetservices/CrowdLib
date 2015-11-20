@@ -1,6 +1,6 @@
 require 'set'
 
-class WelcomeController < ApplicationController
+class WelcomeController < ApplicationController			
 	before_action :authenticate_user!
 	
 	def index

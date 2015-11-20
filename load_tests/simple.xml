@@ -9,14 +9,44 @@
 
   <!-- Server side setup -->
   <servers>
-    <server host="54.210.160.245" port="80" type="tcp"></server>
+    <server host="52.91.77.249" port="80" type="tcp"></server>
   </servers>
 
 
   <load>
-    <arrivalphase phase="1" duration="10" unit="second">
+    <arrivalphase phase="1" duration="30" unit="second">
       <users arrivalrate="1" unit="second"></users>
     </arrivalphase>
+   <!-- <arrivalphase phase="2" duration="30" unit="second">
+      <users arrivalrate="2" unit="second"></users>
+    </arrivalphase>
+    <arrivalphase phase="3" duration="30" unit="second">
+      <users arrivalrate="4" unit="second"></users>
+    </arrivalphase>
+
+   <arrivalphase phase="4" duration="30" unit="second">
+     <users arrivalrate="8" unit="second"></users>
+   </arrivalphase>
+   <arrivalphase phase="5" duration="30" unit="second">
+     <users arrivalrate="16" unit="second"></users>
+   </arrivalphase>
+   
+   <arrivalphase phase="6" duration="30" unit="second">
+     <users arrivalrate="32" unit="second"></users>
+   </arrivalphase>
+   <arrivalphase phase="7" duration="30" unit="second">
+     <users arrivalrate="64" unit="second"></users>
+   </arrivalphase>
+   <arrivalphase phase="8" duration="30" unit="second">
+     <users arrivalrate="128" unit="second"></users>
+   </arrivalphase>
+   <arrivalphase phase="9" duration="30" unit="second">
+     <users arrivalrate="256" unit="second"></users>
+   </arrivalphase>
+   <arrivalphase phase="10" duration="30" unit="second">
+     <users arrivalrate="512" unit="second"></users>
+   </arrivalphase>
+-->
   </load>
 
   <options>
@@ -29,10 +59,49 @@
   </options>
 
   <sessions>
-    <session name="http-example" probability="100" type="ts_http">
+    <session name="user-signup" probability="100" type="ts_http">
+
+      <!-- start out at the dashboard. -->
       <request>
         <http url='/' version='1.1' method='GET'></http>
       </request>
+
+      <!-- wait for up to 2 seconds, user is looking at posts -->
+      <thinktime value="2" random="true"></thinktime>
+
+
+      <!-- wait for up to 2 seconds, user is filling out new community form -->
+      <thinktime value="2" random="true"></thinktime>
+
+      <!-- create a random number to make a unique community name -->
+      <setdynvars sourcetype="random_string" length="12">
+        <var name="random_username" />
+        <var name="random_password" />
+        <var name="random_firstname" />
+        <var name="random_lastname" />
+        <var name="random_email" />
+        <var name="random_passwordconfirm" />
+      </setdynvars>
+
+      <request>
+        <http url='/users/sign_up' version='1.1' method='GET'></http>
+      </request>
+
+      <thinktime value="2" random="true"></thinktime>
+
+
+      <request subst="true">
+        <http
+          url='/users'
+          version='1.1'
+
+          method='POST'
+          contents='utf8=%E2%9C%93&amp;user%5Bemail%5D=%%_random_email%%%40g.com&amp;user%5Bpassword%5D=12345678&amp;user%5Busername%5D=%%_random_username%%&amp;user%5Bpassword_confirmation%5D=12345678&amp;commit=Sign+up'>
+
+        </http>
+      </request>
     </session>
+
+    
   </sessions>
 </tsung>

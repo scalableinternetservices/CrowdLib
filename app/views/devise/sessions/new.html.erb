@@ -1,5 +1,4 @@
-
-  <!--<header id="header">
+<!--<header id="header">
     
     <div class="header-middle">
       <div class="container">
@@ -23,40 +22,35 @@
       </div>
     </div>
   </header> -->
-
 <section id="form"><!--form-->
-<div class="container">
-<div class="login-form"><!--login form-->
-<div class="col-sm-4 col-sm-offset-1">
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-<%= devise_error_messages! %>
-<h2 style = "color:#FE980F">Login !</h2>
-  <div class="field">
-    <%= f.email_field :email, autofocus: true, :placeholder => "Email" %>
-  </div>
-
-  <div class="field">
-    <%= f.password_field :password, autocomplete: "off", :placeholder => "Password" %>
-  </div>
-
-  <!--<% if devise_mapping.rememberable? -%>
+  <div class="container">
+    <div class="login-form"><!--login form-->
+      <div class="col-sm-4 col-sm-offset-1">
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <%= devise_error_messages! %>
+          <h2 style = "color:#FE980F">Login !</h2>
+          <div class="field">
+            <%= f.email_field :email, autofocus: true, :placeholder => "Email" %>
+          </div>
+          <div class="field">
+            <%= f.password_field :password, autocomplete: "off", :placeholder => "Password" %>
+          </div>
+          <!--<% if devise_mapping.rememberable? -%>
     <span>
         <%= f.label :remember_me do %>
         <%= f.check_box :remember_me %>
         <% end %>
     </span>
   <% end -%><br>-->
-  <button type="submit" class="btn btn-default">
-    <% f.submit "Log in"%>Login
+          <button type="submit" class="btn btn-default">
+            <% f.submit "Log in"%>Login
   </button>
-<% end %><br>
-
- <a href="/users/password/new" class="active"> Forgot Password?</a>
-</div>
-<div class = "col-sm-4 col-sm-offset-2">
-<%= image_tag 'home/carousel1.png', :class => "book img-responsive" %> 
-</div>
-
-</div>
-</div>
+        <% end %><br>
+        <a href="/users/password/new" class="active"> Forgot Password?</a>
+      </div>
+      <div class = "col-sm-4 col-sm-offset-2">
+        <%= image_tag 'home/carousel1.png', :class => "book img-responsive" %>
+      </div>
+    </div>
+  </div>
 </section>

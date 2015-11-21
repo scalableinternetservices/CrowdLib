@@ -34,10 +34,9 @@
           <div class="row">
             <div class="col-sm-4">
               <ul class="nav navbar-nav">
-                <li><a href="/"><%= image_tag "home/logo.png" %></li>
-                </a>
+                <li><a href="/"><%= image_tag "home/logo.png" %></a></li>
                 <li>
-                  <h4 style ="padding-top: 25px" >Crowd-Lib</h4>
+                  <h4 style ="padding-top: 25px">Crowd-Lib</h4>
                 </li>
               </ul>
             </div>
@@ -45,7 +44,6 @@
               <div class="shop-menu pull-right">
                 <ul class="nav navbar-nav">
                   <%if signed_in?%>
-                    <li style ="padding: 25px"><a href=""><i class="fa fa-map"></i>Locate Book</a></li>
                     <li style ="padding: 25px"><%=link_to '<i class="fa fa-user"></i>'.html_safe + current_user.first_name, '/users/edit'%></li>
                     <li style ="padding: 25px"><span></span><%=link_to '<i class="fa fa-sign-out"></i>Logout'.html_safe, destroy_user_session_path%></li>
                   <%else%>

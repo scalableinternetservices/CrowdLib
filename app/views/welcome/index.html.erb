@@ -21,11 +21,12 @@
         </ul>
       </div>
     </div>
+    <!--
     <div class="col-sm-3">
       <div class="search_box pull-right">
         <input type="text" placeholder="Search"/>
       </div>
-    </div>
+    </div>-->
   </div>
 </div>
 </div>
@@ -49,7 +50,7 @@
                 <p>A crowd sourced library that allows us to share books, discover interests, discuss opinions and make friends. </p>
               </div>
               <div class="col-sm-6">
-                <%= image_tag 'home/carousel1.png', :class => "book img-responsive" %>
+                <%= image_tag 'home/carousel1.png', :class => "book" %>
               </div>
             </div>
           </div>
@@ -61,25 +62,25 @@
           <div class="row">
             <div class="col-sm-3"><!-- left column-->
               <div class="left-sidebar"><!--sidebar-->
-                <h2>Category</h2>
-                <div class="panel-group category-products" id="accordian"><!--category-productsr-->
-                  <% if (@unique_genre != nil) %>
-                    <% @unique_genre.each do |genre| %>
-                      <div class="panel panel-default">
-                        <div class="panel-heading">
-                          <h4 class="panel-title"><a class="genre-link" href="/books?genre=<%= genre %>"><%= genre %></a></h4>
-                        </div>
-                      </div>
-                    <% end %>
-                  <% end %>
+                <div class="brands_products">
+                  <h2>Category</h2>
+                  <div class="brands-name">
+                    <ul class="nav nav-pills nav-stacked">
+                      <% @unique_genre.first(10).each do |t| %>
+                        <li><a href="/books?genre=<%= t %>"> <span class="pull-right"></span><%= t %></a></li>
+                      <% end %>
+                    </ul>
+                  </div>
+                  <!--brand names-->
                 </div>
-                <!--/category-products-->
+                <!--brand products-->
+                <br/>
                 <div class="brands_products"><!--brands_products-->
                   <h2>Authors</h2>
                   <div class="brands-name">
                     <ul class="nav nav-pills nav-stacked">
                       <% @unique_authors.first(10).each do |t| %>
-                        <li><a href="#"> <span class="pull-right"></span><%= t %></a></li>
+                        <li><a href="/books?author=<%= t %>"> <span class="pull-right"></span><%= t %></a></li>
                       <% end %>
                     </ul>
                   </div>

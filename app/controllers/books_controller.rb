@@ -7,21 +7,19 @@ class BooksController < ApplicationController
   # GET /books
   # GET /books.json
   def index
-    @books = Book.all #if user_signed_in? Book.where.not(owner_id: current_user.id) else Book.all 
-    @genres = Set.new(@books.pluck :genre)
-    @genres = Set.new([]) if @genres.nil?
+    @books = user_signed_in? ? Book.where.not(owner_id: current_user.id) : Book.all 
     @books = @books.where(genre: params[:genre]) if params[:genre].present?
     @books = @books.where(author: params[:author]) if params[:author].present?
     @books = @books.where(title: params[:title]) if params[:title].present?  
     @unique_authors = Book.uniq.pluck(:author)
     @unique_genre = Book.uniq.pluck(:genre)
     render :layout => false
+    
   end
 
   # GET /books/1
   # GET /books/1.json
   def show
-    @unique_authors = Book.uniq.pluck(:author)
     @user = current_user
   end
 

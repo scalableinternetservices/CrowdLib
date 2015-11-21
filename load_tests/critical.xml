@@ -10,7 +10,7 @@
   <!-- Server side setup -->
   <servers>
 
-    <server host="54.175.8.145" port="80" type="tcp"></server>
+    <server host="54.86.61.69" port="80" type="tcp"></server>
   </servers>
 
 
@@ -47,7 +47,7 @@
    </arrivalphase>
    <arrivalphase phase="10" duration="30" unit="second">
      <users arrivalrate="512" unit="second"></users>
-   </arrivalphase>
+   </arrivalphase> -->
 
   </load>
 
@@ -62,14 +62,14 @@
 
   <sessions>
 
-    <session name="lend-books" probability="40" type="ts_http">
+    <session name="lend-books" probability="100" type="ts_http">
 
       
      <request>
         <http url='/' version='1.1' method='GET'></http>
       </request> 
 
-      <!-- wait for up to 2 seconds, user is looking at books -->
+    
       <thinktime value="2" random="true"></thinktime>
 
       <request>
@@ -95,7 +95,7 @@
           url='/users'
           version='1.1'
           method='POST'
-          contents='utf8=%E2%9C%93&amp;user%5Busername%5D=%%_random_username%%&amp;user%5Bfirst_name%5D=%%_random_firstname%%&amp;user%5Blast_name%5D=%%_random_lastname%%&amp;user%5Bemail%5D=%%_random_email%%%40gmail.com&amp;user%5Bpassword%5D=password&amp;user%5Bpassword_confirmation%5D=password'>
+          contents='utf8=%E2%9C%93&amp;authenticity_token=hm2jMn2q8hUdms%2F5tAXSzjPsHhW%2BF5l3LYuV53p%2Bq%2FBugQV5q0dROkRZMubJbZrsFL%2BVehe3tBaEIelxcJyrCw%3D%3D&amp;user%5Busername%5D=%%_random_username%%&amp;user%5Bfirst_name%5D=%%_random_firstname%%&amp;user%5Blast_name%5D=%%_random_lastname%%&amp;user%5Bemail%5D=%%_random_email%%%40gmail.com&amp;user%5Bpassword%5D=password&amp;user%5Bpassword_confirmation%5D=password'>
         </http>
       </request>
 
@@ -119,9 +119,62 @@
     </session>
 
 
+
+
+    <!-- NEW TEST -->
+
+    <session name="lend-books" probability="0" type="ts_http">
+
+      
+     <request>
+        <http url='/' version='1.1' method='GET'></http>
+      </request> 
+
+      <!-- wait for up to 2 seconds, user is looking at books -->
+      <thinktime value="2" random="true"></thinktime>
+
+      <request subst="true">
+        <http
+          url='/users/sign_in'
+          version='1.1'
+          method='POST'
+          contents='utf8=%E2%9C%93&amp;authenticity_token=hm2jMn2q8hUdms%2F5tAXSzjPsHhW%2BF5l3LYuV53p%2Bq%2FBugQV5q0dROkRZMubJbZrsFL%2BVehe3tBaEIelxcJyrCw%3D%3D&amp;user%5Bemail%5D=hemanth%40abc.com&amp;user%5Bpassword%5D=password'>
+        </http>
+      </request>
+
+      <thinktime value="2" random="true"></thinktime>
+
+       <request>
+        <http url='/books/new' version='1.1' method='GET'></http>
+      </request>
+
+
+       <setdynvars sourcetype="random_number" start="1" end="100">
+        <var name="random_loanperiod" />
+      </setdynvars>
+      <setdynvars sourcetype="random_number" start="1" end="100">
+        <var name="random_bookid" />
+      </setdynvars>
+
+
+       <request subst="true">
+        <http
+          url='/books'
+          version='1.1'
+          method='POST'
+          contents='utf8=%E2%9C%93&amp;book%5Btitle%5D=%%_random_bookname%%&amp;book%5Bauthor%5D=%%_random_authorname%%&amp;'>
+        </http>
+      </request>
+
+      <thinktime value="2" random="true"></thinktime>
+
+    </session>
+
+
+
     
       
-      <session name="borrow-books-happy_path" probability="60" type="ts_http">
+     <!--  <session name="borrow-books-happy_path" probability="60" type="ts_http">
   
 
       <request>
@@ -130,7 +183,6 @@
 
       <thinktime value="2" random="true"></thinktime>
 
-      <!-- create a random number to make a unique community name -->
       <setdynvars sourcetype="random_string" length="12">
         <var name="random_username" />
         <var name="random_firstname" />
@@ -179,6 +231,6 @@
       </request>
 
       <thinktime value="2" random="true"></thinktime>
-    </session>
+    </session> -->
   </sessions>
 </tsung>

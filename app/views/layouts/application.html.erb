@@ -41,20 +41,22 @@
       <div class="col-sm-4">
       <ul class="nav navbar-nav">
         <li><a href="/"><%= image_tag "home/logo.png" %></li></a>
-        <li><h4 style ="padding: 1em" >Crowd-Lib</h4></li>
+        <li><h4 style ="padding-top: 25px" >Crowd-Lib</h4></li>
         </ul>
       </div>
       <div class="col-sm-8">
         <div class="shop-menu pull-right">
           <ul class="nav navbar-nav">
-            <li style ="padding: 1em"><a href=""><i class="fa fa-map"></i>Locate Book</a></li>
-            <li style ="padding: 1em">
             <%if signed_in?%>
-              <li style ="padding: 1em"><%=link_to '<i class="fa fa-user"></i>'.html_safe + current_user.first_name, '/users/edit'%></li>
-              <li style ="padding: 1em"><span></span><%=link_to '<i class="fa fa-sign-out"></i>Logout'.html_safe, destroy_user_session_path%></li>
+              <li style ="padding: 25px"><a href=""><i class="fa fa-map"></i>Locate Book</a></li>
+              <li style ="padding: 25px"><%=link_to '<i class="fa fa-user"></i>'.html_safe + current_user.first_name, '/users/edit'%></li>
+              <li style ="padding: 25px"><span></span><%=link_to '<i class="fa fa-sign-out"></i>Logout'.html_safe, destroy_user_session_path%></li>
             <%else%>
-              <!--<li style ="padding: 1em"><%=link_to '<i class="fa fa-lock"></i>Login'.html_safe, new_user_session_path%></li> -->
-              <li style= "padding: 1em"><a href="/users/sign_up" class="active"><i class="fa fa-sign-in"></i>Signup</a></li>
+              <% if current_page?("/users/sign_up") %>
+                <li style ="padding: 25px"><%=link_to '<i class="fa fa-lock"></i>Login'.html_safe, new_user_session_path%></li>
+              <% else %>
+                <li style= "padding: 25px"><a href="/users/sign_up" class="active"><i class="fa fa-sign-in"></i>Signup</a></li>
+              <% end %>
             <%end%>
             </li>
           </ul>

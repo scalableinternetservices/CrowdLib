@@ -23,7 +23,7 @@
             <p><b>Genre:</b> <%= @book.genre%></p>
             <br/>
             <br/>
-            <%= link_to "<i class=\"fa fa-shopping-cart\"></i>Borrow".html_safe, new_book_request_path(:book_id => @book.id), :class => "btn btn-fefault cart" %>
+            <%= link_to "<i class=\"fa fa-shopping-cart\"></i>Borrow".html_safe, books_request_path(:id => @book.id), :class => "btn btn-fefault cart" %>
             <p id= "address" hidden="true"><%= @user.address%></p>
           </div>
           <!--/product-information-->

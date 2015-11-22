@@ -1,48 +1,37 @@
 <section>
   <div class="container">
     <div class="product-details"><!--product-details-->
-      <div class="row">
-        <div class="col-sm-3">
-          <div class="view-product">
-            <% if (@book.image_url == nil) %>
-              <%= image_tag "placeholder_cover.jpg", {height: 200}%>
-            <% else %>
-              <%= image_tag @book.image_url, {height: 200}%>
-            <% end %>
-            <h3>ZOOM</h3>
-          </div>
-        </div>
         
         <div class="col-sm-9 padding-right">
           <div class="product-details"><!--product-details-->
             <div class="col-sm-5">
               <div class="view-product">
-                <% if (@book.image_url == nil) %> 
-                  <%= image_tag "placeholder_cover.jpg", {height: 200}%>
-                <% else %>
-                  <%= image_tag @book.image_url, {height: 200}%>
-                <% end %>
+		<img class="book-image" src="<% unless @book.image_url.nil? %><%= @book.image_url %><% else %>placeholder_cover.jpg<% end %>" />
                 <h3>ZOOM</h3>
               </div>
             </div>
-            <div class="col-sm-7">
-              <div class="product-information"><!--/product-information-->
-                <h2><%= @book.title %></h2>
-                <p>Book ID: <%= @book.id %></p>
-                <p><b>Author:</b> <%= @book.author %></p>
-                <p><b>Publisher:</b> <%= @book.publisher %></p>
-                <p><b>Edition:</b> <%= @book.edition %></p>
-                <p><b>ISBN:</b> <%= @book.ISBN%></p>
-                <p><b>Genre:</b> <%= @book.genre%></p>
+	    <div class="col-sm-4">
+          <div class="product-information"style="height:400px"><!--/product-information-->
+            <h2><%= @book.title %></h2>
+            <p>Book ID: <%= @book.id %></p>
+            <p><b>Author:</b> <%= @book.author %></p>
+            <p><b>Publisher:</b> <%= @book.publisher %></p>
+            <p><b>Edition:</b> <%= @book.edition %></p>
+            <p><b>ISBN:</b> <%= @book.ISBN%></p>
+            <p><b>Genre:</b> <%= @book.genre%></p>
+            <br/>
+            <br/>
+            <%= link_to "<i class=\"fa fa-shopping-cart\"></i>Borrow".html_safe, books_request_path(:id => @book.id), :class => "btn btn-fefault cart" %>
+          </div>
+          <!--/product-information-->
+        </div>
+        <!--col-sm-4-->
 
                 <div class="col-md-6 pad-down" style= 'width:300px; height:400px'>
                   <div class="map minimap" style= 'width:800px; height:400px'></div>
                 </div>
                 <script>var current_user_lat_lng = {lat: <%= @book_owner_lat %>, lng: <%= @book_owner_lng %>}; var curent_user_address = "<%= @book_owner_add%>";</script>
-                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzRbMgDPqFAWa9zINSz9lrEm5IfNrhzdw&callback=book_initmap"></script>
-                <span>
-                  <%= link_to "<i class=\"fa fa-shopping-cart\"></i>Borrow".html_safe, new_book_request_path(:book_id => @book.id), :class => "btn btn-fefault cart" %>
-                </span>
+                <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=drawing&callback=book_initmap"></script>
               </div><!--/product-information-->
             </div>
           </div><!--/product-details-->
@@ -85,33 +74,6 @@
          
           
           
-        <div class="col-sm-4">
-          <div class="product-information"style="height:400px"><!--/product-information-->
-            <h2><%= @book.title %></h2>
-            <p>Book ID: <%= @book.id %></p>
-            <p><b>Author:</b> <%= @book.author %></p>
-            <p><b>Publisher:</b> <%= @book.publisher %></p>
-            <p><b>Edition:</b> <%= @book.edition %></p>
-            <p><b>ISBN:</b> <%= @book.ISBN%></p>
-            <p><b>Genre:</b> <%= @book.genre%></p>
-            <br/>
-            <br/>
-            <%= link_to "<i class=\"fa fa-shopping-cart\"></i>Borrow".html_safe, books_request_path(:id => @book.id), :class => "btn btn-fefault cart" %>
-            <p id= "address" hidden="true"><%= @user.address%></p>
-          </div>
-          <!--/product-information-->
-        </div>
-        <!--col-sm-4-->
-        <div class="col-sm-5 pad-down" style= 'width:300px; height:400px'>
-          <div class="map minimap" style= 'width:800px; height:400px'></div>
-        </div>
-        <script>
-          var current_user_lat_lng = {lat: 34.4258 , lng: -119.7142};
-        </script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzRbMgDPqFAWa9zINSz9lrEm5IfNrhzdw&callback=book_initmap"></script>
-      </div>
-      <!--row-->
-    </div>
     <!--product-details-->
   </div>
   <!--container-->

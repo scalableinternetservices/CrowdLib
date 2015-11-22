@@ -29,8 +29,16 @@ function createMap() {
 		
         // initializing map
 	map = new google.maps.Map(document.getElementById("map-canvas"),mapOptions);
+	var marker = new google.maps.Marker({
+            position: {"lat":lat, "lng":lng},
+            map: map,
+	    icon: "http://maps.google.com/mapfiles/ms/icons/green-dot.png",//{path: google.maps.SymbolPath.CIRCLE, scale:10},
+            title: "You are here.",
+	});
 	for (var q = 0; q < books_information.length; q++)
 	{
+	if (parseFloat(books_information[q]["lat"]) == lat && parseFloat(books_information[q]["lng"]) == lng)
+		continue;
 	obj ={}
 	obj["lat"] = parseFloat(books_information[q]["lat"]);
 	obj["lng"] = parseFloat(books_information[q]["lng"]);
@@ -38,8 +46,12 @@ function createMap() {
 	var marker = new google.maps.Marker({
             position: obj,
             map: map,
-	    title: books_information[q]["username"] + " lends " + all_titles
+	    title: books_information[q]["username"] + " lends " + all_titles,
+	    url: '/books?userid='+books_information[q]["owner_id"]
         });
+	google.maps.event.addListener(marker, 'click', function() {
+	    window.location.href = this.url;
+	});
 	}
 }
 }

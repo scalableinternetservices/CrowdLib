@@ -1,0 +1,22 @@
+<div id="show_book_request">
+  <h2><%= @message_to_view %></h2>
+  <br/>
+  <br/>
+  <div class="col-sm-4"></div>
+  <div class="col-sm-4">
+    <div class="product-image-wrapper">
+      <div class="single-products">
+        <div class="productinfo text-center">
+          <% if (@book.image_url == nil) %>
+            <img scr = "assets/images/placeholder_cover.jpg" >
+          <% else %>
+            <%= image_tag @book.image_url, {height: 300}%>
+          <% end %>
+          <h2><%= @book.title %></h2>
+          <p><%= @book.author %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4"></div>
+</div>

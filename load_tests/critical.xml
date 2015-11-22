@@ -10,15 +10,15 @@
   <!-- Server side setup -->
   <servers>
 
-    <server host="54.175.8.145" port="80" type="tcp"></server>
+    <server host="54.85.126.48" port="80" type="tcp"></server>
   </servers>
 
 
   <load>
-    <arrivalphase phase="1" duration="30" unit="second">
+    <arrivalphase phase="1" duration="2" unit="second">
       <users arrivalrate="1" unit="second"></users>
     </arrivalphase>
-    <arrivalphase phase="2" duration="30" unit="second">
+     <!--<arrivalphase phase="2" duration="30" unit="second">
       <users arrivalrate="2" unit="second"></users>
     </arrivalphase>
 
@@ -30,7 +30,7 @@
    <arrivalphase phase="4" duration="30" unit="second">
      <users arrivalrate="8" unit="second"></users>
    </arrivalphase>
-   <!--<arrivalphase phase="5" duration="30" unit="second">
+   <arrivalphase phase="5" duration="30" unit="second">
      <users arrivalrate="16" unit="second"></users>
    </arrivalphase>
    <arrivalphase phase="6" duration="30" unit="second">
@@ -48,7 +48,7 @@
    <arrivalphase phase="10" duration="30" unit="second">
      <users arrivalrate="512" unit="second"></users>
    </arrivalphase>
-
+-->
   </load>
 
   <options>
@@ -62,7 +62,7 @@
 
   <sessions>
 
-    <session name="lend-books" probability="40" type="ts_http">
+    <session name="lend-books" probability="100" type="ts_http">
 
       
      <request>
@@ -73,6 +73,7 @@
       <thinktime value="2" random="true"></thinktime>
 
       <request>
+        <dyn_variable name="authenticity_token"></dyn_variable>
         <http url='/users/sign_up' version='1.1' method='GET'></http>
       </request> 
 
@@ -82,20 +83,15 @@
       <setdynvars sourcetype="random_string" length="12">
         <var name="random_username" />
         <var name="random_password" />
-        <var name="random_firstname" />
-        <var name="random_lastname" />
         <var name="random_bookname" />
         <var name="random_authorname" />
       </setdynvars>
-
-
-
       <request subst="true">
         <http
           url='/users'
           version='1.1'
           method='POST'
-          contents='utf8=%E2%9C%93&amp;user%5Busername%5D=%%_random_username%%&amp;user%5Bfirst_name%5D=%%_random_firstname%%&amp;user%5Blast_name%5D=%%_random_lastname%%&amp;user%5Bemail%5D=%%_random_email%%%40gmail.com&amp;user%5Bpassword%5D=password&amp;user%5Bpassword_confirmation%5D=password'>
+          contents='utf8=%E2%9C%93&amp;authenticity_token=%%_authenticity_token%%&amp;user%5Bemail%5D=%%_random_username%%%40gmail.com&amp;user%5Bpassword%5D=password&amp;'>
         </http>
       </request>
 
@@ -110,7 +106,7 @@
           url='/books'
           version='1.1'
           method='POST'
-          contents='utf8=%E2%9C%93&amp;book%5Btitle%5D=%%_random_bookname%%&amp;book%5Bauthor%5D=%%_random_authorname%%&amp;'>
+          contents='utf8=%E2%9C%93&amp;authenticity_token=%%_authenticity_token%%&amp;book%5Btitle%5D=%%_random_bookname%%&amp;book%5Bauthor%5D=%%_random_authorname%%&amp;'>
         </http>
       </request>
 
@@ -121,7 +117,7 @@
 
     
       
-      <session name="borrow-books-happy_path" probability="60" type="ts_http">
+      <session name="borrow-books-happy_path" probability="0" type="ts_http">
   
 
       <request>
@@ -133,11 +129,7 @@
       <!-- create a random number to make a unique community name -->
       <setdynvars sourcetype="random_string" length="12">
         <var name="random_username" />
-        <var name="random_firstname" />
-        <var name="random_lastname" />
-        <var name="random_email" />
-        <var name="random_bookname" />
-        <var name="random_authorname" />
+        <var name="random_password" />
       </setdynvars>
 
       <setdynvars sourcetype="random_number" start="1" end="100">
@@ -148,6 +140,7 @@
       </setdynvars>
 
       <request>
+        <dyn_variable name="authenticity_token"></dyn_variable>
         <http url='/users/sign_up' version='1.1' method='GET'></http>
       </request>
 
@@ -159,7 +152,7 @@
           url='/users'
           version='1.1'
           method='POST'
-          contents='utf8=%E2%9C%93&amp;user%5Bemail%5D=%%_random_email%%%40g.com&amp;user%5Bfirst_name%5D=%%_random_firstname%%&amp;user%5Blast_name%5D=%%_random_lastname%%&amp;user%5Bpassword%5D=12345678&amp;user%5Busername%5D=%%_random_username%%&amp;user%5Bpassword_confirmation%5D=12345678&amp;'>
+          contents='utf8=%E2%9C%93&amp;authenticity_token=%%_authenticity_token%%&amp;user%5Bemail%5D=%%_random_username%%%40gmail.com&amp;user%5Bpassword%5D=password&amp;'>
         </http>
       </request>
 
@@ -174,7 +167,7 @@
           url='/book_requests'
           version='1.1'
           method='POST'
-          contents='utf8=%E2%9C%93&amp;book_id=%%_random_bookid%%&amp;book_request%5Bloan_period%5D=%%_random_loanperiod%%&amp;commit=Create+Book+request'>
+          contents='utf8=%E2%9C%93&amp;authenticity_token=%%_authenticity_token%%&amp;book_id=%%_random_bookid%%&amp;book_request%5Bloan_period%5D=%%_random_loanperiod%%&amp;commit=Create+Book+request'>
         </http>
       </request>
 

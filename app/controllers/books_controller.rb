@@ -9,28 +9,25 @@ class BooksController < ApplicationController
   # GET /books
   # GET /books.json
   def index
-    @books = Book.all #if user_signed_in? Book.where.not(owner_id: current_user.id) else Book.all 
-    @genres = Set.new(@books.pluck :genre)
-    @genres = Set.new([]) if @genres.nil?
+    @books = user_signed_in? ? Book.where.not(owner_id: current_user.id) : Book.all 
     @books = @books.where(genre: params[:genre]) if params[:genre].present?
     @books = @books.where(author: params[:author]) if params[:author].present?
     @books = @books.where(title: params[:title]) if params[:title].present?  
     @unique_authors = Book.uniq.pluck(:author)
     @unique_genre = Book.uniq.pluck(:genre)
     render :layout => false
+    
   end
 
   # GET /books/1
   # GET /books/1.json
   def show
-    @unique_authors = Book.uniq.pluck(:author)
     @user = current_user
     book_owner = User.where(id: @book.owner_id)
     book_owner = book_owner[0]
     @book_owner_lat = book_owner["lat"]
     @book_owner_lng = book_owner["lng"]
     @book_owner_add = book_owner["address"]
-	print @book_owner_add
   end
 
   # GET /books/new
@@ -117,6 +114,27 @@ class BooksController < ApplicationController
 	array.push(modi_books)
     end
     render json: { books:array}
+    end
+
+  def create_book_request
+    @book = Book.find(params[:id])
+    @id=params[:id]
+    render "borrow_form"
+  end
+
+  def request_book
+    id = params[:book_id]
+    loan_period=params[:book][:loan_period]
+    @book = Book.find(id)
+    @message_to_view=""
+    if @book.borrower.nil?
+      @book.update(:borrower => current_user, :loan_period => loan_period.to_i)
+      @message_to_view="The book was successfully requested for "+loan_period.to_s+" days!"
+      render "borrow_success"
+    else
+      @message_to_view="Sorry. The book is already requested by someone else"
+      render "borrow_success"
+    end
   end
 
   private
@@ -131,4 +149,3 @@ class BooksController < ApplicationController
       params.require(:book).permit(:title, :author, :edition, :genre, :ratings, :image_url, :publisher, :ISBN)
     end
 end
-

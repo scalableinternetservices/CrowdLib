@@ -6,8 +6,7 @@ var book_initmap = function() {
   var marker = new google.maps.Marker({
     position: current_user_lat_lng,
     map: map,
-    title: "Move to update address",
-    draggable: true
+    title: curent_user_address,
   });
   
   var coder = new google.maps.Geocoder;
@@ -26,6 +25,7 @@ var book_initmap = function() {
   function runGeocoding(address) {
     coder.geocode({ 'address': address }, function(results, stats) {
       if(results.length > 0) {
+	console.log(results);
         var best = results[0];
         marker.setPosition(best.geometry.location);
       }

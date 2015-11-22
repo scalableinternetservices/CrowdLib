@@ -1,5 +1,7 @@
 #controller for handling all the views for books
 require 'set'
+require 'base64'
+require 'json'
 
 class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
@@ -23,6 +25,12 @@ class BooksController < ApplicationController
   def show
     @unique_authors = Book.uniq.pluck(:author)
     @user = current_user
+    book_owner = User.where(id: @book.owner_id)
+    book_owner = book_owner[0]
+    @book_owner_lat = book_owner["lat"]
+    @book_owner_lng = book_owner["lng"]
+    @book_owner_add = book_owner["address"]
+	print @book_owner_add
   end
 
   # GET /books/new
@@ -79,6 +87,36 @@ class BooksController < ApplicationController
       format.html { redirect_to books_url, notice: 'Book was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+
+   def books_around
+    latlng = [ params[:lat], params[:lng] ]
+    users = User.within( params[:range], :origin => latlng)
+    books = Book.where(owner_id: users)
+    modi_books = {}
+    array = []
+    for user in users
+	modi_books = {}
+	modi_books["title"] = ''
+       for book in books
+           #modi_books[
+	   if user["id"] == book["owner_id"]
+		modi_books["username"] = user["username"]
+		modi_books["owner_id"] = book["owner_id"]
+		modi_books["id"] = book["id"]
+		if modi_books["title"] == ''
+			modi_books["title"] += book["title"]
+		else
+			modi_books["title"] += ", "+book["title"]
+		end
+		modi_books["lat"] = user["lat"]
+		modi_books["lng"] = user["lng"]
+	   end
+       end
+	array.push(modi_books)
+    end
+    render json: { books:array}
   end
 
   private

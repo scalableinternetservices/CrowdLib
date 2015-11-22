@@ -19,6 +19,7 @@
             <p><b>Edition:</b> <%= @book.edition %></p>
             <p><b>ISBN:</b> <%= @book.ISBN%></p>
             <p><b>Genre:</b> <%= @book.genre%></p>
+            <p><b>Rating:</b><%= rating_for @book,  "author",enable_half: true %></p>
             <br/>
             <br/>
             <%= link_to "<i class=\"fa fa-shopping-cart\"></i>Borrow".html_safe, books_request_path(:id => @book.id), :class => "btn btn-fefault cart" %>

@@ -13,5 +13,5 @@ class Book < ActiveRecord::Base
 	scope :genre, -> (genre) { where genre: genre }
 	scope :author, -> (author) { where("author like ?", "#{author}%")}
 	scope :title, -> (title) { where("title like ?", "#{title}%")}
-
+	ratyrate_rateable 'author'
 end

@@ -1,116 +1,45 @@
 <section>
   <div class="container">
-    <div class="row">
-      <div class="col-sm-3">
-        <div class="left-sidebar">
-          <h2>Category</h2>
-          <div class="panel-group category-products" id="accordian"><!--category-productsr-->
-            <% if (@unique_genre != nil) %>
-              <% @unique_genre.each do |genre| %>
-                <div class="panel panel-default">
-                  <div class="panel-heading">
-                    <h4 class="panel-title"><a class="genre-link" href="/books?genre=<%= genre %>"><%= genre %></a></h4>
-                  </div>
-                </div>
-              <% end %>
+    <div class="product-details"><!--product-details-->
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="view-product">
+            <% if (@book.image_url == nil) %>
+              <%= image_tag "placeholder_cover.jpg", {height: 200}%>
+            <% else %>
+              <%= image_tag @book.image_url, {height: 200}%>
             <% end %>
-          </div>
-          <!--/category-products-->
-          <div class="brands_products"><!--brands_products-->
-            <h2>Authors</h2>
-            <div class="brands-name">
-              <ul class="nav nav-pills nav-stacked">
-                <% @unique_authors.first(10).each do |t| %>
-                  <li><a href="#"> <span class="pull-right"></span><%= t %></a></li>
-                <% end %>
-              </ul>
-            </div>
-          </div>
-          <!--/brands_products-->
-          <div class="price-range"><!--price-range-->
-            <h2>Within</h2>
-            <div class="well text-center">
-              <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="100" data-slider-step="5" data-slider-value="[0,50]" id="sl2" ><br />
-              <b class="pull-left">0 mi</b> <b class="pull-right">100 mi</b>
-            </div>
-          </div>
-          <!--/price-range-->
-        </div>
-      </div>
-      <div class="col-sm-9 padding-right">
-        <div class="product-details"><!--product-details-->
-          <div class="col-sm-5">
-            <div class="view-product">
-              <% if (@book.image_url == nil) %>
-                <%= image_tag "placeholder_cover.jpg", {height: 200}%>
-              <% else %>
-                <%= image_tag @book.image_url, {height: 200}%>
-              <% end %>
-              <h3>ZOOM</h3>
-            </div>
-          </div>
-          <div class="col-sm-7">
-            <div class="product-information"><!--/product-information-->
-              <h2><%= @book.title %></h2>
-              <p>Book ID: <%= @book.id %></p>
-              <p><b>Author:</b> <%= @book.author %></p>
-              <p><b>Publisher:</b> <%= @book.publisher %></p>
-              <p><b>Edition:</b> <%= @book.edition %></p>
-              <p><b>ISBN:</b> <%= @book.ISBN%></p>
-              <p><b>Genre:</b> <%= @book.genre%></p>
-              <p id= "address" hidden="true"><%= @user.address%></p>
-              <div class="col-md-6 pad-down" style= 'width:300px; height:400px'>
-                <div class="map minimap" style= 'width:800px; height:400px'></div>
-              </div>
-              <script>
-                var current_user_lat_lng = {lat: <%= @user.lat %>, lng: <%= @user.lng %>};
-              </script>
-              <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzRbMgDPqFAWa9zINSz9lrEm5IfNrhzdw&callback=book_initmap"></script>
-              <span>
-                <%= link_to "<i class=\"fa fa-shopping-cart\"></i>Borrow".html_safe, new_book_request_path(:book_id => @book.id), :class => "btn btn-fefault cart" %>
-              </span>
-            </div>
-            <!--/product-information-->
+            <h3>ZOOM</h3>
           </div>
         </div>
-        <!--/product-details-->
-        <!--
-          <div class="category-tab shop-details-tab">--><!--category-tab-->
-        <!--
-            <div class="col-sm-12">
-              <ul class="nav nav-tabs">
-                <li class="active"><a href="#reviews" data-toggle="tab">Reviews (5)</a></li>
-              </ul>
-            </div>
-            
-              
-              <div class="tab-pane fade active in" id="reviews" >
-                <div class="col-sm-12">
-                  <ul>
-                    <li><a href=""><i class="fa fa-user"></i>EUGEN</a></li>
-                    <li><a href=""><i class="fa fa-clock-o"></i>12:41 PM</a></li>
-                    <li><a href=""><i class="fa fa-calendar-o"></i>31 DEC 2014</a></li>
-                  </ul>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                  <p><b>Write Your Review</b></p>
-                  
-                  <form action="#">
-                    <span>
-                      <input type="text" placeholder="Your Name"/>
-                      <input type="email" placeholder="Email Address"/>
-                    </span>
-                    <textarea name="" ></textarea>
-                    <b>Rating: </b> <img src="images/product-details/rating.png" alt="" />
-                    <button type="button" class="btn btn-default pull-right">
-                      Submit
-                    </button>
-                  </form>
-                </div>
-              </div>
-              
-            </div>
-          </div>--><!--/category-tab-->
+        <div class="col-sm-4">
+          <div class="product-information"style="height:400px"><!--/product-information-->
+            <h2><%= @book.title %></h2>
+            <p>Book ID: <%= @book.id %></p>
+            <p><b>Author:</b> <%= @book.author %></p>
+            <p><b>Publisher:</b> <%= @book.publisher %></p>
+            <p><b>Edition:</b> <%= @book.edition %></p>
+            <p><b>ISBN:</b> <%= @book.ISBN%></p>
+            <p><b>Genre:</b> <%= @book.genre%></p>
+            <br/>
+            <br/>
+            <%= link_to "<i class=\"fa fa-shopping-cart\"></i>Borrow".html_safe, books_request_path(:id => @book.id), :class => "btn btn-fefault cart" %>
+            <p id= "address" hidden="true"><%= @user.address%></p>
+          </div>
+          <!--/product-information-->
+        </div>
+        <!--col-sm-4-->
+        <div class="col-sm-5 pad-down" style= 'width:300px; height:400px'>
+          <div class="map minimap" style= 'width:800px; height:400px'></div>
+        </div>
+        <script>
+          var current_user_lat_lng = {lat: 34.4258 , lng: -119.7142};
+        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzRbMgDPqFAWa9zINSz9lrEm5IfNrhzdw&callback=book_initmap"></script>
       </div>
+      <!--row-->
     </div>
+    <!--product-details-->
   </div>
+  <!--container-->
 </section>

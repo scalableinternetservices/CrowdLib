@@ -17,7 +17,7 @@
             <div class="overlay-content">
               <h2 style="padding_bottom:80px;"><%= link_to book.title, book %></h2>
               <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-comments"></i>Message the Lender</a><br>
-              <%= link_to "Borrow", new_book_request_path(:book_id => book.id), :class => "btn btn-default add-to-cart" %>
+              <%= link_to "Borrow", books_request_path(:id => book.id), :class => "btn btn-default add-to-cart" %>
             </div>
           </div>
         </div>
@@ -30,4 +30,4 @@
     </div>
   <% end %>
 </div>
-<!--books-->
+<!--features_items-->

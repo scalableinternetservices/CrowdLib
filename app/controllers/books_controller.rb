@@ -7,21 +7,19 @@ class BooksController < ApplicationController
   # GET /books
   # GET /books.json
   def index
-    @books = Book.all #if user_signed_in? Book.where.not(owner_id: current_user.id) else Book.all 
-    @genres = Set.new(@books.pluck :genre)
-    @genres = Set.new([]) if @genres.nil?
+    @books = user_signed_in? ? Book.where.not(owner_id: current_user.id) : Book.all 
     @books = @books.where(genre: params[:genre]) if params[:genre].present?
     @books = @books.where(author: params[:author]) if params[:author].present?
     @books = @books.where(title: params[:title]) if params[:title].present?  
     @unique_authors = Book.uniq.pluck(:author)
     @unique_genre = Book.uniq.pluck(:genre)
     render :layout => false
+    
   end
 
   # GET /books/1
   # GET /books/1.json
   def show
-    @unique_authors = Book.uniq.pluck(:author)
     @user = current_user
   end
 
@@ -78,6 +76,27 @@ class BooksController < ApplicationController
     respond_to do |format|
       format.html { redirect_to books_url, notice: 'Book was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def create_book_request
+    @book = Book.find(params[:id])
+    @id=params[:id]
+    render "borrow_form"
+  end
+
+  def request_book
+    id = params[:book_id]
+    loan_period=params[:book][:loan_period]
+    @book = Book.find(id)
+    @message_to_view=""
+    if @book.borrower.nil?
+      @book.update(:borrower => current_user, :loan_period => loan_period.to_i)
+      @message_to_view="The book was successfully requested for "+loan_period.to_s+" days!"
+      render "borrow_success"
+    else
+      @message_to_view="Sorry. The book is already requested by someone else"
+      render "borrow_success"
     end
   end
 

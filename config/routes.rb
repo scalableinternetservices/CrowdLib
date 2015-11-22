@@ -11,7 +11,8 @@ Rails.application.routes.draw do
 
   get 'around/:lat,:lng', to: 'homepage#by_location', :constraints => {:lat => /\-?\d+(.\d+)?/, :lng => /\-?\d+(.\d+)?/ }  
   get 'get_around/:lat,:lng', to: 'homepage#books_around', :constraints => {:lat => /\-?\d+(.\d+)?/, :lng => /\-?\d+(.\d+)?/ , :range => /\d+/ }
-
+  get 'books_request', to: 'books#create_book_request'
+  post 'books_borrow', to: 'books#request_book'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

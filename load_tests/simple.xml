@@ -10,7 +10,7 @@
   <!-- Server side setup -->
   <servers>
 
-    <server host="54.174.111.251" port="80" type="tcp"></server>
+    <server host="52.91.213.10" port="80" type="tcp"></server>
   </servers>
 
 
@@ -35,11 +35,12 @@
      <users arrivalrate="16" unit="second"></users>
    </arrivalphase>
 
+
     <arrivalphase phase="6" duration="30" unit="second">
      <users arrivalrate="32" unit="second"></users>
    </arrivalphase>
   
-
+<!--
   <arrivalphase phase="7" duration="30" unit="second">
      <users arrivalrate="64" unit="second"></users>
    </arrivalphase>
@@ -53,6 +54,7 @@
    <arrivalphase phase="10" duration="30" unit="second">
      <users arrivalrate="512" unit="second"></users>
    </arrivalphase>
+  -->
  
   </load>
 
@@ -137,7 +139,7 @@
       <setdynvars sourcetype="random_number" start="1" end="100">
         <var name="random_loanperiod" />
       </setdynvars>
-      <setdynvars sourcetype="random_number" start="1" end="1000">
+      <setdynvars sourcetype="random_number" start="1" end="100">
         <var name="random_bookid" />
       </setdynvars>
 
@@ -160,16 +162,16 @@
 
        <thinktime value="2" random="true"></thinktime>
 
-       <request>
-        <http url='/book_requests/new' version='1.1' method='GET'></http>
+       <request subst="true">
+        <http url='/books_request?id=%%_random_bookid%%' version='1.1' method='GET'></http>
       </request>
 
        <request subst="true">
         <http
-          url='/book_requests'
+          url='/books_borrow'
           version='1.1'
           method='POST'
-          contents='utf8=%E2%9C%93&amp;authenticity_token=%%_authenticity_token%%&amp;book_id=%%_random_bookid%%&amp;book_request%5Bloan_period%5D=%%_random_loanperiod%%&amp;commit=Create+Book+request'>
+          contents='utf8=%E2%9C%93&amp;authenticity_token=%%_authenticity_token%%&amp;book_id=%%_random_bookid%%&amp;book%5Bloan_period%5D=%%_random_loanperiod%%&amp;commit=borrow'>
         </http>
       </request>
 

@@ -10,7 +10,8 @@ class CreateBooks < ActiveRecord::Migration
       t.string :publisher
       t.string :ISBN
       t.integer :owner_id
-
+      t.integer :borrower_id
+      t.integer :loan_period
       t.timestamps null: false
     end
   end

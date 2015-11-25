@@ -2,7 +2,7 @@ var profile_initmap = function() {
   var map = new google.maps.Map($(".minimap")[0], $.extend(mapOptions, {
     center: current_user_lat_lng,
   }));
-
+console.log(current_user_lat_lng);
   var marker = new google.maps.Marker({
     position: current_user_lat_lng,
     map: map,

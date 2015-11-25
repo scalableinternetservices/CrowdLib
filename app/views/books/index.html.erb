@@ -1,39 +1,70 @@
-
-
-          <div class="features_items"><!--features_items-->
-            <h2 class="title text-center">Listed Books</h2>
-            <% @books.each do |book| %>
-              <div class="col-sm-4">
-                <div class="product-image-wrapper">
-                  <div class="single-products placeholder-image">
-
-                    <div class="productinfo text-center">
-                    <% if (book.image_url == nil) %> 
-                      <%= image_tag "placeholder_cover.jpg", {height: 200}%>
-                      <% else %>
-                      <%= image_tag book.image_url, {height: 200}%>
-                      <% end %>
-                      <h2><%= link_to book.title, book %></h2>
-                      <p><%= book.author %></p>
-                    </div>
-                    <div class="product-overlay">
-                      <div class="overlay-content">
-                      <h2 style="padding_bottom:80px;"><%= link_to book.title, book %></h2>
-                      
-                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-comments"></i>Message the Lender</a><br>
-                        <%= link_to "Borrow", new_book_request_path(:book_id => book.id), :class => "btn btn-default add-to-cart" %>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="choose">
-                    <ul class="nav nav-pills nav-justified">
-                      <li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-                    </ul>
-                  </div>
-                </div>
+<%= stylesheet_link_tag "main.css" %>
+<%= stylesheet_link_tag    'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css' %> 
+<div id="container">
+      <div class="header-middle">
+        <!--header-middle-->
+<!--        <div class="container">
+          <div class="row">
+            <div class="col-sm-4">
+              <ul class="nav navbar-nav">
+                <li><a href="/"><%= image_tag "home/logo.png" %></a></li>
+                <li>
+                  <h4 style ="padding-top: 25px">Crowd-Lib</h4>
+                </li>
+              </ul>
             </div>
+            <div class="col-sm-8">
+              <div class="shop-menu pull-right">
+                <ul class="nav navbar-nav">
+                  <%if signed_in?%>
+                    <li style ="padding: 25px"><%=link_to '<i class="fa fa-user"></i>'.html_safe + current_user.first_name, '/users/edit'%></li>
+                    <li style ="padding: 25px"><span></span><%=link_to '<i class="fa fa-sign-out"></i>Logout'.html_safe, destroy_user_session_path%></li>
+                  <%else%>
+                    <% if current_page?("/users/sign_up") %>
+                      <li style ="padding: 25px"><%=link_to '<i class="fa fa-lock"></i>Login'.html_safe, new_user_session_path%></li>
+                    <% else %>
+                      <li style= "padding: 25px"><a href="/users/sign_up" class="active"><i class="fa fa-sign-in"></i>Signup</a></li>
+                    <% end %>
+                  <%end%>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>   -->
+<div class="col-sm-9 padding-right">
+<div class="features_items"><!--features_items-->
+  <h2 class="title text-center">Listed Books</h2>
+  <% @books.each do |book| %>
+    <div class="col-sm-4">
+      <div class="product-image-wrapper">
+        <div class="single-products placeholder-image">
+          <div class="productinfo text-center">
+            <% if (book.image_url == nil) %>
+              <%= image_tag "placeholder_cover.jpg", {height: 200}%>
+            <% else %>
+              <%= image_tag book.image_url, {height: 200}%>
             <% end %>
-          </div><!--books-->  
-        
-         
-
+            <h2><%= link_to book.title, book %></h2>
+            <p><%= book.author %></p>
+          </div>
+          <div class="product-overlay">
+            <div class="overlay-content">
+              <h2 style="padding_bottom:80px;"><%= link_to book.title, book %></h2>
+              <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-comments"></i>Message the Lender</a><br>
+              <%= link_to "Borrow", books_request_path(:id => book.id), :class => "btn btn-default add-to-cart" %>
+            </div>
+          </div>
+        </div>
+        <div class="choose">
+          <ul class="nav nav-pills nav-justified">
+            <li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+</div>
+<!--features_items-->

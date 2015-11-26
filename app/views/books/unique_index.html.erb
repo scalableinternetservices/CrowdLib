@@ -1,12 +1,12 @@
 <%= stylesheet_link_tag "main.css" %>
 <%= stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css' %> 
 
-<div class = "container">
+
 <div class="col-sm-12 padding-right">
 <div class="features_items"><!--features_items-->
- <h3 class="title text-center" style="font-family: sans-serif;color: #FE980F;">Filtered Books</h3>
+  <h2 class="title text-center">Listed Books</h2>
   <% @books.each do |book| %>
-    <div class="col-sm-3">
+    <div class="col-sm-4">
       <div class="product-image-wrapper">
         <div class="single-products placeholder-image">
           <div class="productinfo text-center">
@@ -15,12 +15,12 @@
             <% else %>
               <%= image_tag book.image_url, {height: 250}%>
             <% end %>
-            <h2><%=link_to book.title, book %></h2>
+            <h2><%= link_to book.title, book %></h2>
             <p><%= book.author %></p>
           </div>
           <div class="product-overlay">
             <div class="overlay-content">
-              <h2 style="padding-bottom:80px; color:#ffffff "><%= link_to book.title, book %></h2>
+              <h2 style="padding-bottom:80px; color : #ffffff"><%= link_to book.title, book %></h2>
               <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-comments"></i>Message</a><br>
               <%= link_to "Borrow", books_request_path(:id => book.id), :class => "btn btn-default add-to-cart" %>
             </div>
@@ -34,7 +34,6 @@
       </div>
     </div>
   <% end %>
-</div>
 </div>
 </div>
 <!--features_items-->

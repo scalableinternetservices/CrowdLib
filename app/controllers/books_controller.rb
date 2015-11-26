@@ -14,10 +14,15 @@ class BooksController < ApplicationController
     @books = @books.where(author: params[:author]) if params[:author].present?
     @books = @books.where(title: params[:title]) if params[:title].present?  
     @books = @books.where(owner_id: params[:userid]) if params[:userid].present?
+    #render :layout => false
+    
+  end
+
+
+  def unique_index
     @unique_authors = Book.uniq.pluck(:author)
     @unique_genre = Book.uniq.pluck(:genre)
-    render :layout => false
-    
+    render :unique_index
   end
 
   # GET /books/1

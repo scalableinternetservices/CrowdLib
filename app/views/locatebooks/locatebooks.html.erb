@@ -1,8 +1,11 @@
 <%= stylesheet_link_tag "frameworkandoverrides.css" %>
 <script>var lat= <%= @user.lat %>; var lng = <%= @user.lng %>;</script>
-Books within <input type="number" id="myNumber" min=1>miles</input>
+
+<div class="container" style= "padding: 20px">
+Books within  <input type="number" id="myNumber" min=1>  miles</input>
 <div id="map-container">
   <div id="map-canvas"></div>
 <div id = "result"/>
 </div>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=drawing&callback=locatebooks_init"></script>
+</div>

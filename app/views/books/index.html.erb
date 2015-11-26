@@ -1,5 +1,5 @@
 <%= stylesheet_link_tag "main.css" %>
-<%= stylesheet_link_tag    'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css' %> 
+<%= stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css' %> 
 <div id="container">
       <div class="header-middle">
         <!--header-middle-->
@@ -33,18 +33,18 @@
         </div>
       </div>
     </div>   -->
-<div class="col-sm-9 padding-right">
+<div class="col-sm-12 padding-right">
 <div class="features_items"><!--features_items-->
   <h2 class="title text-center">Listed Books</h2>
   <% @books.each do |book| %>
-    <div class="col-sm-4">
+    <div class="col-sm-3">
       <div class="product-image-wrapper">
         <div class="single-products placeholder-image">
           <div class="productinfo text-center">
             <% if (book.image_url == nil) %>
-              <%= image_tag "placeholder_cover.jpg", {height: 200}%>
+              <%= image_tag "placeholder_cover.jpg", {height: 250}%>
             <% else %>
-              <%= image_tag book.image_url, {height: 200}%>
+              <%= image_tag book.image_url, {height: 250}%>
             <% end %>
             <h2><%= link_to book.title, book %></h2>
             <p><%= book.author %></p>

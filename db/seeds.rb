@@ -8,7 +8,13 @@
 
 # SPAWN USERS
 
+rng = Random.new
+def create_new_point(rng)
+        ns = 34.241943 + (rng.rand)
+        we = -119.889999 + (rng.rand)
 
+        { :lat => ns.to_f, :lng => we.to_f }
+end
 100.times do |x|
 
 	un = Faker::Internet.user_name
@@ -18,6 +24,7 @@
 	pw = Faker::Internet.password
 	pp = Faker::Avatar.image
 	ab = Faker::Lorem.paragraph
+	point = create_new_point rng
 
 	u = User.create!([{ 
 
@@ -28,7 +35,9 @@
 	encrypted_password: pw,
 	password: "test1234",
 	profile_picture: pp,
-	blurb: ab
+	blurb: ab,
+	lat: point[:lat], 
+	lng: point[:lng]
 }
 ])
 
@@ -60,21 +69,5 @@ end
 	])
 	end
 
-end
-
-# SPAWN LOCATIONS
-
-def create_new_point(rng)
-	ns = 34.241943 + (rng.rand * 10 - 5)
-	we = -119.889999 + (rng.rand * 5 - 2.5)
-
-	{ :lat => ns.to_f, :lng => we.to_f }
-end
-
-rng = Random.new
-
-3000.times do |i|
-	point = create_new_point rng
-	Location.create("lat" => point[:lat], "lng" => point[:lng], "name" => "Point num. #{i}")
 end
 

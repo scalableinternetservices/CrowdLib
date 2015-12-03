@@ -15,7 +15,7 @@ def create_new_point(rng)
 
         { :lat => ns.to_f, :lng => we.to_f }
 end
-100.times do |x|
+10.times do |x|
 
 	un = Faker::Internet.user_name
 	em = Faker::Internet.email
@@ -48,7 +48,7 @@ end
 
 	# SPAWN BOOKS
 
-	10.times do |book|
+	2.times do |book|
 
 		ti = Faker::Book.title
 		au = Faker::Name.name
@@ -61,7 +61,87 @@ end
 		title: ti, 
 		author: au, 
 		edition: 1, 
-		#genre: gn,
+		genre: "Thriller",
+		publisher: pb,
+		owner_id: x.id,
+		ISBN: is
+	}
+	])
+	end
+	2.times do |book|
+
+		ti = Faker::Book.title
+		au = Faker::Name.name
+		pb = Faker::Book.publisher
+		#gn = Faker::Book.genre
+		is = Faker::Code.isbn
+
+		Book.create!([{ 
+
+		title: ti, 
+		author: au, 
+		edition: 1, 
+		genre: "Romance",
+		publisher: pb,
+		owner_id: x.id,
+		ISBN: is
+	}
+	])
+	end
+	2.times do |book|
+
+		ti = Faker::Book.title
+		au = Faker::Name.name
+		pb = Faker::Book.publisher
+		#gn = Faker::Book.genre
+		is = Faker::Code.isbn
+
+		Book.create!([{ 
+
+		title: ti, 
+		author: au, 
+		edition: 1, 
+		genre: "Fiction",
+		publisher: pb,
+		owner_id: x.id,
+		ISBN: is
+	}
+	])
+	end
+	2.times do |book|
+
+		ti = Faker::Book.title
+		au = Faker::Name.name
+		pb = Faker::Book.publisher
+		#gn = Faker::Book.genre
+		is = Faker::Code.isbn
+
+		Book.create!([{ 
+
+		title: ti, 
+		author: au, 
+		edition: 1, 
+		genre: "Biographies",
+		publisher: pb,
+		owner_id: x.id,
+		ISBN: is
+	}
+	])
+	end
+	2.times do |book|
+
+		ti = Faker::Book.title
+		au = Faker::Name.name
+		pb = Faker::Book.publisher
+		#gn = Faker::Book.genre
+		is = Faker::Code.isbn
+
+		Book.create!([{ 
+
+		title: ti, 
+		author: au, 
+		edition: 1, 
+		genre: "Children",
 		publisher: pb,
 		owner_id: x.id,
 		ISBN: is

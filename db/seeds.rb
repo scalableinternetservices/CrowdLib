@@ -15,7 +15,7 @@ def create_new_point(rng)
 
         { :lat => ns.to_f, :lng => we.to_f }
 end
-5.times do |x|
+500.times do |x|
 
 	un = Faker::Internet.user_name
 	em = Faker::Internet.email
@@ -48,7 +48,7 @@ end
 
 	# SPAWN BOOKS
 
-	2.times do |book|
+	1.times do |book|
 
 		ti = Faker::Book.title
 		au = Faker::Name.name
@@ -71,7 +71,7 @@ end
 	}
 	])
 	end
-	2.times do |book|
+	1.times do |book|
 
 		ti = Faker::Book.title
 		au = Faker::Name.name
@@ -93,7 +93,7 @@ end
 	}
 	])
 	end
-	2.times do |book|
+	1.times do |book|
 
 		ti = Faker::Book.title
 		au = Faker::Name.name
@@ -115,7 +115,7 @@ end
 	}
 	])
 	end
-	2.times do |book|
+	1.times do |book|
 
 		ti = Faker::Book.title
 		au = Faker::Name.name
@@ -138,7 +138,7 @@ end
 	}
 	])
 	end
-	2.times do |book|
+	1.times do |book|
 
 		ti = Faker::Book.title
 		au = Faker::Name.name

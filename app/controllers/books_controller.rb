@@ -89,6 +89,9 @@ class BooksController < ApplicationController
 
 
    def books_around
+   #load from cache => data stored with a precision of 3 decimals for lat/lng (+/- 110m precision)
+    array = JSON.load $redis.get(params[:lat].to_f.round(3).to_s+";"+params[:lng].to_f.round(3).to_s+";"+params[:range].to_s)
+    if array.nil?
     latlng = [ params[:lat], params[:lng] ]
     users = User.within( params[:range], :origin => latlng)
     books = Book.where(owner_id: users)
@@ -113,6 +116,8 @@ class BooksController < ApplicationController
 	   end
        end
 	array.push(modi_books)
+    end
+	$redis.set(params[:lat].to_f.round(3).to_s+";"+params[:lng].to_f.round(3).to_s+";"+params[:range].to_s,array.to_json)
     end
     render json: { books:array}
     end

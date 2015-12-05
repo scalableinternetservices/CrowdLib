@@ -9,7 +9,7 @@ gem 'rails', '4.2.4'
 # Use sqlite3 as the database for Active Record
 # Use redis for other things
 gem 'sqlite3'
-gem 'redis', '2.1.1'
+gem 'redis'
 gem 'geokit-rails'
 
 gem 'devise'

@@ -9,15 +9,11 @@ class BooksController < ApplicationController
   # GET /books
   # GET /books.json
   def index
-    @books = user_signed_in? ? Book.where.not(owner_id: current_user.id) : Book.all
-    @books = @books.where(genre: params[:genre]) if params[:genre].present?
-    @books = @books.where(author: params[:author]) if params[:author].present?
-    @books = @books.where(title: params[:title]) if params[:title].present?  
-    @books = @books.where(owner_id: params[:userid]) if params[:userid].present?
+    @books = user_signed_in? ? Book.where.not(owner_id: current_user.id) : Book.all.joins(:book_transaction).where(borrowed: false)
+    @books = Genre.find_books(params[:genre].downcase) if params[:genre].present?
+    @books = @books.search(params[:search]) if params[:search].present?
     @books = @books.paginate(:page => params[:page], :per_page => 15)
-    @unique_authors = Book.uniq.pluck(:author)
-    @unique_genre = Book.uniq.pluck(:genre)
-    render :layout => false
+    #render :layout => false
     
   end
 
@@ -47,6 +43,15 @@ class BooksController < ApplicationController
     if current_user
      @user=current_user
      @book = Book.new(book_params)
+     genre=params[:genre].downcase
+     
+     if Genre.exists?(:name => genre)
+        @book.genres << Genre.find_by_name(genre)
+     else
+        genre = Genre.create(:name => genre)
+        @book.genres << genre
+     end
+     
      @book.owner_id=@user.id
    else
      redirect_to new_user_session_path, notice: 'You are not logged in.'

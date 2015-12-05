@@ -92,3 +92,5 @@ Gemfile.lock
 load_tests/lend_books.xml
 load_tests/simple_lend.xml
 load_tests/temp.xml
+
+public/

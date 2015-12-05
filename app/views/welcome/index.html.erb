@@ -18,7 +18,8 @@
             <li><a href="/profile">Profile</a></li>
             <li class="dropdown"><a href="/books/new">Lend books</i></a></li>
             <li><a href="users">Users</a></li>
-	    <li><a href="/locatebooks">View on Map</a></li>
+	          <li><a href="/locatebooks">View on Map</a></li>
+            <li><a href="/booktransactions">Recent Activities</a></li>
         </ul>
       </div>
     </div>
@@ -68,7 +69,7 @@
                   <div class="brands-name">
                     <ul class="nav nav-pills nav-stacked">
                       <% @unique_genre.first(10).each do |t| %>
-                        <li><a href="/books?genre=<%= t %>"> <span class="pull-right"></span><%= t %></a></li>
+                        <li><a href="/books?genre=<%= t.name %>"> <span class="pull-right"></span><%= t.name %></a></li>
                       <% end %>
                     </ul>
                   </div>

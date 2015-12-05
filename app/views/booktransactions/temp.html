@@ -1,0 +1,47 @@
+<!--
+						<tr>
+							<td class="cart_product">
+								<%= image_tag @book.image_url, {height: 110, width: 110}%>
+							</td>
+							<td class="cart_description">
+								<h4><a href=""><%= @book.title %></a></h4>
+								<p>Book ID: <%= @book.id %></p>
+							</td>
+							<td class="cart_price">
+								<p>!@#@# figure it out! @##$$</p>
+							</td>
+							
+							<td class="cart_approve">
+								<a class="cart_quantity_delete" href=""><i class="fa  fa-mail-reply fa-3x" style="color:grey"></i></a>
+							</td>
+						</tr>
+-->
+BookTransaction.where("borrower_id=? AND approved='t' AND borrowed='t'",2).where.not("returned='t'")
+
+BookTransaction.create(:book_id => 3, :borrower_id => 2, :loan_period => 10, :approved => true, :borrowed => true, :returned => false)
+
+
+<!-- Modal -->
+                <div id="request_modal<%= book_wrapper[:book_txn].id %>" class="modal fade" role="dialog">
+                  <div class="modal-dialog">
+                    <form class="contact" name="book_return" action="booktransaction/return" enctype="multipart/form-data" method="post">
+                      <!-- Modal content-->
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          <h4 class="modal-title">Return <%= book_wrapper[:book].title %></h4>
+                        </div>
+                        <div class="modal-body">
+                          <input type="hidden" name="book_txn_id" value="<%= book_wrapper[:book_txn].id %>">
+                          <p>Are you sure that you want to return <%= book_wrapper[:book].title %></p>
+                        </div>
+                        <div class="modal-footer">
+                          <button class="btn btn-success" type="submit" value="Return Book">Return</button>
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+
+<!-- <a class="cart_quantity_delete" data-toggle="modal" data-target="#request_modal"><i class="fa  fa-mail-reply fa-3x" style="color:grey"></i></a>-->

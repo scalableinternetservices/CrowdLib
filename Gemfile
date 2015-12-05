@@ -20,6 +20,7 @@ gem 'rspec-rails'
 gem 'factory_girl_rails'
 gem 'faker'
 gem 'ratyrate'
+gem 'acts_as_commentable'
 
 
 # Use SCSS for stylesheets

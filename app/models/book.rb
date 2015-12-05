@@ -14,4 +14,5 @@ class Book < ActiveRecord::Base
 	scope :author, -> (author) { where("author like ?", "#{author}%")}
 	scope :title, -> (title) { where("title like ?", "#{title}%")}
 	ratyrate_rateable 'author'
+	acts_as_commentable
 end

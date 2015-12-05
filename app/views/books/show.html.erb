@@ -1,81 +1,90 @@
 <section>
   <div class="container">
     <div class="product-details"><!--product-details-->
-        
-        <div class="col-sm-9 padding-right">
-          <div class="product-details"><!--product-details-->
-            <div class="col-sm-5">
-              <div class="view-product">
-		<img class="book-image" src="<% unless @book.image_url.nil? %><%= @book.image_url %><% else %>placeholder_cover.jpg<% end %>" />
-                <h3>ZOOM</h3>
-              </div>
+      <div class="col-sm-8 padding-right">
+          <div class="col-sm-6">
+            <div class="view-product">
+              <img class="book-image" src="<% unless @book.image_url.nil? %><%= @book.image_url %><% else %>placeholder_cover.jpg<% end %>" />
             </div>
-	    <div class="col-sm-4">
-          <div class="product-information"style="height:400px"><!--/product-information-->
-            <h2><%= @book.title %></h2>
-            <p>Book ID: <%= @book.id %></p>
-            <p><b>Author:</b> <%= @book.author %></p>
-            <p><b>Publisher:</b> <%= @book.publisher %></p>
-            <p><b>Edition:</b> <%= @book.edition %></p>
-            <p><b>ISBN:</b> <%= @book.ISBN%></p>
-            <p><b>Genre:</b> <%= @book.genre%></p>
-            <p><b>Rating:</b><%= rating_for @book,  "author",enable_half: true %></p>
-            <br/>
-            <br/>
-            <%= link_to "<i class=\"fa fa-shopping-cart\"></i>Borrow".html_safe, books_request_path(:id => @book.id), :class => "btn btn-fefault cart" %>
           </div>
-          <!--/product-information-->
-        </div>
-        <!--col-sm-4-->
-
-                <div class="col-md-6 pad-down" style= 'width:300px; height:400px'>
-                  <div class="map minimap" style= 'width:800px; height:400px'></div>
-                </div>
-                <script>var current_user_lat_lng = {lat: <%= @book_owner_lat %>, lng: <%= @book_owner_lng %>}; var curent_user_address = "<%= @book_owner_add%>";</script>
-                <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=drawing&callback=book_initmap"></script>
-              </div><!--/product-information-->
-            </div>
-          </div><!--/product-details-->
-          <!--
-          <div class="category-tab shop-details-tab">--><!--category-tab-->
-          <!--
-            <div class="col-sm-12">
-              <ul class="nav nav-tabs">
-                <li class="active"><a href="#reviews" data-toggle="tab">Reviews (5)</a></li>
-              </ul>
-            </div>
-            
-              
-              <div class="tab-pane fade active in" id="reviews" >
-                <div class="col-sm-12">
-                  <ul>
-                    <li><a href=""><i class="fa fa-user"></i>EUGEN</a></li>
-                    <li><a href=""><i class="fa fa-clock-o"></i>12:41 PM</a></li>
-                    <li><a href=""><i class="fa fa-calendar-o"></i>31 DEC 2014</a></li>
-                  </ul>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                  <p><b>Write Your Review</b></p>
-                  
-                  <form action="#">
-                    <span>
-                      <input type="text" placeholder="Your Name"/>
-                      <input type="email" placeholder="Email Address"/>
-                    </span>
-                    <textarea name="" ></textarea>
-                    <b>Rating: </b> <img src="images/product-details/rating.png" alt="" />
-                    <button type="button" class="btn btn-default pull-right">
-                      Submit
-                    </button>
+          <div class="col-sm-6">
+            <div class="product-information"style="height:400px;padding-top:0px"><!--/product-information-->
+              <h2><%= @book.title %></h2>
+              <p>Book ID: <%= @book.id %></p>
+              <p><b>Author:</b> <%= @book.author %></p>
+              <p><b>Publisher:</b> <%= @book.publisher %></p>
+              <p><b>Edition:</b> <%= @book.edition %></p>
+              <p><b>ISBN:</b> <%= @book.ISBN%></p>
+              <p><b>Genre:</b> <%= @book.genre%></p>
+              <p><b>Rating:</b><%= rating_for @book,  "author",enable_half: true %></p>
+		<%= form_tag "/books/add_new_comment" do %>
+		    <%= hidden_field_tag "id", @book.id %>
+		    <%= text_area_tag "comment" %>
+		    <%= submit_tag "Comment" %>
+		  <% end %>
+              <br/>
+              <br/>
+              <% if not(@user.id==@book.owner_id) %>
+              <button type="button" class="btn btn-fefault cart" data-toggle="modal" data-target="#borrow_Modal"><i class=\"fa fa-shopping-cart\"></i>Borrow</button>
+              <% end %>
+              <!-- Modal -->
+              <div id="borrow_Modal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                  <form class="contact" name="book_request" action="/book_request" enctype="multipart/form-data" method="post">
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4 class="modal-title">Borrow <%= @book.title %></h4>
+                    </div>
+                    <div class="modal-body">
+                      
+                        <input type="hidden" name="book_id" value="<%= @book.id %>">
+                        <label class="label" for="loan_period">I want to borrow it for: </label>
+                        <input type="number" name="loan_period" class="input-xlarge"><br>
+                      
+                    </div>
+                    <div class="modal-footer">
+                      <button class="btn btn-success" type="submit" value="Request Book">Request Book</button>
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
                   </form>
                 </div>
               </div>
-              
             </div>
-          </div>--><!--/category-tab-->
-         
-          
-          
-    <!--product-details-->
+            <!--/product-information-->
+          </div>
+          <!--col-sm-4-->
+      </div><!--col-sum-9-->
+          <div class="col-sm-4 pad-down" >
+            <div class="map minimap" style= 'width:700px; height:400px'></div>
+          </div><!--col-sum-3-->
+          <script>
+            var current_user_lat_lng = {lat: <%= @book_owner_lat %>, lng: <%= @book_owner_lng %>}; var curent_user_address = "<%= @book_owner_add%>";
+          </script>
+          <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=drawing&callback=book_initmap"></script>
+        </div><!--/product-details-->
+  </div>
+  <div class="container"><legend>Comments</legend>
+  <% @comments.each do |comment| %>
+  <div class="row">
+                                <div class="col-md-12">
+                                    <div class="blog-post-area">
+                                        <div class="single-blog-post">
+                                            
+                                            <div class="post-meta">
+                                                <ul>
+                                                    <li><i class="fa fa-user"></i><%= comment.user_id %></li>
+                                                    <li><i class="fa fa-calendar"></i>  <%= comment.created_at%></li>
+                                                </ul>
+                                            </div>
+                                            <p class="comment-text"><%= comment.comment %></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+  <% end %>
   </div>
   <!--container-->
 </section>

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { registrations: 'registrations' }
   resources :books
   resources :book_requests
+  resources :users
   
   #/locatebooks take user to a map showing books in his closest vicinity
   get 'locatebooks', to:      'locatebooks'
@@ -14,6 +15,7 @@ Rails.application.routes.draw do
   get 'books_request', to: 'books#create_book_request'
   post 'books_borrow', to: 'books#request_book'
   post '/rate' => 'rater#create', :as => 'rate'
+   match "/books/add_new_comment" => "books#add_new_comment", :as => "add_new_comment_on_book", :via => [:post]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

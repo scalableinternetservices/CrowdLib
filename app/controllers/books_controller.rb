@@ -9,7 +9,12 @@ class BooksController < ApplicationController
   # GET /books
   # GET /books.json
   def index
-    @books = user_signed_in? ? Book.where.not(owner_id: current_user.id) : Book.all
+    if user_signed_in?
+	@books = Book.where.not(owner_id: current_user.id) if stale?(Book.where.not(owner_id: current_user.id))
+    else 
+	@books = Book.all if stale?(Book.all)
+    end
+
     @books = @books.where(genre: params[:genre]) if params[:genre].present?
     @books = @books.where(author: params[:author]) if params[:author].present?
     @books = @books.where(title: params[:title]) if params[:title].present?  
@@ -21,6 +26,17 @@ class BooksController < ApplicationController
     
   end
 
+  def add_new_comment
+    book = Book.find(params[:id])
+    comment = Comment.new 
+    comment.user_id = current_user.id
+    comment.comment = params[:comment]
+    comment.commentable_id = book.id
+    comment.save!
+    redirect_to :action => :show, :id => book
+  end
+ 
+
   # GET /books/1
   # GET /books/1.json
   def show
@@ -30,6 +46,7 @@ class BooksController < ApplicationController
     @book_owner_lat = book_owner["lat"]
     @book_owner_lng = book_owner["lng"]
     @book_owner_add = book_owner["address"]
+    @comments = Comment.where(commentable_id: @book.id)
   end
 
   # GET /books/new

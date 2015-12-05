@@ -19,13 +19,12 @@
               <p><b>Rating:</b><%= rating_for @book,  "author",enable_half: true %></p>
 		<%= form_tag "/books/add_new_comment" do %>
 		    <%= hidden_field_tag "id", @book.id %>
-		    <%= text_area_tag "comment" %>
-		    <%= submit_tag "Comment" %>
+		    <%= text_area_tag "comment", nil, :placeholder => "Add your comment here" %>
+		    <%= submit_tag "Comment",class: "btn" %>
 		  <% end %>
               <br/>
-              <br/>
               <% if not(@user.id==@book.owner_id) %>
-              <button type="button" class="btn btn-fefault cart" data-toggle="modal" data-target="#borrow_Modal"><i class=\"fa fa-shopping-cart\"></i>Borrow</button>
+              <button type="button" class="btn btn-fefault cart" data-toggle="modal" data-target="#borrow_Modal" style="margin-left:0px"><i class=\"fa fa-shopping-cart\"></i>Borrow</button>
               <% end %>
               <!-- Modal -->
               <div id="borrow_Modal" class="modal fade" role="dialog">
@@ -75,7 +74,7 @@
                                             
                                             <div class="post-meta">
                                                 <ul>
-                                                    <li><i class="fa fa-user"></i><%= comment.user_id %></li>
+                                                    <li><i class="fa fa-user"></i><!-- <a href="/users/"+<%=comment.user_id%>> --><%= link_to comment.user.username, comment.user %></a></li>
                                                     <li><i class="fa fa-calendar"></i>  <%= comment.created_at%></li>
                                                 </ul>
                                             </div>

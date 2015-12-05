@@ -12,10 +12,11 @@ Rails.application.routes.draw do
 
   get 'around/:lat,:lng', to: 'books#by_location', :constraints => {:lat => /\-?\d+(.\d+)?/, :lng => /\-?\d+(.\d+)?/ }  
   get 'get_around/:lat,:lng/:range', to: 'books#books_around', :constraints => {:lat => /\-?\d+(.\d+)?/, :lng => /\-?\d+(.\d+)?/ , :range => /\d+/ }
-  get 'books_request', to: 'books#create_book_request'
-  post 'books_borrow', to: 'books#request_book'
+  post 'book/request', to: 'books#request'
+  post 'booktransaction/return', to: 'booktransactions#return'
   post '/rate' => 'rater#create', :as => 'rate'
-   match "/books/add_new_comment" => "books#add_new_comment", :as => "add_new_comment_on_book", :via => [:post]
+  match "/books/add_new_comment" => "books#add_new_comment", :as => "add_new_comment_on_book", :via => [:post]
+  get '/booktransactions', to: 'booktransactions#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

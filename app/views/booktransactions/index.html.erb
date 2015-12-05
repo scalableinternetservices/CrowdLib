@@ -1,0 +1,90 @@
+<section id="cart_items">
+  <div class="container">
+    <div class="breadcrumbs">
+      <ol class="breadcrumb">
+        <li><a href="#">Home</a></li>
+        <li class="active">Your Book Loans</li>
+      </ol>
+    </div>
+    <div class="heading">
+      <h3>Books awaiting your approval</h3>
+    </div>
+    <div class="table-responsive cart_info">
+      <table class="table table-condensed">
+        <thead>
+          <tr class="cart_menu">
+            <td class="image">Book</td>
+            <td class="description"></td>
+            <td class="price">Loan Period</td>
+            <td class="cart_center">Approve</td>
+            <td class="cart_center"> Reject</td>
+          </tr>
+        </thead>
+        <tbody>
+          <% unless @books_waiting_approval.empty? %>
+            <% @books_waiting_approval.each do |book| %>
+              <tr>
+                <td class="cart_product">
+                  <%= image_tag book.image_url, {height: 110, width: 110}%>
+                </td>
+                <td class="cart_description">
+                  <h4><a href=""><%= book.title %></a></h4>
+                  <p>Book ID: <%= book.id %></p>
+                </td>
+                <td class="cart_price">
+                  <p>!@#@# figure it out! @##$$</p>
+                </td>
+                <td class="cart_center">
+                  <a href=""><i class="fa  fa-check-square fa-3x" style="color:#22D22E"></i></a>
+                </td>
+                <td class="cart_center">
+                  <a href=""><i class="fa fa-close fa-3x" style="color:#FA5858"></i></a>
+                </td>
+              </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <br/>
+    <div class="heading">
+      <h3>Books with You</h3>
+    </div>
+    <div class="table-responsive cart_info">
+      <table class="table table-condensed">
+        <thead>
+          <tr class="cart_menu">
+            <td class="image">Book</td>
+            <td class="description"></td>
+            <td class="price">Loan Period</td>
+            <td class="quantity">Return</td>
+          </tr>
+        </thead>
+        <tbody>
+          <% unless @books_with_user.empty? %>
+          	<% @books_with_user.each do |book_wrapper| %>
+              <tr>
+                <td class="cart_product">
+                  <%= image_tag book_wrapper[:book].image_url, {height: 110, width: 110}%>
+                </td>
+                <td class="cart_description">
+                  <h4><a href=""><%= book_wrapper[:book].title %></a></h4>
+                  <p>Book ID: <%= book_wrapper[:book].id %></p>
+                </td>
+                <td >
+                  <p><%= book_wrapper[:book_txn].loan_period %> days</p>
+                </td>
+                <td >
+                <a class="cart_quantity_delete" href=""><i class="fa  fa-mail-reply fa-3x" style="color:grey" data-toggle="modal" data-target="#myModal"></i></a>
+                </td>
+                
+              </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+ <!--/#cart_items-->
+  

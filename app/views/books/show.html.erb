@@ -55,7 +55,36 @@
               <p><b>Rating:</b><%= rating_for @book,  "author",enable_half: true %></p>
               <br/>
               <br/>
-              <%= link_to "<i class=\"fa fa-shopping-cart\"></i>Borrow".html_safe, books_request_path(:id => @book.id), :class => "btn btn-fefault cart" %>
+              <% if not(@user.id==@book.owner_id) %>
+              <button type="button" class="btn btn-fefault cart" data-toggle="modal" data-target="#borrow_Modal"><i class=\"fa fa-shopping-cart\"></i>Borrow</button>
+              <% end %>
+              <!-- Modal -->
+              <div id="borrow_Modal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                  <form class="contact" name="book_request" action="/book/request" enctype="multipart/form-data" method="post">
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4 class="modal-title">Borrow <%= @book.title %></h4>
+                    </div>
+                    <div class="modal-body">
+                      
+                        <input type="hidden" name="book_id" value="<%= @book.id %>">
+                        <label class="label" for="loan_period">I want to borrow it for: </label>
+                        <input type="number" name="loan_period" class="input-xlarge"><br>
+                      
+                    </div>
+                    <div class="modal-footer">
+                      <button class="btn btn-success" type="submit" value="Request Book">Request Book</button>
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                  </form>
+
+                </div>
+              </div>
+
             </div>
             <!--/product-information-->
           </div>

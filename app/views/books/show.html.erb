@@ -8,7 +8,7 @@
             </div>
           </div>
           <div class="col-sm-6">
-            <div class="product-information"style="height:400px;padding-top:0px"><!--/product-information-->
+            <div class="product-information"style="height:400px"><!--/product-information-->
               <h2><%= @book.title %></h2>
               <p>Book ID: <%= @book.id %></p>
               <p><b>Author:</b> <%= @book.author %></p>
@@ -51,6 +51,11 @@
                   </form>
                 </div>
               </div>
+              <p><b>Genre:</b> <%= @book.genre%></p>
+              <p><b>Rating:</b><%= rating_for @book,  "author",enable_half: true %></p>
+              <br/>
+              <br/>
+              <%= link_to "<i class=\"fa fa-shopping-cart\"></i>Borrow".html_safe, books_request_path(:id => @book.id), :class => "btn btn-fefault cart" %>
             </div>
             <!--/product-information-->
           </div>
@@ -64,6 +69,7 @@
           </script>
           <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=drawing&callback=book_initmap"></script>
         </div><!--/product-details-->
+
   </div>
   <div class="container"><legend>Comments</legend>
   <% @comments.each do |comment| %>
@@ -84,6 +90,7 @@
                                 </div>
                             </div>
   <% end %>
+
   </div>
   <!--container-->
 </section>

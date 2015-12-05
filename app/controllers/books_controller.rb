@@ -117,7 +117,9 @@ class BooksController < ApplicationController
        end
 	array.push(modi_books)
     end
-	$redis.set(params[:lat].to_f.round(3).to_s+";"+params[:lng].to_f.round(3).to_s+";"+params[:range].to_s,array.to_json)
+	redis_key = params[:lat].to_f.round(3).to_s+";"+params[:lng].to_f.round(3).to_s+";"+params[:range].to_s
+	$redis.set(redis_key,array.to_json)
+	$redis.expire(redis_key, 2.minute.to_i)
     end
     render json: { books:array}
     end

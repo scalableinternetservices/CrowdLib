@@ -15,7 +15,7 @@ def create_new_point(rng)
 
         { :lat => ns.to_f, :lng => we.to_f }
 end
-10.times do |x|
+5.times do |x|
 
 	un = Faker::Internet.user_name
 	em = Faker::Internet.email
@@ -26,7 +26,7 @@ end
 	ab = Faker::Lorem.paragraph
 	point = create_new_point rng
 
-	u = User.create!([{ 
+	u = User.create([{ 
 
 	username: un, 
 	email: em, 
@@ -55,9 +55,11 @@ end
 		pb = Faker::Book.publisher
 		#gn = Faker::Book.genre
 		is = Faker::Code.isbn
+		img = Faker::Avatar.image
 
-		Book.create!([{ 
+		Book.create([{ 
 
+		image_url: img,
 		title: ti, 
 		author: au, 
 		edition: 1, 
@@ -65,6 +67,7 @@ end
 		publisher: pb,
 		owner_id: x.id,
 		ISBN: is
+		
 	}
 	])
 	end
@@ -75,9 +78,11 @@ end
 		pb = Faker::Book.publisher
 		#gn = Faker::Book.genre
 		is = Faker::Code.isbn
+		img = Faker::Avatar.image
 
-		Book.create!([{ 
+		Book.create([{ 
 
+		image_url: img,
 		title: ti, 
 		author: au, 
 		edition: 1, 
@@ -95,9 +100,10 @@ end
 		pb = Faker::Book.publisher
 		#gn = Faker::Book.genre
 		is = Faker::Code.isbn
+		img = Faker::Avatar.image
 
-		Book.create!([{ 
-
+		Book.create([{ 
+		image_url: img,
 		title: ti, 
 		author: au, 
 		edition: 1, 
@@ -105,6 +111,7 @@ end
 		publisher: pb,
 		owner_id: x.id,
 		ISBN: is
+		
 	}
 	])
 	end
@@ -115,9 +122,11 @@ end
 		pb = Faker::Book.publisher
 		#gn = Faker::Book.genre
 		is = Faker::Code.isbn
+		img = Faker::Avatar.image
 
-		Book.create!([{ 
+		Book.create([{ 
 
+		image_url: img,
 		title: ti, 
 		author: au, 
 		edition: 1, 
@@ -125,6 +134,7 @@ end
 		publisher: pb,
 		owner_id: x.id,
 		ISBN: is
+		
 	}
 	])
 	end
@@ -135,9 +145,11 @@ end
 		pb = Faker::Book.publisher
 		#gn = Faker::Book.genre
 		is = Faker::Code.isbn
+		img = Faker::Avatar.image
 
-		Book.create!([{ 
+		Book.create([{ 
 
+		image_url: img,
 		title: ti, 
 		author: au, 
 		edition: 1, 
@@ -145,6 +157,7 @@ end
 		publisher: pb,
 		owner_id: x.id,
 		ISBN: is
+		
 	}
 	])
 	end

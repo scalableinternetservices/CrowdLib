@@ -166,7 +166,7 @@ end
 		Comment.create([{
 			commentable_id: book.id,
 			comment: Faker::Lorem.paragraph,
-			user_id: user.id
+			user_id: book.owner.id
 		}])
 	end
 end

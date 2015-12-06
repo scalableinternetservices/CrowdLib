@@ -17,13 +17,12 @@ def create_new_point(rng)
 end
 500.times do |x|
 
-	un = Faker::Internet.user_name
+	un = Faker::Internet.user_name(8)
 	em = Faker::Internet.email
 	fn = Faker::Name.first_name
 	ln = Faker::Name.last_name
 	pw = Faker::Internet.password
 	pp = Faker::Avatar.image
-	ab = Faker::Lorem.paragraph
 	point = create_new_point rng
 
 	u = User.create([{ 
@@ -35,7 +34,6 @@ end
 	encrypted_password: pw,
 	password: "test1234",
 	profile_picture: pp,
-	blurb: ab,
 	lat: point[:lat], 
 	lng: point[:lng]
 }
@@ -63,7 +61,48 @@ end
 		title: ti, 
 		author: au, 
 		edition: 1, 
-		genre: "Thriller",
+		publisher: pb,
+		owner_id: x.id,
+		ISBN: is
+		
+	}
+	])
+	end
+	1.times do |book|
+
+		ti = Faker::Book.title
+		au = Faker::Name.name
+		pb = Faker::Book.publisher
+		#gn = Faker::Book.genre
+		is = Faker::Code.isbn
+		img = Faker::Avatar.image
+
+		Book.create([{ 
+
+		image_url: img,
+		title: ti, 
+		author: au, 
+		edition: 1,
+		publisher: pb,
+		owner_id: x.id,
+		ISBN: is
+	}
+	])
+	end
+	1.times do |book|
+
+		ti = Faker::Book.title
+		au = Faker::Name.name
+		pb = Faker::Book.publisher
+		#gn = Faker::Book.genre
+		is = Faker::Code.isbn
+		img = Faker::Avatar.image
+
+		Book.create([{ 
+		image_url: img,
+		title: ti, 
+		author: au, 
+		edition: 1, 
 		publisher: pb,
 		owner_id: x.id,
 		ISBN: is
@@ -86,28 +125,6 @@ end
 		title: ti, 
 		author: au, 
 		edition: 1, 
-		genre: "Romance",
-		publisher: pb,
-		owner_id: x.id,
-		ISBN: is
-	}
-	])
-	end
-	1.times do |book|
-
-		ti = Faker::Book.title
-		au = Faker::Name.name
-		pb = Faker::Book.publisher
-		#gn = Faker::Book.genre
-		is = Faker::Code.isbn
-		img = Faker::Avatar.image
-
-		Book.create([{ 
-		image_url: img,
-		title: ti, 
-		author: au, 
-		edition: 1, 
-		genre: "Fiction",
 		publisher: pb,
 		owner_id: x.id,
 		ISBN: is
@@ -130,30 +147,6 @@ end
 		title: ti, 
 		author: au, 
 		edition: 1, 
-		genre: "Biographies",
-		publisher: pb,
-		owner_id: x.id,
-		ISBN: is
-		
-	}
-	])
-	end
-	1.times do |book|
-
-		ti = Faker::Book.title
-		au = Faker::Name.name
-		pb = Faker::Book.publisher
-		#gn = Faker::Book.genre
-		is = Faker::Code.isbn
-		img = Faker::Avatar.image
-
-		Book.create([{ 
-
-		image_url: img,
-		title: ti, 
-		author: au, 
-		edition: 1, 
-		genre: "Children",
 		publisher: pb,
 		owner_id: x.id,
 		ISBN: is

@@ -21,18 +21,18 @@
           </tr>
         </thead>
         <tbody>
-          <% unless @books_waiting_approval.nil? or @books_waiting_approval.empty? %>
-            <% @books_waiting_approval.each do |book| %>
+          <% unless @books_waiting_approval.empty? %>
+            <% @books_waiting_approval.each do |book_wrapper| %>
               <tr>
                 <td class="cart_product">
-                  <%= image_tag book.image_url, {height: 110, width: 110}%>
+                  <%= image_tag book_wrapper[:book].image_url, {height: 110, width: 110}%>
                 </td>
                 <td class="cart_description">
-                  <h4><a href=""><%= book.title %></a></h4>
-                  <p>Book ID: <%= book.id %></p>
+                  <h4><a href=""><%= book_wrapper[:book].title %></a></h4>
+                  <p>Book ID: <%= book_wrapper[:book].id %></p>
                 </td>
                 <td class="cart_price">
-                  <p>!@#@# figure it out! @##$$</p>
+                  <p><%= book_wrapper[:book_txn].loan_period %> days</p>
                 </td>
                 <td class="cart_center">
                   <a href=""><i class="fa  fa-check-square fa-3x" style="color:#22D22E"></i></a>

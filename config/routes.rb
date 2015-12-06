@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   get 'get_around/:lat,:lng/:range', to: 'books#books_around', :constraints => {:lat => /\-?\d+(.\d+)?/, :lng => /\-?\d+(.\d+)?/ , :range => /\d+/ }
   post 'book_transactions/request', to: 'book_transactions#request_book'
   post 'book_transactions/return', to: 'book_transactions#return_book'
+  post 'book_transactions/approve', to: 'book_transactions#approve_book_request'
+  post 'book_transactions/reject', to: 'book_transactions#reject_book_request'
   post '/rate' => 'rater#create', :as => 'rate'
   match "/books/add_new_comment" => "books#add_new_comment", :as => "add_new_comment_on_book", :via => [:post]
   get '/book_transactions', to: 'book_transactions#index'

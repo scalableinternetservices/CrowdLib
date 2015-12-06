@@ -35,11 +35,55 @@
                   <p><%= book_wrapper[:book_txn].loan_period %> days</p>
                 </td>
                 <td class="cart_center">
-                  <a href=""><i class="fa  fa-check-square fa-3x" style="color:#22D22E"></i></a>
+                  <a data-toggle="modal" data-target="#approve_modal<%= book_wrapper[:book_txn].id %>"><i class="fa  fa-check-square fa-3x" style="color:#22D22E"></i></a>
                 </td>
+                <!--Modal -->
+                <div id="approve_modal<%= book_wrapper[:book_txn].id %>" class="modal fade" role="dialog">
+                  <div class="modal-dialog">
+                      <!-- Modal content-->
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          <h4 class="modal-title">Approve <%= book_wrapper[:book].title %>?</h4>
+                        </div>
+                        <div class="modal-body">
+                          <p>Are you sure that you want to lend your book?</p>
+                        </div>
+                        <div class="modal-footer">
+                          <form id="myform" method="post" action="book_transactions/approve">
+                            <input type="hidden" name="book_txn_id" value="<%= book_wrapper[:book_txn].id %>" />
+                            <button class="btn btn-success" type="button" value="Approve" onclick="document.getElementById('myform').submit();">Approve</button>
+                          </form>
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        </div>
+                      </div>
+                  </div>
+                </div>
                 <td class="cart_center">
-                  <a href=""><i class="fa fa-close fa-3x" style="color:#FA5858"></i></a>
+                  <a data-toggle="modal" data-target="#reject_modal<%= book_wrapper[:book_txn].id %>"><i class="fa fa-close fa-3x" style="color:#FA5858"></i></a>
                 </td>
+                <!--Modal -->
+                <div id="reject_modal<%= book_wrapper[:book_txn].id %>" class="modal fade" role="dialog">
+                  <div class="modal-dialog">
+                      <!-- Modal content-->
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          <h4 class="modal-title">Reject <%= book_wrapper[:book].title %>?</h4>
+                        </div>
+                        <div class="modal-body">
+                          <p>Are you sure that you want to reject this request?</p>
+                        </div>
+                        <form id="myform" method="post" action="book_transactions/reject">
+                          <input type="hidden" name="book_txn_id" value="<%= book_wrapper[:book_txn].id %>" />
+                          <div class="modal-footer">
+                            <button class="btn btn-success" type="button" value="Approve" onclick="document.getElementById('myform').submit();">Reject</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                          </div>
+                        </form>
+                      </div>
+                  </div>
+                </div>
               </tr>
             <% end %>
           <% end %>
@@ -75,12 +119,30 @@
                   <p><%= book_wrapper[:book_txn].loan_period %> days</p>
                 </td>
                 <td >
-                <form id="myform" method="post" action="book_transaction/return">
-				  <input type="hidden" name="book_txn_id" value="<%= book_wrapper[:book_txn].id %>" />
-				  <a class="cart_quantity_delete" onclick="document.getElementById('myform').submit();"><i class="fa  fa-mail-reply fa-3x" style="color:grey"></i></a> 
-				</form>
-                
+                  <a class="cart_quantity_delete" data-toggle="modal" data-target="#request_modal<%= book_wrapper[:book_txn].id %>"><i class="fa  fa-mail-reply fa-3x" style="color:grey"></i></a>
                 </td>
+                <div id="request_modal<%= book_wrapper[:book_txn].id %>" class="modal fade" role="dialog">
+                  <div class="modal-dialog">
+                      <!-- Modal content-->
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          <h4 class="modal-title">Return <%= book_wrapper[:book].title %></h4>
+                        </div>
+                        <div class="modal-body">
+                          <input type="hidden" name="book_txn_id" value="<%= book_wrapper[:book_txn].id %>">
+                          <p>Are you sure that you want to return <%= book_wrapper[:book].title %></p>
+                        </div>
+                        <div class="modal-footer">
+                          <form id="myform" method="post" action="book_transactions/return">
+                            <input type="hidden" name="book_txn_id" value="<%= book_wrapper[:book_txn].id %>" />
+                            <button class="btn btn-success" type="button" value="Return Book" onclick="document.getElementById('myform').submit();">Return</button>
+                          </form>
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        </div>
+                      </div>
+                  </div>
+                </div>
                 
               </tr>
             <% end %>

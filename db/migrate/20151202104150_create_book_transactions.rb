@@ -6,7 +6,6 @@ class CreateBookTransactions < ActiveRecord::Migration
     	t.string "comments"
       t.integer "loan_period"
     	t.datetime "return_date"
-    	t.boolean "borrowed", :default => 'false'
     	t.boolean "returned", :default => 'false'
       t.boolean "approved", :default => 'false'
 

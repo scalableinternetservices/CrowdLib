@@ -21,7 +21,7 @@
           </tr>
         </thead>
         <tbody>
-          <% unless @books_waiting_approval.empty? %>
+          <% unless @books_waiting_approval.nil? or @books_waiting_approval.empty? %>
             <% @books_waiting_approval.each do |book| %>
               <tr>
                 <td class="cart_product">
@@ -75,7 +75,11 @@
                   <p><%= book_wrapper[:book_txn].loan_period %> days</p>
                 </td>
                 <td >
-                <a class="cart_quantity_delete" href=""><i class="fa  fa-mail-reply fa-3x" style="color:grey" data-toggle="modal" data-target="#myModal"></i></a>
+                <form id="myform" method="post" action="book_transaction/return">
+				  <input type="hidden" name="book_txn_id" value="<%= book_wrapper[:book_txn].id %>" />
+				  <a class="cart_quantity_delete" onclick="document.getElementById('myform').submit();"><i class="fa  fa-mail-reply fa-3x" style="color:grey"></i></a> 
+				</form>
+                
                 </td>
                 
               </tr>

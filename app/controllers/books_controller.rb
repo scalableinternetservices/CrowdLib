@@ -145,38 +145,6 @@ class BooksController < ApplicationController
     render json: { books:array}
     end
 
-  #POST /book/request  
-  def request
-    @book_txn=BookTransaction.create(:book_id => params[:book_id], :borrower_id => current_user.id, :loan_period => params[:loan_period])
-    @message_to_view="The book was successfully requested for " + @book_txn.loan_period.to_s + " days!"
-    @book=Book.find(@book_txn.book_id)
-    render "request_success"
-  end
-  #not used now
-  def request_book
-    id = params[:book_id]
-    loan_period=params[:book][:loan_period]
-    @book = Book.find(id)
-    @message_to_view=""
-    if @book.borrower.nil?
-      @book.update(:borrower => current_user, :loan_period => loan_period.to_i)
-      @message_to_view="The book was successfully requested for "+loan_period.to_s+" days!"
-      render "book_txn_success"
-    else
-      @message_to_view="Sorry. The book is already requested by someone else"
-      render "book_txn_success"
-    end
-  end
-
-  #/book/return
-  def return
-    #book_txn = BookTransaction.update(params[:book_txn_id], :returned => true)
-    #@book = Book.find(book_txn.book_id)
-    #@message_to_view="The book was successfully returned."
-    #render "book_txn_success"
-    renden json{success:"yes"}
-  end
-
   private
   
     # Use callbacks to share common setup or constraints between actions.

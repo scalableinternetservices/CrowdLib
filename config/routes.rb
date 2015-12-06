@@ -2,21 +2,24 @@ Rails.application.routes.draw do
   
   devise_for :users, :controllers => { registrations: 'registrations' }
   resources :books
+<<<<<<< HEAD
   resources :book_requests
   resources :users
+=======
+>>>>>>> Fully functional returning of books.
   
   #/locatebooks take user to a map showing books in his closest vicinity
-  get 'locatebooks', to:      'locatebooks'
+  get 'locatebooks', to:      'locatebooks#locatebooks'
   get '/users', to: 'users#index'
   get '/profile', to: 'users#profile'
 
   get 'around/:lat,:lng', to: 'books#by_location', :constraints => {:lat => /\-?\d+(.\d+)?/, :lng => /\-?\d+(.\d+)?/ }  
   get 'get_around/:lat,:lng/:range', to: 'books#books_around', :constraints => {:lat => /\-?\d+(.\d+)?/, :lng => /\-?\d+(.\d+)?/ , :range => /\d+/ }
-  post 'book/request', to: 'books#request'
-  post 'booktransaction/return', to: 'booktransactions#return'
+  post 'book_transactions/request', to: 'book_transactions#request_book'
+  post 'book_transactions/return', to: 'book_transactions#return_book'
   post '/rate' => 'rater#create', :as => 'rate'
   match "/books/add_new_comment" => "books#add_new_comment", :as => "add_new_comment_on_book", :via => [:post]
-  get '/booktransactions', to: 'booktransactions#index'
+  get '/book_transactions', to: 'book_transactions#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

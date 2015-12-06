@@ -15,7 +15,7 @@ def create_new_point(rng)
 
         { :lat => ns.to_f, :lng => we.to_f }
 end
-500.times do |x|
+5.times do |x|
 
 	un = Faker::Internet.user_name
 	em = Faker::Internet.email
@@ -161,16 +161,13 @@ end
 	}
 	])
 	end
-	@users = User.all
 	@books = Book.all
-	@users.each do |user|	
 		@books.each do |book|
 		Comment.create([{
 			commentable_id: book.id,
 			comment: Faker::Lorem.paragraph,
 			user_id: user.id
 		}])
-		end
 	end
 end
 

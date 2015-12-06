@@ -19,7 +19,7 @@ class BooksController < ApplicationController
     @books = @books.where(author: params[:author]) if params[:author].present?
     @books = @books.where(title: params[:title]) if params[:title].present?  
     @books = @books.where(owner_id: params[:userid]) if params[:userid].present?
-    @books = @books.paginate(:page => params[:page], :per_page => 15)
+    #@books = @books.paginate(:page => params[:page], :per_page => 15)
     @unique_authors = Book.uniq.pluck(:author)
     @unique_genre = Book.uniq.pluck(:genre)
     render :layout => false

@@ -14,7 +14,7 @@ gem 'geokit-rails'
 
 gem 'devise'
 
-gem 'will_paginate'
+gem 'will_paginate-bootstrap'
 gem 'rspec'
 gem 'rspec-rails'
 gem 'factory_girl_rails'

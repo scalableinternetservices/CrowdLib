@@ -94,3 +94,4 @@ load_tests/simple_lend.xml
 load_tests/temp.xml
 
 public/
+app/views/book_transactions/temp.html

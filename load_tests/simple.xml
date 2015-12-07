@@ -10,7 +10,7 @@
   <!-- Server side setup -->
   <servers>
 
-    <server host="54.84.50.126" port="80" type="tcp"></server>
+    <server host="52.90.239.50" port="80" type="tcp"></server>
   </servers>
 
 
@@ -62,7 +62,7 @@
      <users arrivalrate="50" unit="second"></users>
    </arrivalphase>
   
-  -
+  
  
   </load>
 

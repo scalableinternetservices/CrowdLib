@@ -4,12 +4,13 @@ require 'base64'
 require 'json'
 
 class BooksController < ApplicationController
-  before_action :set_book, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, :set_book, only: [:show, :edit, :update, :destroy]
 
   # GET /books
   # GET /books.json
   def index
-    @books = user_signed_in? ? Book.where.not(owner_id: current_user.id) : Book.all.joins(:book_transaction).where(borrowed: false)
+    @books = user_signed_in? ? Book.where.not(owner_id: current_user.id) : Book.all.joins(:book_transaction).where.not("approved='t' OR returned='t'")
+    @books = user_signed_in? ? Book.where.not(owner_id: current_user.id) : Book.all
     @books = Genre.find_books(params[:genre].downcase) if params[:genre].present?
     @books = @books.search(params[:search]) if params[:search].present?
     @books = @books.paginate(:page => params[:page], :per_page => 15)

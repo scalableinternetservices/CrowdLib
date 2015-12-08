@@ -4,7 +4,7 @@ require 'base64'
 require 'json'
 
 class BooksController < ApplicationController
-  before_action :set_book, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, :set_book, only: [:show, :edit, :update, :destroy]
 
   # GET /books
   # GET /books.json
@@ -23,7 +23,7 @@ class BooksController < ApplicationController
     @books = @books.paginate(:page => params[:page], :per_page => 15)
     @unique_authors = Book.uniq.pluck(:author)
     @unique_genre = Book.uniq.pluck(:genre)
-    render :layout => false
+    #render :layout => false
     
   end
 

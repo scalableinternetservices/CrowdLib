@@ -9,7 +9,7 @@
           </div>
         </div>
         <div class="col-sm-6">
-          <div class="product-information"style="height:400px"><!--/product-information-->
+          <div class="product-information"style="height:600px"><!--/product-information-->
             <h2><%= @book.title %></h2>
             <p>Book ID: <%= @book.id %></p>
             <p><b>Author:</b> <%= @book.author %></p>
@@ -17,6 +17,9 @@
             <p><b>Edition:</b> <%= @book.edition %></p>
             <p><b>ISBN:</b> <%= @book.ISBN%></p>
             <p><b>Genre:</b> <%= @book.genre%></p>
+            <% if not(@user.id==@book.owner_id) %>
+              <button type="button" class="btn btn-fefault cart" data-toggle="modal" data-target="#borrow_Modal" style="margin-left:0px"><i class="fa fa-shopping-cart"></i>Borrow</button>
+            <% end %>
             <p><b>Rating:</b><%= rating_for @book,  "author",star_path: '../' %></p>
             <%= form_tag "/books/add_new_comment" do %>
               <%= hidden_field_tag "id", @book.id %>
@@ -24,15 +27,13 @@
               <%= submit_tag "Comment",class: "btn btn-fefault cart" %>
             <% end %>
     <br/>
-    <% if not(@user.id==@book.owner_id) %>
-      <button type="button" class="btn btn-fefault cart" data-toggle="modal" data-target="#borrow_Modal" style="margin-left:0px"><i class=\"fa fa-shopping-cart\"></i>Borrow</button>
-    <% end %>
+    
           </div>
           <!--/product-information-->
         </div>
       </div>
       <div class="col-sm-4 pad-down" >
-        <div class="map minimap" style= 'width:700px; height:400px'></div>
+        <div class="map minimap" style= 'width:900px; height:600px'></div>
         <script>
           var current_user_lat_lng = {lat: <%= @book_owner_lat %>, lng: <%= @book_owner_lng %>}; var curent_user_address = "<%= @book_owner_add%>";
         </script>

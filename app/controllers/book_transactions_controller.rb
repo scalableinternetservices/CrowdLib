@@ -5,7 +5,7 @@ class BookTransactionsController < ApplicationController
 	def index
 		@user = current_user
 		@book_transaction=BookTransaction.all
-		book_txn_with_user = BookTransaction.where("borrower_id=? AND approved='t'",@user.id).where.not("returned='t'")
+		book_txn_with_user = BookTransaction.where("borrower_id=? AND approved=true AND returned=false",@user.id)
 		@books_with_user = Array.new
 		unless book_txn_with_user.nil?
 			book_txn_with_user.each do |book_txn|
@@ -19,8 +19,8 @@ class BookTransactionsController < ApplicationController
 		books_owned_by_user = Book.where(:owner_id => @user.id)
 		@books_waiting_approval = Array.new
 		books_owned_by_user.each do |book|
-			if BookTransaction.where(:book_id => book.id).where.not("approved='t' OR returned='t'").exists?
-				book_txn = BookTransaction.where(:book_id => book.id).where.not("approved='t' OR returned='t'")
+			if BookTransaction.where("book_id=? AND approved=false AND returned=false", book.id)
+				book_txn = BookTransaction.where("book_id=? AND approved=false AND returned=false", book.id)
 		      	unless book_txn.nil?
 		        	book_wrapper=Hash.new
 		        	book_wrapper[:book] = book 

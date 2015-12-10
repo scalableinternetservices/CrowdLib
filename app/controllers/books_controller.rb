@@ -66,16 +66,10 @@ class BooksController < ApplicationController
   def create
     if current_user
      @user=current_user
+     unless params[:genre].nil?
+      params[:genre]=params[:genre].downcase
+    end
      @book = Book.new(book_params)
-     genre=params[:genre].downcase
-     
-     if Genre.exists?(:name => genre)
-        @book.genres << Genre.find_by_name(genre)
-     else
-        genre = Genre.create(:name => genre)
-        @book.genres << genre
-     end
-     
      @book.owner_id=@user.id
    else
      redirect_to new_user_session_path, notice: 'You are not logged in.'

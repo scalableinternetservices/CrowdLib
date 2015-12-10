@@ -15,10 +15,8 @@
         <% end %>
         <%= f.text_field :title, :placeholder => "Book Title" %>
         <%= f.text_field :author, :placeholder => "Author" %>
-        
 
-        <input id="genre" name="genre" type="text" placeholder="Genre"/>
-       <!--  <%= f.text_field :ratings, :placeholder => "Rating" %> -->
+        <%= f.text_field :genre, :placeholder => "Genre" %>
         <%= f.text_field :publisher, :placeholder => "Publisher" %>
         <%= f.text_field :ISBN, :placeholder => "ISBN" %>
         <%= f.file_field :image_url, :placeholder => "Photo", :class => "btn-file"%>

@@ -1,7 +1,7 @@
 class Book < ActiveRecord::Base
 	include ActiveModel::Serializers::JSON
 
-	#mount_uploader :image_url, ImageUrlUploader # Tells rails to use this uploader for this model.
+	mount_uploader :image_url, ImageUrlUploader # Tells rails to use this uploader for this model.
 	belongs_to :owner, :class_name => 'User'
 	has_and_belongs_to_many :genres
 	has_many :book_transactions

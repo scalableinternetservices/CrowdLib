@@ -19,7 +19,7 @@ class BookTransactionsController < ApplicationController
 		books_owned_by_user = Book.where(:owner_id => @user.id)
 		@books_waiting_approval = Array.new
 		books_owned_by_user.each do |book|
-			if BookTransaction.where("book_id=? AND approved=false AND returned=false", book.id)
+			if BookTransaction.where("book_id=? AND approved=false AND returned=false", book.id).exists?
 				book_txn = BookTransaction.where("book_id=? AND approved=false AND returned=false", book.id)
 		      	unless book_txn.nil?
 		        	book_wrapper=Hash.new

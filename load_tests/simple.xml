@@ -10,11 +10,8 @@
   <!-- Server side setup -->
   <servers>
 
-<<<<<<< HEAD
-    <server host="52.23.206.242" port="80" type="tcp"></server>
-=======
-    <server host="52.90.239.50" port="80" type="tcp"></server>
->>>>>>> origin/master
+  <server host="54.175.170.66" port="80" type="tcp"></server>
+
   </servers>
 
 

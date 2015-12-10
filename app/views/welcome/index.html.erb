@@ -69,7 +69,7 @@
                   <div class="brands-name">
                     <ul class="nav nav-pills nav-stacked">
                       <% @unique_genre.first(10).each do |t| %>
-                        <li><a href="/books?genre=<%= t.name %>"> <span class="pull-right"></span><%= t.name %></a></li>
+                        <li><a href="/books?genre=<%= t %>"> <span class="pull-right"></span><%= t %></a></li>
                       <% end %>
                     </ul>
                   </div>

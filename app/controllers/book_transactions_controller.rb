@@ -5,7 +5,7 @@ class BookTransactionsController < ApplicationController
 	def index
 		@user = current_user
 		@book_transaction=BookTransaction.all
-		book_txn_with_user = BookTransaction.where("borrower_id=? AND approved=true AND returned=false",@user.id)
+		book_txn_with_user = BookTransaction.where("borrower_id=? AND approved=true AND returned=false AND requested=true",@user.id)
 		@books_with_user = Array.new
 		unless book_txn_with_user.nil?
 			book_txn_with_user.each do |book_txn|
@@ -19,8 +19,8 @@ class BookTransactionsController < ApplicationController
 		books_owned_by_user = Book.where(:owner_id => @user.id)
 		@books_waiting_approval = Array.new
 		books_owned_by_user.each do |book|
-			if BookTransaction.where("book_id=? AND approved=false AND returned=false", book.id).exists?
-				book_txn = BookTransaction.where("book_id=? AND approved=false AND returned=false", book.id)
+			if BookTransaction.where("book_id=? AND approved=false AND returned=false AND requested=true", book.id).exists?
+				book_txn = BookTransaction.where("book_id=? AND approved=false AND returned=false AND requested=true", book.id)
 		      	unless book_txn.nil?
 		        	book_wrapper=Hash.new
 		        	book_wrapper[:book] = book 
@@ -33,7 +33,7 @@ class BookTransactionsController < ApplicationController
 
 	def request_book
     	@user = current_user
-    	@book_transaction=BookTransaction.create(:book_id => params[:book_id], :borrower_id => @user.id, :loan_period => params[:loan_period])
+    	@book_transaction=BookTransaction.create(:book_id => params[:book_id], :borrower_id => @user.id, :loan_period => params[:loan_period], :requested => true)
     	@message_to_view="The book was successfully requested for " + @book_transaction.loan_period.to_s + " days!"
     	@book=Book.find(@book_transaction.book_id)
     	render "book_txn_success"

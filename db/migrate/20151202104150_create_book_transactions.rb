@@ -7,7 +7,7 @@ class CreateBookTransactions < ActiveRecord::Migration
     	t.datetime "return_date"
     	t.boolean "returned", :default => false
       t.boolean "approved", :default => false
-
+      t.boolean "requested", :default => false
       t.timestamps null: false
     end
     add_index(:book_transactions, ["borrower_id", "book_id"])

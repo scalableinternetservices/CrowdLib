@@ -10,7 +10,7 @@ class BooksController < ApplicationController
   # GET /books
   # GET /books.json
   def index
-    books_to_consider=user_signed_in? ? Book.where.not(owner_id: current_user.id) if stale?(Book.where.not(owner_id: current_user.id)) : Book.all if stale?(Book.where.not(owner_id: current_user.id))
+    books_to_consider=user_signed_in? ? (Book.where.not(owner_id: current_user.id) if stale?(Book.where.not(owner_id: current_user.id))) : (Book.all if stale?(Book.where.not(owner_id: current_user.id)))
     @books=[]
     books_to_consider.each do |book|
       unless BookTransaction.where("book_id=? AND (approved=false OR requested=false OR returned=false)",book.id).exists?

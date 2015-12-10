@@ -121,8 +121,7 @@
                 </td>
                 <td >
                   <a class="cart_quantity_delete" data-toggle="modal" data-target="#return_modal<%= book_wrapper[:book_txn].id %>"><i class="fa  fa-mail-reply fa-3x" style="color:grey"></i></a>
-                </td>
-                <!--Modal-->
+                  <!--Modal-->
                 <div id="return_modal<%= book_wrapper[:book_txn].id %>" class="modal fade" role="dialog">
                   <div class="modal-dialog">
                   <form method="post" action="book_transactions/return">
@@ -144,6 +143,7 @@
                     </form>
                   </div>
                 </div>
+                </td>
               </tr>
             <% end %>
           <% end %>

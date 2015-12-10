@@ -8,7 +8,7 @@ class WelcomeController < ApplicationController
     	 books_to_consider=user_signed_in? ? Book.where.not(owner_id: current_user.id) : Book.all
     	@books=[]
 	    books_to_consider.each do |book|
-	      unless BookTransaction.where("book_id=? AND (approved=false OR requested=false OR returned=fale)",book.id).exists?
+	      unless BookTransaction.where("book_id=? AND (approved=false OR requested=false OR returned=false)",book.id).exists?
 	        @books.push(book)
 	      end
 	    end

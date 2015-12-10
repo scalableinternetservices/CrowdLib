@@ -1,22 +1,21 @@
 # CrowdLib
 
-**CrowdLib** is a crowdsourced, location-based book-lending platform. A one stop for reading enthusiasts to share, rate, comment, and review books. This would eventually lead to live communities, bringing people with similar interests together.
+**CrowdLib** is a crowdsourced, location-based book-lending platform. A one stop for
+reading admirers to share, rate, comment, and review books. Users of CrowdLib
+will have an access to share the books based on their locality. A user can search the
+books available in the vicinity by specifying the distance he is willing to travel to
+get the book. By viewing the books rating and location, the user can request a book
+which he or she feels most appropriate. The borrower also specifies the intended
+loan period in the request. The lender can then accept or reject the request based
+on the availability. CrowdLib provides the following main features:
+ - A location based search system, which allows users to search for the available
+books near the specified location
+ - Borrowing a book
+ - Lending a book
+ - A 5-star rating system which allows users to review the condition of a particular
+book.
+ - Ability to add comments for a specific book
 
-Users of **CrowdLib** can get a feed of book-related news based on their locality. This includes people wanting to lend books, community posts, etc. If one decides to borrow a book from someone, the transaction is made simple by allowing us to directly show both parties how trustworthy they are and which condition the books are in. **Crowdlib** is genre-driven, in that users get more news depending on the genres they select as their favorites, with the possibility of adding or removing genres as time goes. One can also compare tastes with other people and use this to filter their taste and find new books that people around are reading about.
-
-## API Documentation ##
-
-The actual API documentation is growing and changing with each new commit. All API calls are in the **/api/v1/** namespace:
-
-### Users
-  - GET /users/count - returns the current count of registered users
-  - GET /users/by/id/:id - returns the basic information about the user with ID :id
-  - GET /users/by/username/:name - returns the basic information about the user with username :name
-  - DELETE /usrs/by/id/:id/auth/:token - deletes the user with ID id and authenticated by :token
-
-### Locations
-  - GET /locations/around/:lat,:lng - returns the locations around a point (:lat, :lng) in a predefined radius
-  - GET /locations/around/:lat,:lng/within/:radius - returns the locations around a point (:lat, :lng) within a certain :radius
 
 ## Developers
 

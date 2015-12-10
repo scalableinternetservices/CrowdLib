@@ -5,8 +5,8 @@ class CreateBookTransactions < ActiveRecord::Migration
     	t.integer "book_id"
       t.integer "loan_period"
     	t.datetime "return_date"
-    	t.boolean "returned", :default => 'false'
-      t.boolean "approved", :default => 'false'
+    	t.boolean "returned", :default => false
+      t.boolean "approved", :default => false
 
       t.timestamps null: false
     end

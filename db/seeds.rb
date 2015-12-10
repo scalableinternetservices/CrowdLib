@@ -15,7 +15,7 @@ def create_new_point(rng)
 
         { :lat => ns.to_f, :lng => we.to_f }
 end
-200.times do |x|
+500.times do |x|
 
 	un = Faker::Internet.user_name
 	em = Faker::Internet.email

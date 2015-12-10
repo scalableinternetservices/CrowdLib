@@ -67,3 +67,5 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 gem 'carrierwave'
 gem 'htmlbeautifier'
+gem 'capybara'
+gem 'validates_email_format_of'

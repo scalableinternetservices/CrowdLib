@@ -10,6 +10,6 @@ class User < ActiveRecord::Base
   has_many :comments, :class_name => 'Comment', :foreign_key => 'user_id'
 
   validates_uniqueness_of :username, { :message => "is already taken!"}
-  validates_length_of :username, { within: 5..20, too_long: 'pick a shorter name', too_short: 'pick a longer name' }
-  validates_format_of :email,:with => /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/
+  validates :first_name, :last_name,  presence: true
+  validates :email, :email_format => { :message => 'is not looking good' }
 end

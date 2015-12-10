@@ -49,7 +49,8 @@ class BooksController < ApplicationController
     @book_owner_lat = book_owner["lat"]
     @book_owner_lng = book_owner["lng"]
     @book_owner_add = book_owner["address"]
-    @comments = Comment.order('created_at DESC').where(commentable_id: @book.id)
+    #@comments = Comment.order('created_at DESC').where(commentable_id: @book.id)
+    @comments = Comment.unscoped { Comment.order("created_at DESC").where(commentable_id: @book.id).limit(20) }
   end
 
   # GET /books/new
